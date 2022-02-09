@@ -1,16 +1,17 @@
 package DNDCompanion;
 
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable; // Allows you to save and load the char
 
-import DNDCompanion.characterClass;
-
-public class character implements Serializable{
+public class Character implements Serializable{
     private String name;
     private int ethicalAlign;
     private int moralAlign;
-    private characterRace race;
-    private characterClass charClass;
+    private CharacterRace race;
+    private CharacterClass charClass;
     private int level;
     private int exp;
 
@@ -28,5 +29,8 @@ public class character implements Serializable{
     private int wism;
     private int cha;
     private int cham;
-    
+
+    public Character(){
+    }
+   
 }

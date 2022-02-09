@@ -1,7 +1,7 @@
 package DNDCompanion;
 
 
-public class characterRace {
+public class CharacterRace {
     private String name;
     private String[] subraces;
     private String[] langs;
@@ -9,10 +9,10 @@ public class characterRace {
     private int speed;
     private int[] mods = {0,0,0,0,0,0};
     
-    public characterRace(){
+    public CharacterRace(){
     }
 
-    public characterRace(String name){
+    public CharacterRace(String name){
         this.name = name;
 
         switch(name){

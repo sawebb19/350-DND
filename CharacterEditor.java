@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
 
-public class characterEditor extends JFrame implements ActionListener{
+public class CharacterEditor extends JFrame implements ActionListener{
 
     private JMenuBar menus;
 
@@ -81,7 +81,7 @@ public class characterEditor extends JFrame implements ActionListener{
 
     //Close.addActionListener(this);
 
-    public characterEditor(){
+    public CharacterEditor(){
         menus = new JMenuBar();
 
         fileMenu = new JMenu("File");
@@ -375,6 +375,6 @@ public class characterEditor extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args){
-        new characterEditor();
+        new CharacterEditor();
     }
 }
