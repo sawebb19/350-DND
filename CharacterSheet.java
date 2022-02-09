@@ -9,34 +9,58 @@ public class CharacterSheet extends JFrame implements ActionListener{
     private JMenuBar menus;
 
     private JMenu fileMenu;
-    private JMenuItem OpenChar;
-    private JMenuItem SaveChar;
-    private JMenuItem Close;
+    private JMenuItem openChar;
+    private JMenuItem saveChar;
+    private JMenuItem close;
 
-
+    private DNDChar char;
+    private boolean loaded;
 
     public CharacterSheet(){
         menus = new JMenuBar();
 
         fileMenu = new JMenu("File");
-        OpenChar = new JMenuItem("Open Character");
-        SaveChar = new JMenuItem("Save Character");
-        Close = new JMenuItem("Close");
+        newChar = new JMenuItem("ew Character");
+        openChar = new JMenuItem("Open Character");
+        saveChar = new JMenuItem("Save Character");
+        close = new JMenuItem("Close");
         
-        fileMenu.add(OpenChar);
-        fileMenu.add(SaveChar);
+        fileMenu.add(newChar);
+        fileMenu.add(openChar);
+        fileMenu.add(saveChar);
         fileMenu.addSeparator();
-        fileMenu.add(Close);
+        fileMenu.add(close);
+
+        newChar.addActionListener(this);
+        openChar.addActionListener(this);
+        saveChar.addActionListener(this);
+        close.addActionListener(this);
 
         menus.add(fileMenu);
         setJMenuBar(menus);
+
+        loaded = false; 
 
         setVisible(true);
         setSize(1000,1000);
     }
 
     public void actionPerformed(ActionEvent e){
-        System.out.print("N/A");
+        Object src = e.getSource();
+
+        if(src == openChar){
+            JFileChooser sel = new JFileChooser();
+            // Code for opening a character
+        }
+
+        if(src == saveChar){
+            // Code for saving a character
+        }
+
+        if(src == close){
+            // Code for closing the program
+        }
+
     }
 
     public static void main(String[] args){
