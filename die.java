@@ -2,11 +2,11 @@ package DNDCompanion;
 
 import java.util.Random;
 
-public class Die {
+public class die {
 	int faces;
 	
 	//Constructor takes int input and sets that as the number of faces the die has.
-	public Die(int faces) {
+	public die(int faces) {
 		this.faces = faces;
 	}
 	

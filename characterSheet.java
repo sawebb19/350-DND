@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CharacterSheet extends JFrame implements ActionListener{
+public class characterSheet extends JFrame implements ActionListener{
 
     private JMenuBar menus;
 
@@ -13,10 +13,10 @@ public class CharacterSheet extends JFrame implements ActionListener{
     private JMenuItem saveChar;
     private JMenuItem close;
 
-    private DNDChar char;
+    private character character;
     private boolean loaded;
 
-    public CharacterSheet(){
+    public characterSheet(){
         menus = new JMenuBar();
 
         fileMenu = new JMenu("File");
@@ -64,6 +64,6 @@ public class CharacterSheet extends JFrame implements ActionListener{
     }
 
     public static void main(String[] args){
-        new CharacterSheet();
+        new characterSheet();
     }
 }

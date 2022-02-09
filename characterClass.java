@@ -1,6 +1,6 @@
 package DNDCompanion;
 
-public class CharClass {
+public class characterClass {
     private String name;
     // Maybe consolidate the hit vars? Are always equal
     private int hd; // Hit Die
@@ -8,10 +8,10 @@ public class CharClass {
     private int[] saves = {0,0,0,0,0,0}; // Saving throws. "throws" is a reserved word
     // Not sure how to deal wih Skills yet
 
-    public CharClass(){
+    public characterClass(){
     }
 
-    public CharClass(String name){
+    public characterClass(String name){
         this.name = name;
 
         name = name.toLowerCase();
