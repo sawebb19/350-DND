@@ -14,66 +14,65 @@ public class characterClass {
     public characterClass(String name){
         this.name = name;
 
-        name = name.toLowerCase();
         switch(name){
-            case "barbarian":
+            case "Barbarian":
                 this.hd = this.hp = 12;
                 this.saves[0] = 1; // Strength
                 this.saves[2] = 1; // Constitution
                 break;
-            case "bard":
+            case "Bard":
                 this.hd = this.hp = 8;
                 this.saves[1] = 1; // Dexterity
                 this.saves[5] = 1; // Charisma
                 break;
-            case "cleric":
+            case "Cleric":
                 this.hd = this.hp = 8;
                 this.saves[4] = 1; // Wisdom
                 this.saves[5] = 1; // Charisma
                 break;
-            case "druid":
+            case "Druid":
                 this.hd = this.hp = 8;
                 this.saves[3] = 1; // Intelligence
                 this.saves[4] = 1; // Wisdom
                 break;
-            case "fighter":
+            case "Fighter":
                 this.hd = this.hp = 10;
                 this.saves[0] = 1; // Strength
                 this.saves[2] = 1; // Constitution
                 break;
-            case "monk":
+            case "Monk":
                 this.hd = this.hp = 8;
                 this.saves[0] = 1; // Strength
                 this.saves[1] = 1; // Dexterity
                 break;
-            case "paladin":
+            case "Paladin":
                 this.hd = this.hp = 10;
                 this.saves[4] = 1; // Wisdom
                 this.saves[5] = 1; // Charisma
                 break;
-            case "ranger":
+            case "Ranger":
                 this.hd = this.hp = 10;
                 this.saves[0] = 1; // Strength
                 this.saves[1] = 1; // Dexterity
                 break;
-            case "rogue":
+            case "Rogue":
                 this.hd = this.hp = 8;
                 this.saves[1] = 1; // Dexterity
                 this.saves[3] = 1; // Intelligence
                 break;
-            case "sorcerer":
+            case "Sorcerer":
                 this.hd = this.hp = 6;
                 this.saves[2] = 1; // Constitution
                 this.saves[5] = 1; // Charisma
                 break;
             /* Warlock is the same as Cleric atm, but will change once
             skills and abilities are added */
-            case "warlock":
+            case "Warlock":
                 this.hd = this.hp = 8;
                 this.saves[4] = 1; // Wisdom
                 this.saves[5] = 1; // Charisma
                 break;
-            case "wizard":
+            case "Wizard":
                 this.hd = this.hp = 6;
                 this.saves[3] = 1; // Intelligence
                 this.saves[4] = 1; // Wisdom
