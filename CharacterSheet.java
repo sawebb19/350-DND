@@ -11,16 +11,17 @@ public class CharacterSheet extends JFrame implements ActionListener{
     private JMenu fileMenu;
     private JMenuItem openChar;
     private JMenuItem saveChar;
+    private JMenuItem newChar;
     private JMenuItem close;
 
-    private character character;
+    private Character character;
     private boolean loaded;
 
     public CharacterSheet(){
         menus = new JMenuBar();
 
         fileMenu = new JMenu("File");
-        newChar = new JMenuItem("ew Character");
+        newChar = new JMenuItem("New Character");
         openChar = new JMenuItem("Open Character");
         saveChar = new JMenuItem("Save Character");
         close = new JMenuItem("Close");

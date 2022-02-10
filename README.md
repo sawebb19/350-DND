@@ -10,3 +10,8 @@ Sam's Notes:
 > Apparently the convention for package names is camelCase, rather than PascalCase. It's only a warning, but I think it's in our best interest to change it at some point. dndCompanion works just as well. The only thing is that I don't think we can/should use d&d because the ampersand might make for some weird problems down the road.
 
 > Will eventually make a Subrace.java to deal with the modifiers for the subraces of elves, dwarves, etc.
+
+
+Nick's Notes:
+> I need to remove a few items from the editor since they're now in the Race/Class classes. 
+> We should be able to start save/load and setting up the menu items once we have subraces set up.
