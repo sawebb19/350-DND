@@ -1,6 +1,7 @@
-package DNDCompanion;
+package dndCompanion;
 
-public class CharacterClass {
+
+public class CharacterClass{
     private String name;
     // Maybe consolidate the hit vars? Are always equal
     private int hd; // Hit Die
@@ -81,6 +82,14 @@ public class CharacterClass {
                 this.hd = this.hp = 0;
                 break;
             }
+    }
+
+    public String toString(){
+        return
+        name + "{\n\t" +
+        "hd=" + hd + "\n\t" +
+        "hp=" + hp + "\n\t" +
+        "saves=" + saves + "\n}\n";
     }
 
 }

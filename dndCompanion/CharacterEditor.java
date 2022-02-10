@@ -1,4 +1,4 @@
-package DNDCompanion;
+package dndCompanion;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

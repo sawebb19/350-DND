@@ -1,4 +1,4 @@
-package DNDCompanion;
+package dndCompanion;
 
 import java.util.Random;
 
