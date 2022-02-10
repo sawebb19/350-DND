@@ -2,7 +2,7 @@ package dndCompanion.character;
 
 import java.io.Serializable; // Allows you to save and load the char
 
-import dndCompanion.CharacterClass;
+import dndCompanion.character.chrclasses.*;
 import dndCompanion.character.chrraces.*;
 
 public class Character implements Serializable{
