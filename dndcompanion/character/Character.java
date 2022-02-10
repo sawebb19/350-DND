@@ -4,6 +4,7 @@ import java.io.Serializable; // Allows you to save and load the char
 
 import dndcompanion.character.chrclasses.*;
 import dndcompanion.character.chrraces.*;
+import java.util.Arrays;
 
 public class Character implements Serializable{
     private String name;
@@ -22,8 +23,8 @@ public class Character implements Serializable{
     }
 
     public Character(String name,
-                    int ethicalAlign,
-                    int moralAlign,
+                    int ethicalAlign, // 0: Lawful, 1: Neutral, 2: Chaotic
+                    int moralAlign, // 0: Good, 1: Neutral, 2: Evil
                     Race race,
                     CharacterClass charClass,
                     int level,
@@ -49,14 +50,14 @@ public class Character implements Serializable{
 
     public String toString(){
         return
-        "name=" + this.name +
-        "ethical=" + this.ethicalAlign +
-        "moral=" + this.moralAlign +
+        "name=" + this.name + "\n" +
+        "ethical=" + this.ethicalAlign + "\n" +
+        "moral=" + this.moralAlign + "\n" +
          race.toString() +
          charClass.toString() +
-         "level=" + this.level +
-         "exp=" + this.exp +
-         "stats=" + this.stats +
-         "mods=" + this.mods;
+         "level=" + this.level + "\n" +
+         "exp=" + this.exp + "\n" +
+         "stats=" + Arrays.toString(this.stats) + "\n" +
+         "mods=" + Arrays.toString(this.mods);
     }
 }

@@ -1,6 +1,7 @@
 package dndcompanion.character.chrraces;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public abstract class 
 Race implements Serializable{
@@ -77,8 +78,8 @@ Race implements Serializable{
         "race=" + this.name + "{\n\t" +
         "size=" + this.size + "\n\t" +
         "speed=" + this.speed + "\n\t" +
-        "langs=" + this.langs + "\n\t" +
-        "mods=" + this.mods + "\n}";
+        "langs=" + Arrays.toString(this.langs) + "\n\t" +
+        "mods=" + Arrays.toString(this.mods) + "\n}\n";
     }
 
 }

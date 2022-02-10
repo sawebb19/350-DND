@@ -1,5 +1,7 @@
 package dndcompanion.character.chrraces;
 
+import java.util.Arrays;
+
 public class Human extends Race{
     
     private String ethnic;
@@ -39,7 +41,7 @@ public class Human extends Race{
         "ethnicity=" + this.ethnic + "\n\t" + 
         "size=" + this.size + "\n\t" +
         "speed=" + this.speed + "\n\t" +
-        "langs=" + this.langs + "\n\t" +
-        "mods=" + this.mods + "\n}";
+        "langs=" + Arrays.toString(this.langs) + "\n\t" +
+        "mods=" + Arrays.toString(this.mods) + "\n}\n";
     }
 }

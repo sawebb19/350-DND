@@ -1,5 +1,7 @@
 package dndcompanion.character.chrraces;
 
+import java.util.Arrays;
+
 public abstract class
 Subrace extends Race{
 
@@ -33,7 +35,7 @@ Subrace extends Race{
         "subrace=" + this.kind + "\n\t" + 
         "size=" + this.size + "\n\t" +
         "speed=" + this.speed + "\n\t" +
-        "langs=" + this.langs + "\n\t" +
-        "mods=" + this.mods + "\n}";
+        "langs=" + Arrays.toString(this.langs) + "\n\t" +
+        "mods=" + Arrays.toString(this.mods) + "\n}\n";
     }
 }

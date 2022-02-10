@@ -1,6 +1,7 @@
 package dndcompanion.character.chrclasses;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public abstract class
 CharacterClass implements Serializable{
@@ -50,6 +51,6 @@ CharacterClass implements Serializable{
         return
         "class=" + this.name + "{\n\t" +
         "hit=" + this.hit + "\n\t" +
-        "saves=" + this.saves + "\n}";
+        "saves=" + Arrays.toString(this.saves) + "\n}\n";
     }
 }

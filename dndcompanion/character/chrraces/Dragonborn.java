@@ -1,5 +1,7 @@
 package dndcompanion.character.chrraces;
 
+import java.util.Arrays;
+
 public class Dragonborn extends Race{
 
     private String ancestry;
@@ -42,7 +44,7 @@ public class Dragonborn extends Race{
         "ancestry=" + this.ancestry + "\n\t" + 
         "size=" + this.size + "\n\t" +
         "speed=" + this.speed + "\n\t" +
-        "langs=" + this.langs + "\n\t" +
-        "mods=" + this.mods + "\n}";
+        "langs=" + Arrays.toString(this.langs) + "\n\t" +
+        "mods=" + Arrays.toString(this.mods) + "\n}\n";
     }
 } 

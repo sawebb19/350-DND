@@ -2,10 +2,18 @@ package dndcompanion;
 
 import javax.swing.*;
 
-import dndcompanion.character.Character;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.IOException;
+
+// These are for the test character
+import dndcompanion.character.Character;
+import dndcompanion.character.chrclasses.*;
+import dndcompanion.character.chrraces.*;
 
 public class CharacterSheet extends JFrame implements ActionListener{
 
@@ -47,6 +55,21 @@ public class CharacterSheet extends JFrame implements ActionListener{
 
         setVisible(true);
         setSize(1920,1080);
+
+        Race race = new HalfOrc();
+        CharacterClass charClass = new Paladin();
+
+        // Test Character For Saving/Loading
+        character = new Character("Terry", // Name
+                                    1,  // Ethical Align: Neutral
+                                    2, // Moral Align: Evil
+                                    race,
+                                    charClass,
+                                    1, // Level
+                                    0, // Exp
+                                    new int[]{3,3,3,3,3,3}, // Stats
+                                    new int[]{0,0,0,0,0,0}); // Modifiers
+                                    
     }
 
     public void actionPerformed(ActionEvent e){
@@ -55,10 +78,45 @@ public class CharacterSheet extends JFrame implements ActionListener{
         if(src == openChar){
             // Code for opening a character
             JFileChooser sel = new JFileChooser();
+            int status = sel.showOpenDialog(null);
+            if(status == JFileChooser.APPROVE_OPTION){
+                try{
+                    String path = sel.getSelectedFile().getCanonicalPath();
+
+                    FileInputStream file = new FileInputStream(path);
+                    ObjectInputStream in = new ObjectInputStream(file);
+
+                    Character printMe = (Character)in.readObject();
+
+                    in.close();
+                    file.close();
+                    System.out.println(printMe.toString());
+                }
+
+                catch(Exception ex){
+                    System.out.println("Error!");
+                }
+
+                
+            }
         }
 
         if(src == saveChar){
             // Code for saving a character
+            try{
+
+                FileOutputStream file = new FileOutputStream("ExampleChars/"+character.getName()+".char");
+                ObjectOutputStream out = new ObjectOutputStream(file);
+
+                out.writeObject(character);
+
+                out.close();
+                file.close();
+            }
+
+            catch(Exception ex){
+                System.out.println("Error!");
+            }
         }
 
         if(src == close){
