@@ -1,8 +1,7 @@
-name=Louie
-ethicalAlign=Lawful
-moralAlign=Evil
-race=Human{
-    subrace=Rashemi
+name=Philomena
+ethicalAlign=Neutral
+moralAlign=Neutral
+race=Tiefling{
     size=Medium
     speed=30
     langs=Common
