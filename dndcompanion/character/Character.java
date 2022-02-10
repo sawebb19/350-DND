@@ -8,8 +8,8 @@ import java.util.Arrays;
 
 public class Character implements Serializable{
     private String name;
-    private int ethicalAlign;
-    private int moralAlign;
+    private String ethicalAlign;
+    private String moralAlign;
     private Race race;
     private CharacterClass charClass;
     private int level;
@@ -23,8 +23,8 @@ public class Character implements Serializable{
     }
 
     public Character(String name,
-                    int ethicalAlign, // 0: Lawful, 1: Neutral, 2: Chaotic
-                    int moralAlign, // 0: Good, 1: Neutral, 2: Evil
+                    String ethicalAlign, // 0: Lawful, 1: Neutral, 2: Chaotic
+                    String moralAlign, // 0: Good, 1: Neutral, 2: Evil
                     Race race,
                     CharacterClass charClass,
                     int level,
@@ -45,7 +45,15 @@ public class Character implements Serializable{
     }
   
     public String getName(){
-        return name;
+        return this.name;
+    }
+
+    public Race getRace(){
+        return this.race;
+    }
+
+    public CharacterClass getCharClass(){
+        return this.charClass;
     }
 
     public String toString(){

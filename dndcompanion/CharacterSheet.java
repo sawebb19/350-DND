@@ -15,7 +15,7 @@ import dndcompanion.character.Character;
 import dndcompanion.character.chrclasses.*;
 import dndcompanion.character.chrraces.*;
 
-public class CharacterSheet extends JFrame implements ActionListener{
+public class CharacterSheet extends JFrame implements ActionListener {
 
     private JMenuBar menus;
 
@@ -25,18 +25,25 @@ public class CharacterSheet extends JFrame implements ActionListener{
     private JMenuItem newChar;
     private JMenuItem close;
 
-    private Character character;
-    private boolean loaded;
+    private JLabel charName;
+    private JLabel charRace;
+    private JLabel charClass;
 
-    public CharacterSheet(){
+    private Character character;
+
+    public CharacterSheet() {
+
+        // Menus
+
         menus = new JMenuBar();
 
         fileMenu = new JMenu("File");
         newChar = new JMenuItem("New Character");
         openChar = new JMenuItem("Open Character");
         saveChar = new JMenuItem("Save Character");
+        //saveChar.setEnabled(false);
         close = new JMenuItem("Close");
-        
+
         fileMenu.add(newChar);
         fileMenu.add(openChar);
         fileMenu.add(saveChar);
@@ -51,82 +58,91 @@ public class CharacterSheet extends JFrame implements ActionListener{
         menus.add(fileMenu);
         setJMenuBar(menus);
 
-        loaded = false; 
+        // Items inside CharacterSheet
+
+        charName = new JLabel();
+        charRace = new JLabel();
+        charClass = new JLabel();
+
+        charName.setBounds(50,20,70,15);
+        charRace.setBounds(50,55,70,15);
+        charClass.setBounds(50,90,70,15);
+
+        getContentPane().add(charName);
+        getContentPane().add(charRace);
+        getContentPane().add(charClass);
 
         setVisible(true);
-        setSize(1920,1080);
+        setSize(1920, 1080);
 
         Race race = new HalfOrc();
-        CharacterClass charClass = new Paladin();
+        CharacterClass paladin = new Paladin();
 
         // Test Character For Saving/Loading
         character = new Character("Terry", // Name
-                                    1,  // Ethical Align: Neutral
-                                    2, // Moral Align: Evil
-                                    race,
-                                    charClass,
-                                    1, // Level
-                                    0, // Exp
-                                    new int[]{3,3,3,3,3,3}, // Stats
-                                    new int[]{0,0,0,0,0,0}); // Modifiers
-                                    
+                "Neutral", // Ethical Align
+                "Evil", // Moral Align
+                race,
+                paladin,
+                1, // Level
+                0, // Exp
+                new int[] { 3, 3, 3, 3, 3, 3 }, // Stats
+                new int[] { 0, 0, 0, 0, 0, 0 }); // Modifiers
+
     }
 
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
 
-        if(src == openChar){
+        if (src == openChar) {
             // Code for opening a character
             JFileChooser sel = new JFileChooser();
             int status = sel.showOpenDialog(null);
-            if(status == JFileChooser.APPROVE_OPTION){
-                try{
-                    String path = sel.getSelectedFile().getCanonicalPath();
+            if (status == JFileChooser.APPROVE_OPTION) {
+                String path;
+                try {
+                    path = sel.getSelectedFile().getCanonicalPath();
+                    try (FileInputStream file = new FileInputStream(path);
+                            ObjectInputStream in = new ObjectInputStream(file);) {
 
-                    FileInputStream file = new FileInputStream(path);
-                    ObjectInputStream in = new ObjectInputStream(file);
+                        Character temp = (Character) in.readObject();
+                        charName.setText(temp.getName());
+                        charRace.setText(temp.getRace().getName());
+                        charClass.setText(temp.getCharClass().getName());
+                        //saveChar.setEnabled(true);
+                    }
 
-                    Character printMe = (Character)in.readObject();
-
-                    in.close();
-                    file.close();
-                    System.out.println(printMe.toString());
+                    catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
 
-                catch(Exception ex){
-                    System.out.println("Error!");
-                }
-
-                
             }
         }
 
-        if(src == saveChar){
+        if (src == saveChar) {
             // Code for saving a character
-            try{
-
-                FileOutputStream file = new FileOutputStream("ExampleChars/"+character.getName()+".char");
-                ObjectOutputStream out = new ObjectOutputStream(file);
+            try (FileOutputStream file = new FileOutputStream("ExampleChars/" + character.getName() + ".char");
+                    ObjectOutputStream out = new ObjectOutputStream(file);) {
 
                 out.writeObject(character);
-
-                out.close();
-                file.close();
             }
 
-            catch(Exception ex){
-                System.out.println("Error!");
+            catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
 
-        if(src == close){
+        if (src == close) {
             // Code for closing the program
             System.exit(1);
         }
 
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new CharacterSheet();
     }
 }
