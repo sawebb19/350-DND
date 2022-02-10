@@ -16,12 +16,25 @@ public class Character implements Serializable{
 
     // Stats
     private int[] stats;
-    private int[] statMods;
+    private int[] mods;
 
     public Character(){
     }
   
     public String getName(){
         return name;
+    }
+
+    public String toString(){
+        return
+        "name=" + this.name +
+        "ethical=" + this.ethicalAlign +
+        "moral=" + this.moralAlign +
+         race.toString() +
+         charClass.toString() +
+         "level=" + this.level +
+         "exp=" + this.exp +
+         "stats=" + this.stats +
+         "mods=" + this.mods;
     }
 }

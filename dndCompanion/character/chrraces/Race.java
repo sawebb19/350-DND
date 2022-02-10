@@ -12,7 +12,7 @@ Race implements Serializable{
     protected String[] langs;
     protected String size;
     protected int speed;
-    protected int[] mods;
+    protected int[] mods = {0,0,0,0,0,0};
 
     protected Race(){
     }
@@ -33,23 +33,23 @@ Race implements Serializable{
     }
 
     public String getName(){
-        return name;
+        return this.name;
     }
 
     public String[] getSubraces(){
-        return subraces;
+        return this.subraces;
     }
 
     public String getSize(){
-        return size;
+        return this.size;
     }
 
     public int getSpeed(){
-        return speed;
+        return this.speed;
     }
 
     public int[] getMods(){
-        return mods;
+        return this.mods;
     }
 
     public void setName(String name){
@@ -74,7 +74,7 @@ Race implements Serializable{
 
     public String toString(){
         return
-        this.name + "{\n\t" +
+        "race=" + this.name + "{\n\t" +
         "size=" + this.size + "\n\t" +
         "speed=" + this.speed + "\n\t" +
         "langs=" + this.langs + "\n\t" +
