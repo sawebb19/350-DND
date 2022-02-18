@@ -26,7 +26,7 @@ public class CharacterSheet extends JFrame implements ActionListener {
     private JLabel charRace;
     private JLabel charClass;
 
-    private Character character;
+    private DNDChar dndChar;
 
     public CharacterSheet() {
 
@@ -121,10 +121,10 @@ public class CharacterSheet extends JFrame implements ActionListener {
 
         if (src == saveChar) {
             // Code for saving a character
-            try (FileOutputStream file = new FileOutputStream("ExampleChars/" + DNDChar.getName() + ".char");
+            try (FileOutputStream file = new FileOutputStream("ExampleChars/" + dndChar.getName() + ".char");
                     ObjectOutputStream out = new ObjectOutputStream(file);) {
 
-                out.writeObject(character);
+                out.writeObject(dndChar);
             }
 
             catch (Exception ex) {
