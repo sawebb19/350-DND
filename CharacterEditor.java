@@ -520,31 +520,31 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         int n;
                         switch(race) {
                         	default:
-                        	case "": n=0;
-                        	case "Dragonborn": n=1; //
-                        	case "Dwarf": n=2;
-                        	case "Elf": n=3;
-                        	case "Gnome": n=4;
-                        	case "Half-Elf": n=5; //
-                        	case "Halfling": n=6;
-                        	case "Half-Orc": n=7; //
-                        	case "Human": n=8; //
-                        	case "Tiefling": n=9; //
+                        	case "": n=0; break;
+                        	case "Dragonborn": n=1; break;
+                        	case "Dwarf": n=2; break;
+                        	case "Elf": n=3; break;
+                        	case "Gnome": n=4; break;
+                        	case "Half-Elf": n=5; break;
+                        	case "Halfling": n=6; break;
+                        	case "Half-Orc": n=7; break;
+                        	case "Human": n=8; break;
+                        	case "Tiefling": n=9; break;
                         }
                         raceBox.setSelectedIndex(n);
                         String pClass = temp.getCharClass().getName(); 
                         switch(race) {
                         	default:
-                        	case "": n=0;
-                        	case "Dragonborn": n=1; //
-                        	case "Dwarf": n=2;
-                        	case "Elf": n=3;
-                        	case "Gnome": n=4;
-                        	case "Half-Elf": n=5; //
-                        	case "Halfling": n=6;
-                        	case "Half-Orc": n=7; //
-                        	case "Human": n=8; //
-                        	case "Tiefling": n=9; //
+                        	case "": n=0; break;
+                        	case "Dragonborn": n=1; break;
+                        	case "Dwarf": n=2; break;
+                        	case "Elf": n=3; break;
+                        	case "Gnome": n=4; break;
+                        	case "Half-Elf": n=5; break;
+                        	case "Halfling": n=6; break;
+                        	case "Half-Orc": n=7; break;
+                        	case "Human": n=8; break;
+                        	case "Tiefling": n=9; break;
                         }
                         classBox.setSelectedIndex(n);
                         			
