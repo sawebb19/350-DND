@@ -614,6 +614,7 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         switch(race) {
                         	default:
                         	case "": n=0; break;
+
                         	case "Barbarian": n=1; break; 
                         	case "Bard": n=2; break;
                         	case "Cleric": n=3; break;

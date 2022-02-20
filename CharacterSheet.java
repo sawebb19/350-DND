@@ -30,8 +30,7 @@ public class CharacterSheet extends JFrame implements ActionListener {
     private JLabel charRace;
     private JLabel charClass;
 
-    private DNDChar tempChar;
-    
+    private DNDChar dndChar;
 
     public CharacterSheet() {
 
@@ -115,9 +114,9 @@ public class CharacterSheet extends JFrame implements ActionListener {
         String equipment = "greataxe and rapier";
         String player = "Nick";
         
-        tempChar = new DNDChar(name, ethicalAlign, moralAlign, 
+        dndChar = new DNDChar(name, ethicalAlign, moralAlign, 
                 				   race, charClass, level, exp, 
-                				   stats, mods, skills, background, 
+                				   stats, skills, background, 
                 				   traits, ideals, bonds, flaws, 
                 				   armor, maxHP, features, profs, 
                 				   equipment, player);
@@ -157,10 +156,10 @@ public class CharacterSheet extends JFrame implements ActionListener {
 
         if (src == saveChar) {
             // Code for saving a character
-            try (FileOutputStream file = new FileOutputStream("ExampleChars/" + tempChar.getName() + ".char");
-                    ObjectOutputStream out = new ObjectOutputStream(file);) {
 
-                out.writeObject(tempChar);
+            try (FileOutputStream file = new FileOutputStream("ExampleChars/" + dndChar.getName() + ".char");
+            		ObjectOutputStream out = new ObjectOutputStream(file);) {
+            	out.writeObject(dndChar);
             }
 
             catch (Exception ex) {
