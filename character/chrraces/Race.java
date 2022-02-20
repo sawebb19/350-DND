@@ -3,8 +3,7 @@ package DNDCompanion.character.chrraces;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public abstract class 
-Race implements Serializable{
+public abstract class Race implements Serializable{
     
     private static final long serialVersionUID = 1L;
 

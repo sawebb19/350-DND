@@ -15,3 +15,5 @@ Nick's Notes:
 > I need to remove a few items from the editor since they're now in the Race/Class classes. 
 
 > We should be able to start save/load and setting up the menu items once we have subraces set up.
+
+> Wrote up the Load action for the Editor but I think it'll have to change with how the toString is setup rn. What I wrote assumes that an object can be pull out of the .char file but that's not what happens. ...Double-checked and I was right, it doesn't work with the DNDChar toString. It might work with default toString I'll do some more testing for that.

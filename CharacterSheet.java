@@ -10,6 +10,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
 import DNDCompanion.character.*;
+import DNDCompanion.character.chrclasses.CharacterClass;
+import DNDCompanion.character.chrclasses.Rogue;
+import DNDCompanion.character.chrraces.HalfElf;
+import DNDCompanion.character.chrraces.Race;
 
 
 public class CharacterSheet extends JFrame implements ActionListener {
@@ -26,7 +30,8 @@ public class CharacterSheet extends JFrame implements ActionListener {
     private JLabel charRace;
     private JLabel charClass;
 
-    private Character character;
+    private DNDChar tempChar;
+    
 
     public CharacterSheet() {
 
@@ -86,6 +91,37 @@ public class CharacterSheet extends JFrame implements ActionListener {
 //                new int[] { 3, 3, 3, 3, 3, 3 }, // Stats
 //                new int[] { 0, 0, 0, 0, 0, 0 }); // Modifiers
 
+
+        //test Character
+    	String name = "Biff";
+        String ethicalAlign = "C";
+        String moralAlign = "N";
+        Race race = new HalfElf();
+        CharacterClass charClass = new Rogue();
+        int level = 3;
+        int exp = 0;
+        int[] stats = {10,10,10,10,10,15};
+        int[] mods = {0,0,0,0,0,2}; 
+        String skills = "SurvivalReligionAcrobatics";
+        String background = "Acolyte"; 
+        String traits = "trait1, trait2";
+        String ideals = "ideals are cool"; 
+        String bonds = "bonded to none";
+        String flaws = "not cool enough"; 
+        int armor = 16;
+        int maxHP = 24; 
+        String features = "cool aura";
+        String profs = "martial, simple, and ranged weapons"; 
+        String equipment = "greataxe and rapier";
+        String player = "Nick";
+        
+        tempChar = new DNDChar(name, ethicalAlign, moralAlign, 
+                				   race, charClass, level, exp, 
+                				   stats, mods, skills, background, 
+                				   traits, ideals, bonds, flaws, 
+                				   armor, maxHP, features, profs, 
+                				   equipment, player);
+        
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -121,10 +157,10 @@ public class CharacterSheet extends JFrame implements ActionListener {
 
         if (src == saveChar) {
             // Code for saving a character
-            try (FileOutputStream file = new FileOutputStream("ExampleChars/" + DNDChar.getName() + ".char");
+            try (FileOutputStream file = new FileOutputStream("ExampleChars/" + tempChar.getName() + ".char");
                     ObjectOutputStream out = new ObjectOutputStream(file);) {
 
-                out.writeObject(character);
+                out.writeObject(tempChar);
             }
 
             catch (Exception ex) {

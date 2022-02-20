@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.awt.Font;
+import javax.swing.BorderFactory;
 
 public class CharacterEditor extends JFrame implements ActionListener{
 
@@ -19,15 +20,18 @@ public class CharacterEditor extends JFrame implements ActionListener{
     private JMenuItem openChar;
     private JMenuItem saveChar;
     private JMenuItem close;
+    private JMenu windowMenu;
+    private JMenuItem charEditor;
+    private JMenuItem charSheet;
     
     private JLabel charNameLabel;
     private JLabel classLabel;
     private JLabel raceLabel;
-    private JLabel alignLabel;
+    private JLabel playerNameLabel;
     private JLabel bgLabel;
     private JLabel xpLabel;
     private JLabel subraceLabel;
-    private JLabel saveThrowLabel;
+    private JLabel alignmentLabel;
     private JLabel skillsLabel;
     private JLabel strLabel;
     private JLabel dexLabel;
@@ -35,10 +39,10 @@ public class CharacterEditor extends JFrame implements ActionListener{
     private JLabel intLabel;
     private JLabel wisLabel;
     private JLabel chaLabel;
-    private JLabel TraitsLabel;
-    private JLabel IdealsLabel;
-    private JLabel BondsLabel;
-    private JLabel FlawsLabel;
+    private JLabel traitsLabel;
+    private JLabel idealsLabel;
+    private JLabel bondsLabel;
+    private JLabel flawsLabel;
     private JLabel featuresLabel;
     private JLabel equipLabel;
     private JLabel profLabel;
@@ -57,24 +61,19 @@ public class CharacterEditor extends JFrame implements ActionListener{
     private JTextField hpText;
     
     private JComboBox raceBox;
-    private JComboBox alignBox;
+    private JComboBox subraceBox;
     private JComboBox classBox;
     private JComboBox lvlBox;
     
-    private JTextArea IdealsTextArea;
-    private JTextArea BondsTextArea;
-    private JTextArea FlawsTextArea;
-    private JTextArea TraitsTextArea;
+    private JTextArea idealsTextArea;
+    private JTextArea bondsTextArea;
+    private JTextArea flawsTextArea;
+    private JTextArea traitsTextArea;
     private JTextArea featuresTextArea;
     private JTextArea equipTextArea;
     private JTextArea profTextArea;
     
-    private JRadioButton strRadioButton;
-    private JRadioButton dexRadioButton;
-    private JRadioButton intRadioButton;
-    private JRadioButton conRadioButton;
-    private JRadioButton chaRadioButton;
-    private JRadioButton wisRadioButton;
+    
     private JRadioButton skillRadio1;
     private JRadioButton skillRadio2;
     private JRadioButton skillRadio3;
@@ -93,6 +92,18 @@ public class CharacterEditor extends JFrame implements ActionListener{
     private JRadioButton skillRadio16;
     private JRadioButton skillRadio17;
     private JRadioButton skillRadio18;
+    
+    private ButtonGroup alignGroup;
+    private JRadioButton alignRadioLG;
+    private JRadioButton alignRadioLN;
+    private JRadioButton alignRadioLE;
+    private JRadioButton alignRadioNG;
+    private JRadioButton alignRadioNN;
+    private JRadioButton alignRadioNE;
+    private JRadioButton alignRadioCG;
+    private JRadioButton alignRadioCN;
+    private JRadioButton alignRadioCE;
+    
     
     private JSeparator separator1;
     private JSeparator separator2;
@@ -118,12 +129,22 @@ public class CharacterEditor extends JFrame implements ActionListener{
         fileMenu.add(saveChar);
         fileMenu.addSeparator();
         fileMenu.add(close);
+        
+        windowMenu = new JMenu("Window");
+        charEditor = new JMenuItem("Character Editor");
+        charSheet  = new JMenuItem("Character Sheet");
+        
+        windowMenu.add(charEditor);
+        windowMenu.add(charSheet);
 
         openChar.addActionListener(this);
         saveChar.addActionListener(this);
         close.addActionListener(this);
+        charEditor.addActionListener(this);
+        charSheet.addActionListener(this);
 
         menus.add(fileMenu);
+        menus.add(windowMenu);
         setJMenuBar(menus);
         
         charNameText = new JTextField();
@@ -156,21 +177,22 @@ public class CharacterEditor extends JFrame implements ActionListener{
         raceBox.setBounds(188, 84, 124, 25);
         getContentPane().add(raceBox);
         
+        subraceBox = new JComboBox(new String[]{""});
+        subraceBox.setBounds(188, 135, 124, 25);
+        getContentPane().add(subraceBox);
+        
         raceLabel = new JLabel("Race");
         raceLabel.setBounds(188, 69, 56, 14);
         getContentPane().add(raceLabel);
         
-        alignLabel = new JLabel("Alignment");
-        alignLabel.setBounds(39, 171, 70, 14);
-        getContentPane().add(alignLabel);
+        playerNameLabel = new JLabel("Player Name");
+        playerNameLabel.setBounds(39, 171, 86, 14);
+        getContentPane().add(playerNameLabel);
         
-        String[] alignChoice = {"","Lawful Good","Neutral Good","Chaotic Good",
-				"Lawful Neutral","Neutral","Chaotic Neutral",
-				"Lawful Evil","Neutral Evil","Chaotic Evil"};
-        alignBox = new JComboBox(alignChoice);
-        alignBox.setBounds(39, 186, 125, 25);
-        alignBox.setSelectedIndex(0);
-        getContentPane().add(alignBox);
+        
+        playerNameText = new JTextField();
+        playerNameText.setBounds(39, 186, 125, 25);
+        getContentPane().add(playerNameText);
         
         bgLabel = new JLabel("Background");
         bgLabel.setBounds(188, 171, 83, 14);
@@ -194,42 +216,7 @@ public class CharacterEditor extends JFrame implements ActionListener{
         subraceLabel.setBounds(188, 120, 83, 14);
         getContentPane().add(subraceLabel);
         
-        playerNameText = new JTextField();
-        playerNameText.setColumns(10);
-        playerNameText.setBounds(188, 135, 124, 25);
-        getContentPane().add(playerNameText);
-        
-        
-        //Saving Throws Header and radio buttons for each core stat
-        saveThrowLabel = new JLabel("Saving Throws");
-        saveThrowLabel.setBounds(396, 120, 94, 14);
-        getContentPane().add(saveThrowLabel);
-        
-        strRadioButton = new JRadioButton("Strength");
-        strRadioButton.setBounds(353, 142, 86, 23);
-        getContentPane().add(strRadioButton);
-        
-        dexRadioButton = new JRadioButton("Dexterity");
-        dexRadioButton.setBounds(353, 168, 86, 23);
-        getContentPane().add(dexRadioButton);
-
-        conRadioButton = new JRadioButton("Constitution");
-        conRadioButton.setBounds(353, 194, 86, 23);
-        getContentPane().add(conRadioButton);
-        
-        intRadioButton = new JRadioButton("Intelligence");
-        intRadioButton.setBounds(436, 142, 100, 23);
-        getContentPane().add(intRadioButton);
-        
-        wisRadioButton = new JRadioButton("Wisdom");
-        wisRadioButton.setBounds(436, 168, 100, 23);
-        getContentPane().add(wisRadioButton);
-        
-        chaRadioButton = new JRadioButton("Charisma");
-        chaRadioButton.setBounds(436, 194, 100, 23);
-        getContentPane().add(chaRadioButton);
-        
-        //separating STs from skills
+        //separating alignment from skills
         separator1 = new JSeparator(SwingConstants.VERTICAL);
         separator1.setBounds(542, 118, 2, 177);
         getContentPane().add(separator1);
@@ -311,6 +298,58 @@ public class CharacterEditor extends JFrame implements ActionListener{
         skillRadio18.setBounds(798, 272, 109, 23);
         getContentPane().add(skillRadio18);
         
+        //Alignment header + radio button for each align.
+        alignmentLabel = new JLabel("Alignment");
+        alignmentLabel.setBounds(411, 120, 70, 14);
+        getContentPane().add(alignmentLabel);
+        
+        alignGroup = new ButtonGroup();
+        
+        alignRadioLG = new JRadioButton();
+        alignRadioLG.setBounds(381, 157, 20, 23);
+        getContentPane().add(alignRadioLG);
+        alignGroup.add(alignRadioLG);
+        
+        alignRadioLN = new JRadioButton();
+        alignRadioLN.setBounds(381, 207, 20, 23);
+        getContentPane().add(alignRadioLN);
+        alignGroup.add(alignRadioLN);
+        
+        alignRadioLE = new JRadioButton();
+        alignRadioLE.setBounds(381, 257, 20, 23);
+        getContentPane().add(alignRadioLE);
+        alignGroup.add(alignRadioLE);
+        
+        alignRadioNG = new JRadioButton();
+        alignRadioNG.setBounds(431, 157, 20, 23);
+        getContentPane().add(alignRadioNG);
+        alignGroup.add(alignRadioNG);
+        
+        alignRadioNN = new JRadioButton();
+        alignRadioNN.setBounds(431, 207, 20, 23);
+        getContentPane().add(alignRadioNN);
+        alignGroup.add(alignRadioNN);
+        
+        alignRadioNE = new JRadioButton();
+        alignRadioNE.setBounds(431, 257, 20, 23);
+        getContentPane().add(alignRadioNE);
+        alignGroup.add(alignRadioNE);
+        
+        alignRadioCG = new JRadioButton();
+        alignRadioCG.setBounds(481, 157, 20, 23);
+        getContentPane().add(alignRadioCG);
+        alignGroup.add(alignRadioCG);
+        
+        alignRadioCN = new JRadioButton();
+        alignRadioCN.setBounds(481, 207, 20, 23);
+        getContentPane().add(alignRadioCN);
+        alignGroup.add(alignRadioCN);
+        
+        alignRadioCE = new JRadioButton();
+        alignRadioCE.setBounds(481, 257, 20, 23);
+        getContentPane().add(alignRadioCE);
+        alignGroup.add(alignRadioCE);
+        
         //separate skills from stats
         separator2 = new JSeparator(SwingConstants.HORIZONTAL);
         separator2.setBounds(343, 107, 595, 2);
@@ -389,49 +428,50 @@ public class CharacterEditor extends JFrame implements ActionListener{
         separator3.setBounds(333, 10, 2, 626);
         getContentPane().add(separator3);
         
-        TraitsTextArea = new JTextArea();
-        TraitsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
-        TraitsTextArea.setWrapStyleWord(true);
-        TraitsTextArea.setLineWrap(true);
-        TraitsTextArea.setBounds(39, 257, 273, 80);
-        getContentPane().add(TraitsTextArea);
+        traitsTextArea = new JTextArea();
+        traitsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
+        traitsTextArea.setWrapStyleWord(true);
+        traitsTextArea.setLineWrap(true);
+        traitsTextArea.setBounds(39, 257, 273, 80);
+//        TraitsTextArea.createRaisedBevelBorder();
+        getContentPane().add(traitsTextArea);
         
-        IdealsTextArea = new JTextArea();
-        IdealsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
-        IdealsTextArea.setWrapStyleWord(true);
-        IdealsTextArea.setLineWrap(true);
-        IdealsTextArea.setBounds(39, 364, 273, 80);
-        getContentPane().add(IdealsTextArea);
+        idealsTextArea = new JTextArea();
+        idealsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
+        idealsTextArea.setWrapStyleWord(true);
+        idealsTextArea.setLineWrap(true);
+        idealsTextArea.setBounds(39, 364, 273, 80);
+        getContentPane().add(idealsTextArea);
         
-        BondsTextArea = new JTextArea();
-        BondsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
-        BondsTextArea.setWrapStyleWord(true);
-        BondsTextArea.setLineWrap(true);
-        BondsTextArea.setBounds(39, 471, 273, 80);
-        getContentPane().add(BondsTextArea);
+        bondsTextArea = new JTextArea();
+        bondsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
+        bondsTextArea.setWrapStyleWord(true);
+        bondsTextArea.setLineWrap(true);
+        bondsTextArea.setBounds(39, 471, 273, 80);
+        getContentPane().add(bondsTextArea);
         
-        FlawsTextArea = new JTextArea();
-        FlawsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
-        FlawsTextArea.setWrapStyleWord(true);
-        FlawsTextArea.setLineWrap(true);
-        FlawsTextArea.setBounds(39, 578, 272, 80);
-        getContentPane().add(FlawsTextArea);
+        flawsTextArea = new JTextArea();
+        flawsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
+        flawsTextArea.setWrapStyleWord(true);
+        flawsTextArea.setLineWrap(true);
+        flawsTextArea.setBounds(39, 578, 272, 80);
+        getContentPane().add(flawsTextArea);
         
-        TraitsLabel = new JLabel("Personality Traits");
-        TraitsLabel.setBounds(39, 241, 100, 14);
-        getContentPane().add(TraitsLabel);
+        traitsLabel = new JLabel("Personality Traits");
+        traitsLabel.setBounds(39, 241, 100, 14);
+        getContentPane().add(traitsLabel);
         
-        IdealsLabel = new JLabel("Ideals");
-        IdealsLabel.setBounds(39, 348, 46, 14);
-        getContentPane().add(IdealsLabel);
+        idealsLabel = new JLabel("Ideals");
+        idealsLabel.setBounds(39, 348, 46, 14);
+        getContentPane().add(idealsLabel);
         
-        BondsLabel = new JLabel("Bonds");
-        BondsLabel.setBounds(39, 455, 46, 14);
-        getContentPane().add(BondsLabel);
+        bondsLabel = new JLabel("Bonds");
+        bondsLabel.setBounds(39, 455, 46, 14);
+        getContentPane().add(bondsLabel);
         
-        FlawsLabel = new JLabel("Flaws");
-        FlawsLabel.setBounds(39, 562, 46, 14);
-        getContentPane().add(FlawsLabel);
+        flawsLabel = new JLabel("Flaws");
+        flawsLabel.setBounds(39, 562, 46, 14);
+        getContentPane().add(flawsLabel);
         
         acText = new JTextField();
         acText.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -492,7 +532,33 @@ public class CharacterEditor extends JFrame implements ActionListener{
         separator4.setBounds(343, 305, 595, 2);
         getContentPane().add(separator4);
         
-//        JFrame.setLocationRelativeTo(null);
+        
+        JLabel goodLabel = new JLabel("Good");
+        goodLabel.setBounds(379, 140, 46, 14);
+        getContentPane().add(goodLabel);
+        
+        JLabel lawfulLabel = new JLabel("Lawful");
+        lawfulLabel.setBounds(338, 161, 46, 14);
+        getContentPane().add(lawfulLabel);
+        
+        JLabel neutralLawLabel = new JLabel("Neutral");
+        neutralLawLabel.setBounds(338, 211, 46, 14);
+        getContentPane().add(neutralLawLabel);
+        
+        JLabel chaoticLabel = new JLabel("Chaotic");
+        chaoticLabel.setBounds(338, 261, 46, 14);
+        getContentPane().add(chaoticLabel);
+        
+        JLabel neutralMoralLabel = new JLabel("Neutral");
+        neutralMoralLabel.setBounds(424, 140, 46, 14);
+        getContentPane().add(neutralMoralLabel);
+        
+        JLabel evilLabel = new JLabel("Evil");
+        evilLabel.setBounds(484, 140, 46, 14);
+        getContentPane().add(evilLabel);
+        
+        
+//      JFrame.setLocationRelativeTo(null);
         setVisible(true);
         setSize(1920,1000);
         getContentPane().setLayout(null);
@@ -515,42 +581,142 @@ public class CharacterEditor extends JFrame implements ActionListener{
                             ObjectInputStream in = new ObjectInputStream(file);) {
 
                         DNDChar temp = (DNDChar) in.readObject();
+                        
+                        //character name
                         charNameText.setText(temp.getName());
+                        
+                        //character race
                         String race = temp.getRace().getName(); 
                         int n;
+                        Boolean hasSubraces = true;
                         switch(race) {
                         	default:
-                        	case "": n=0;
-                        	case "Dragonborn": n=1; //
-                        	case "Dwarf": n=2;
-                        	case "Elf": n=3;
-                        	case "Gnome": n=4;
-                        	case "Half-Elf": n=5; //
-                        	case "Halfling": n=6;
-                        	case "Half-Orc": n=7; //
-                        	case "Human": n=8; //
-                        	case "Tiefling": n=9; //
+                        	case "": n=0; break;
+                        	case "Dragonborn": n=1; hasSubraces = false; break;//no subrace
+                        	case "Dwarf": n=2; break;
+                        	case "Elf": n=3; break;
+                        	case "Gnome": n=4; break;
+                        	case "Half-Elf": n=5; hasSubraces = false; break; //no subrace
+                        	case "Halfling": n=6; break;
+                        	case "Half-Orc": n=7; hasSubraces = false; break; //no subrace
+                        	case "Human": n=8; break; 
+                        	case "Tiefling": n=9; hasSubraces = false; break; //no subrace
                         }
                         raceBox.setSelectedIndex(n);
+                        //checks for subraces and sets up the comboBox if applicable
+                        if(hasSubraces) {
+                        	subraceBox = new JComboBox(temp.getRace().getSubraces());
+                        	subraceBox.setSelectedIndex(subraceBox.getSelectedIndex());
+                        }
+                        
+                        //character class
                         String pClass = temp.getCharClass().getName(); 
                         switch(race) {
                         	default:
-                        	case "": n=0;
-                        	case "Dragonborn": n=1; //
-                        	case "Dwarf": n=2;
-                        	case "Elf": n=3;
-                        	case "Gnome": n=4;
-                        	case "Half-Elf": n=5; //
-                        	case "Halfling": n=6;
-                        	case "Half-Orc": n=7; //
-                        	case "Human": n=8; //
-                        	case "Tiefling": n=9; //
+                        	case "": n=0; break;
+                        	case "Barbarian": n=1; break; 
+                        	case "Bard": n=2; break;
+                        	case "Cleric": n=3; break;
+                        	case "Druid": n=4; break;
+                        	case "Fighter": n=5; break; 
+                        	case "Monk": n=6; break;
+                        	case "Paladin": n=7; break; 
+                        	case "Ranger": n=8; break; 
+                        	case "Rogue": n=9; break;
+                        	case "Sorcerer": n=10; break; 
+                        	case "Warlock": n=11; break;
+                        	case "Wizard": n=12; break;
                         }
                         classBox.setSelectedIndex(n);
-                        			
-                        			//"","Dragonborn","Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Tiefling"}) //();
                         
-//                        classBox.setText(temp.getCharClass().getName());
+                        //char level
+                        lvlBox.setSelectedIndex(temp.getLevel()-1);
+                        
+                        //char alignment
+                        String alignment = temp.getAlignment();
+                        switch(race) {
+                    	default:
+                    	case "LG": alignRadioLG.doClick(); break;
+                    	case "LN": alignRadioLN.doClick(); break; 
+                    	case "LE": alignRadioLE.doClick(); break;
+                    	case "NG": alignRadioNG.doClick(); break;
+                    	case "NN": alignRadioNN.doClick(); break;
+                    	case "NE": alignRadioNE.doClick(); break; 
+                    	case "CG": alignRadioCG.doClick(); break;
+                    	case "CN": alignRadioCN.doClick(); break; 
+                    	case "CE": alignRadioCE.doClick(); break; 
+                        }
+                    	
+                        //char experience
+                    	xpText.setText("" + temp.getExp());
+                    	
+                    	//skill radios
+                    	if(temp.getSkills().contains(skillRadio1.getText()))
+                    		skillRadio1.doClick();
+                    	if(temp.getSkills().contains(skillRadio2.getText()))
+                    		skillRadio2.doClick();
+                    	if(temp.getSkills().contains(skillRadio3.getText()))
+                    		skillRadio3.doClick();
+                    	if(temp.getSkills().contains(skillRadio4.getText()))
+                    		skillRadio4.doClick();
+                    	if(temp.getSkills().contains(skillRadio5.getText()))
+                    		skillRadio5.doClick();
+                    	if(temp.getSkills().contains(skillRadio6.getText()))
+                    		skillRadio6.doClick();
+                    	if(temp.getSkills().contains(skillRadio7.getText()))
+                    		skillRadio7.doClick();
+                    	if(temp.getSkills().contains(skillRadio8.getText()))
+                    		skillRadio8.doClick();
+                    	if(temp.getSkills().contains(skillRadio9.getText()))
+                    		skillRadio9.doClick();
+                    	if(temp.getSkills().contains(skillRadio10.getText()))
+                    		skillRadio10.doClick();
+                    	if(temp.getSkills().contains(skillRadio11.getText()))
+                    		skillRadio11.doClick();
+                    	if(temp.getSkills().contains(skillRadio12.getText()))
+                    		skillRadio12.doClick();
+                    	if(temp.getSkills().contains(skillRadio13.getText()))
+                    		skillRadio13.doClick();
+                    	if(temp.getSkills().contains(skillRadio14.getText()))
+                    		skillRadio14.doClick();
+                    	if(temp.getSkills().contains(skillRadio15.getText()))
+                    		skillRadio15.doClick();
+                    	if(temp.getSkills().contains(skillRadio16.getText()))
+                    		skillRadio16.doClick();		
+                    	if(temp.getSkills().contains(skillRadio17.getText()))
+                    		skillRadio17.doClick();	
+                    	if(temp.getSkills().contains(skillRadio18.getText()))
+                    		skillRadio18.doClick();
+                    	
+                    	//all text areas
+                        traitsTextArea.setText(temp.getTraits());
+                        idealsTextArea.setText(temp.getIdeals());
+                        bondsTextArea.setText(temp.getBonds());
+                        flawsTextArea.setText(temp.getFlaws());
+                        featuresTextArea.setText(temp.getFeatures());
+                        equipTextArea.setText(temp.getEquip());
+                        profTextArea.setText(temp.getProfs());
+                        
+                        //set stats
+                        strText.setText("" + temp.getStats()[0]);
+                        dexText.setText("" + temp.getStats()[1]);
+                        strText.setText("" + temp.getStats()[2]);
+                        dexText.setText("" + temp.getStats()[3]);
+                        strText.setText("" + temp.getStats()[4]);
+                        dexText.setText("" + temp.getStats()[5]);
+                        
+                        //set ac 
+                        acText.setText(""+ temp.getArmor());
+                        
+                        //set max HP
+                        hpText.setText(""+ temp.getMaxHP());
+                        
+                        playerNameText.setText(temp.getPlayer());
+//                        //for saving stats
+//                        int[] stats = new int[] {Integer.parseInt(strText.getText()),Integer.parseInt(dexText.getText()),
+//                        						 Integer.parseInt(conText.getText()),Integer.parseInt(intText.getText()),
+//                        						 Integer.parseInt(wisText.getText()),Integer.parseInt(chaText.getText())};
+                        
                         //saveChar.setEnabled(true);
                     }
 
