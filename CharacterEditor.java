@@ -3,12 +3,16 @@ package DNDCompanion;
 import javax.swing.*;
 
 import DNDCompanion.character.*;
+import DNDCompanion.character.chrclasses.*;
+import DNDCompanion.character.chrraces.*;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.awt.Font;
 import javax.swing.BorderFactory;
 
@@ -175,6 +179,7 @@ public class CharacterEditor extends JFrame implements ActionListener{
         String[] raceChoice = {"","Dragonborn","Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Tiefling"};
         raceBox = new JComboBox(raceChoice);
         raceBox.setBounds(188, 84, 124, 25);
+        raceBox.addActionListener(this);
         getContentPane().add(raceBox);
         
         subraceBox = new JComboBox(new String[]{""});
@@ -731,6 +736,87 @@ public class CharacterEditor extends JFrame implements ActionListener{
             }
             
 //            temp.getName();
+        }
+        if(src==saveChar) {
+        	String ethicalAlign = "";
+        	String moralAlign = "";
+        	if(alignRadioLG.isSelected()) {ethicalAlign = "L"; moralAlign = "G";}
+        	if(alignRadioLN.isSelected()) {ethicalAlign = "L"; moralAlign = "N";}
+        	if(alignRadioLE.isSelected()) {ethicalAlign = "L"; moralAlign = "E";}
+        	if(alignRadioNG.isSelected()) {ethicalAlign = "N"; moralAlign = "G";}
+        	if(alignRadioNN.isSelected()) {ethicalAlign = "N"; moralAlign = "N";}
+        	if(alignRadioNE.isSelected()) {ethicalAlign = "N"; moralAlign = "E";}
+        	if(alignRadioCG.isSelected()) {ethicalAlign = "C"; moralAlign = "G";}
+        	if(alignRadioCN.isSelected()) {ethicalAlign = "C"; moralAlign = "N";}
+        	if(alignRadioCE.isSelected()) {ethicalAlign = "C"; moralAlign = "E";}
+        	
+        	int [] stats = {Integer.parseInt(strText.getText()),Integer.parseInt(dexText.getText()),Integer.parseInt(conText.getText()),
+        					Integer.parseInt(intText.getText()),Integer.parseInt(wisText.getText()),Integer.parseInt(chaText.getText())};
+        	
+        	String skills = "";
+        	if(skillRadio1.isSelected()) {skills += skillRadio1.getText();}
+        	if(skillRadio2.isSelected()) {skills += skillRadio2.getText();}
+        	if(skillRadio3.isSelected()) {skills += skillRadio3.getText();}
+        	if(skillRadio4.isSelected()) {skills += skillRadio4.getText();}
+        	if(skillRadio5.isSelected()) {skills += skillRadio5.getText();}
+        	if(skillRadio6.isSelected()) {skills += skillRadio6.getText();}
+        	if(skillRadio7.isSelected()) {skills += skillRadio7.getText();}
+        	if(skillRadio8.isSelected()) {skills += skillRadio8.getText();}
+        	if(skillRadio9.isSelected()) {skills += skillRadio9.getText();}
+        	if(skillRadio10.isSelected()) {skills += skillRadio10.getText();}
+        	if(skillRadio11.isSelected()) {skills += skillRadio11.getText();}
+        	if(skillRadio12.isSelected()) {skills += skillRadio12.getText();}
+        	if(skillRadio13.isSelected()) {skills += skillRadio13.getText();}
+        	if(skillRadio14.isSelected()) {skills += skillRadio14.getText();}
+        	if(skillRadio15.isSelected()) {skills += skillRadio15.getText();}
+        	if(skillRadio16.isSelected()) {skills += skillRadio16.getText();}
+        	if(skillRadio17.isSelected()) {skills += skillRadio17.getText();}
+        	if(skillRadio18.isSelected()) {skills += skillRadio18.getText();}
+        	
+        	CharacterClass charClass = null;
+        	if(classBox.getSelectedIndex() == 0) {charClass = new Barbarian();}
+        	if(classBox.getSelectedIndex() == 1) {charClass = new Bard();}
+        	if(classBox.getSelectedIndex() == 2) {charClass = new Cleric();}
+        	if(classBox.getSelectedIndex() == 3) {charClass = new Druid();}
+        	if(classBox.getSelectedIndex() == 4) {charClass = new Fighter();}
+        	if(classBox.getSelectedIndex() == 5) {charClass = new Monk();}
+        	if(classBox.getSelectedIndex() == 6) {charClass = new Paladin();}
+        	if(classBox.getSelectedIndex() == 7) {charClass = new Ranger();}
+        	if(classBox.getSelectedIndex() == 8) {charClass = new Rogue();}
+        	if(classBox.getSelectedIndex() == 9) {charClass = new Sorcerer();}
+        	if(classBox.getSelectedIndex() == 10) {charClass = new Warlock();}
+        	if(classBox.getSelectedIndex() == 11) {charClass = new Wizard();}
+        	
+        	Race race = null;
+        	if(raceBox.getSelectedIndex()==0) {race = new Dragonborn(); }											//Dragonborns
+        	if(raceBox.getSelectedIndex()==1 && subraceBox.getSelectedIndex()==0) {race = new DwarfHill(); } 		//Dwarves
+        	if(raceBox.getSelectedIndex()==1 && subraceBox.getSelectedIndex()==1) {race = new DwarfMountain(); }
+        	if(raceBox.getSelectedIndex()==2 && subraceBox.getSelectedIndex()==0) {race = new ElfHigh(); } 			//Elves
+        	if(raceBox.getSelectedIndex()==2 && subraceBox.getSelectedIndex()==1) {race = new ElfWood(); }
+        	if(raceBox.getSelectedIndex()==3 && subraceBox.getSelectedIndex()==0) {race = new GnomeDeep(); } 		//Gnomes
+        	if(raceBox.getSelectedIndex()==3 && subraceBox.getSelectedIndex()==1) {race = new GnomeRock(); }
+        	if(raceBox.getSelectedIndex()==4) {race = new HalfElf(); }												//Half Elves
+        	if(raceBox.getSelectedIndex()==5 && subraceBox.getSelectedIndex()==0) {race = new HalflingLightfoot(); }//Halflings
+        	if(raceBox.getSelectedIndex()==5 && subraceBox.getSelectedIndex()==1) {race = new HalflingStout(); }
+        	if(raceBox.getSelectedIndex()==6) {race = new HalfOrc(); }												//Half Orcs
+        	if(raceBox.getSelectedIndex()==7) {race = new Human(); }												//Human
+        	if(raceBox.getSelectedIndex()==8) {race = new Tiefling(); }												//Tieflings
+        	
+        	String charName = charNameText.getText();
+        	if(charName.equals("")) {charName = "Unnamed";}
+        	
+        	DNDChar temp = new DNDChar(charName, ethicalAlign, moralAlign, race, charClass, (lvlBox.getSelectedIndex() +1), Integer.parseInt(xpText.getText()), stats, skills, bgText.getText(), 
+        			traitsTextArea.getText(), idealsTextArea.getText(), bondsTextArea.getText(), flawsTextArea.getText(), Integer.parseInt(acText.getText()), Integer.parseInt(hpText.getText()), 
+        			featuresTextArea.getText(), profTextArea.getText(), equipTextArea.getText(), playerNameText.getText());
+        	//String name, String ethicalAlign, String moralAlign, Race race, CharacterClass charClass, int level, int exp, int[] stats, String skills, String background, String traits, String ideals,
+        	//String bonds, String flaws, int armor, int maxHP, String features, String profs, String equipment, String player
+        	
+        	try (FileOutputStream file = new FileOutputStream("./ExampleChars/" + temp.getName() + ".char");
+            		ObjectOutputStream out = new ObjectOutputStream(file);) {
+            	out.writeObject(temp);
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
