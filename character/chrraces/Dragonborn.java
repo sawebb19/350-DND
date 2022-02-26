@@ -29,14 +29,26 @@ public class Dragonborn extends Race{
         
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getAncestry(){
         return ancestry;
     }
 
+    
+    /** 
+     * @param ancestry
+     */
     public void setAncestry(String ancestry){
         this.ancestry = ancestry;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         return

@@ -23,30 +23,58 @@ CharacterClass implements Serializable{
         this.saves = saves;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getName(){
         return this.name;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getHit(){
         return this.hit;
     }
 
+    
+    /** 
+     * @return int[]
+     */
     public int[] getSaves(){
         return this.saves;
     }
 
+    
+    /** 
+     * @param name
+     */
     public void setName(String name){
         this.name = name;
     }
 
+    
+    /** 
+     * @param hit
+     */
     public void setHit(int hit){
         this.hit = hit;
     }
 
+    
+    /** 
+     * @param saves
+     */
     public void setSaves(int[] saves){
         this.saves = saves;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String toString(){
         return
         "class=" + this.name + "{\n\t" +

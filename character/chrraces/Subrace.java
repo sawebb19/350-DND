@@ -28,6 +28,10 @@ Subrace extends Race{
         this.mods = mods;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         return

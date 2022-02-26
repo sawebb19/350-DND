@@ -473,6 +473,10 @@ public class CharacterSheet extends JFrame implements ActionListener {
         
     }
 
+    
+    /** 
+     * @param e
+     */
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
         
@@ -524,6 +528,10 @@ public class CharacterSheet extends JFrame implements ActionListener {
         
     }
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         new CharacterSheet();
     }
