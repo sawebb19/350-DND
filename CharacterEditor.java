@@ -616,7 +616,7 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         
                         //character class
                         String pClass = temp.getCharClass().getName(); 
-                        switch(race) {
+                        switch(pClass) {
                         	default:
                         	case "": n=0; break;
 
@@ -640,7 +640,7 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         
                         //char alignment
                         String alignment = temp.getAlignment();
-                        switch(race) {
+                        switch(alignment) {
                     	default:
                     	case "LG": alignRadioLG.doClick(); break;
                     	case "LN": alignRadioLN.doClick(); break; 
@@ -750,8 +750,20 @@ public class CharacterEditor extends JFrame implements ActionListener{
         	if(alignRadioCN.isSelected()) {ethicalAlign = "C"; moralAlign = "N";}
         	if(alignRadioCE.isSelected()) {ethicalAlign = "C"; moralAlign = "E";}
         	
-        	int [] stats = {Integer.parseInt(strText.getText()),Integer.parseInt(dexText.getText()),Integer.parseInt(conText.getText()),
-        					Integer.parseInt(intText.getText()),Integer.parseInt(wisText.getText()),Integer.parseInt(chaText.getText())};
+        	int [] stats;
+        	int str;
+        	int dex;
+        	int con;
+        	int intel;
+        	int wis;
+        	int cha;
+        	if(strText.getText().equals("")) {str = 0;}else {str = Integer.parseInt(strText.getText());}
+        	if(dexText.getText().equals("")) {dex = 0;}else {dex = Integer.parseInt(dexText.getText());}
+        	if(conText.getText().equals("")) {con = 0;}else {con = Integer.parseInt(conText.getText());}
+        	if(intText.getText().equals("")) {intel = 0;}else {intel = Integer.parseInt(intText.getText());}
+        	if(wisText.getText().equals("")) {wis = 0;}else {wis = Integer.parseInt(wisText.getText());}
+        	if(chaText.getText().equals("")) {cha = 0;}else {cha = Integer.parseInt(chaText.getText());}
+        	stats = new int[]{str,dex,con,intel,wis,cha};
         	
         	String skills = "";
         	if(skillRadio1.isSelected()) {skills += skillRadio1.getText();}
@@ -805,13 +817,22 @@ public class CharacterEditor extends JFrame implements ActionListener{
         	String charName = charNameText.getText();
         	if(charName.equals("")) {charName = "Unnamed";}
         	
-        	DNDChar temp = new DNDChar(charName, ethicalAlign, moralAlign, race, charClass, (lvlBox.getSelectedIndex() +1), Integer.parseInt(xpText.getText()), stats, skills, bgText.getText(), 
-        			traitsTextArea.getText(), idealsTextArea.getText(), bondsTextArea.getText(), flawsTextArea.getText(), Integer.parseInt(acText.getText()), Integer.parseInt(hpText.getText()), 
-        			featuresTextArea.getText(), profTextArea.getText(), equipTextArea.getText(), playerNameText.getText());
+        	int xp;
+        	if(xpText.getText().equals("")) {xp = 0;}else {xp =Integer.parseInt(xpText.getText());}
+        	
+        	int armor;
+        	if(acText.getText().equals("")) {armor = 0;}else {armor =Integer.parseInt(acText.getText());}
+        	
+        	int hp;
+        	if(hpText.getText().equals("")) {hp = 0;}else {hp =Integer.parseInt(hpText.getText());}
+        	
+        	DNDChar temp = new DNDChar(charName, ethicalAlign, moralAlign, race, charClass, (lvlBox.getSelectedIndex() +1), xp, stats, skills, bgText.getText(), 
+        			traitsTextArea.getText(), idealsTextArea.getText(), bondsTextArea.getText(), flawsTextArea.getText(), armor, hp, featuresTextArea.getText(),
+        			profTextArea.getText(), equipTextArea.getText(), playerNameText.getText());
         	//String name, String ethicalAlign, String moralAlign, Race race, CharacterClass charClass, int level, int exp, int[] stats, String skills, String background, String traits, String ideals,
         	//String bonds, String flaws, int armor, int maxHP, String features, String profs, String equipment, String player
         	
-        	try (FileOutputStream file = new FileOutputStream("./ExampleChars/" + temp.getName() + ".char");
+        	try (FileOutputStream file = new FileOutputStream(/*".\\DNDCompanion\\ExampleChars\\" +*/ temp.getName() + ".char");
             		ObjectOutputStream out = new ObjectOutputStream(file);) {
             	out.writeObject(temp);
             } catch (Exception ex) {
