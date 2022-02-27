@@ -593,33 +593,47 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         //character race
                         String race = temp.getRace().getName(); 
                         int n;
-                        Boolean hasSubraces = true;
+                        
                         switch(race) {
                         	default:
                         	case "": n=0; break;
-                        	case "Dragonborn": n=1; hasSubraces = false; break;//no subrace
+                        	case "Dragonborn": n=1; break;//no subrace
                         	case "Dwarf": n=2; break;
                         	case "Elf": n=3; break;
                         	case "Gnome": n=4; break;
-                        	case "Half-Elf": n=5; hasSubraces = false; break; //no subrace
+                        	case "Half-Elf": n=5; break; //no subrace
                         	case "Halfling": n=6; break;
-                        	case "Half-Orc": n=7; hasSubraces = false; break; //no subrace
+                        	case "Half-Orc": n=7; break; //no subrace
                         	case "Human": n=8; break; 
-                        	case "Tiefling": n=9; hasSubraces = false; break; //no subrace
+                        	case "Tiefling": n=9; break; //no subrace
                         }
                         raceBox.setSelectedIndex(n);
                         //checks for subraces and sets up the comboBox if applicable
-                        if(hasSubraces) {
-                        	subraceBox = new JComboBox(temp.getRace().getSubraces());
-                        	subraceBox.setSelectedIndex(subraceBox.getSelectedIndex());
+                        String[] subraces;
+                        switch(n) {
+                        	default:
+                        	case 0:
+                        	case 1:
+                        	case 5:
+                        	case 7:
+                        	case 9:
+                        		subraces = new String[] {"N/A"}; break;
+                        	case 2: subraces = new String[] {"", "Hill Dwarf", "Mountain Dwarf"}; break;
+                        	case 3: subraces = new String[] {"", "High Elf", "Wood Elf"}; break;
+                        	case 4: subraces = new String[] {"", "Deep Gnome", "Rock Gnome"}; break;
+                        	case 6: subraces = new String[] {"", "Lightfoot Halfling", "Stout Halfling"}; break;
+                        	case 8: subraces = new String[] {"", "Calishite", "Chondathan", "Damaran", "Illuskan", "Mulan", "Rashemi", "Shou", "Tethyrian", "Turami"}; break;
                         }
+                        	
+                        	subraceBox = new JComboBox(subraces);
+                        	subraceBox.setSelectedIndex(subraceBox.getSelectedIndex());
+                        
                         
                         //character class
                         String pClass = temp.getCharClass().getName(); 
                         switch(pClass) {
                         	default:
                         	case "": n=0; break;
-
                         	case "Barbarian": n=1; break; 
                         	case "Bard": n=2; break;
                         	case "Cleric": n=3; break;
@@ -641,7 +655,7 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         //char alignment
                         String alignment = temp.getAlignment();
                         switch(alignment) {
-                    	default:
+                    	default: alignGroup.clearSelection(); break;
                     	case "LG": alignRadioLG.doClick(); break;
                     	case "LN": alignRadioLN.doClick(); break; 
                     	case "LE": alignRadioLE.doClick(); break;
@@ -657,6 +671,26 @@ public class CharacterEditor extends JFrame implements ActionListener{
                     	xpText.setText("" + temp.getExp());
                     	
                     	//skill radios
+                    	//deselect all skills
+                    	if(skillRadio1.isSelected()) {skillRadio1.doClick();}
+                    	if(skillRadio2.isSelected()) {skillRadio2.doClick();}
+                    	if(skillRadio3.isSelected()) {skillRadio3.doClick();}
+                    	if(skillRadio4.isSelected()) {skillRadio4.doClick();}
+                    	if(skillRadio5.isSelected()) {skillRadio5.doClick();}
+                    	if(skillRadio6.isSelected()) {skillRadio6.doClick();}
+                    	if(skillRadio7.isSelected()) {skillRadio7.doClick();}
+                    	if(skillRadio8.isSelected()) {skillRadio8.doClick();}
+                    	if(skillRadio9.isSelected()) {skillRadio9.doClick();}
+                    	if(skillRadio10.isSelected()) {skillRadio10.doClick();}
+                    	if(skillRadio11.isSelected()) {skillRadio11.doClick();}
+                    	if(skillRadio12.isSelected()) {skillRadio12.doClick();}
+                    	if(skillRadio13.isSelected()) {skillRadio13.doClick();}
+                    	if(skillRadio14.isSelected()) {skillRadio14.doClick();}
+                    	if(skillRadio15.isSelected()) {skillRadio15.doClick();}
+                    	if(skillRadio16.isSelected()) {skillRadio16.doClick();}
+                    	if(skillRadio17.isSelected()) {skillRadio17.doClick();}
+                    	if(skillRadio18.isSelected()) {skillRadio18.doClick();}
+                    	//select right ones
                     	if(temp.getSkills().contains(skillRadio1.getText()))
                     		skillRadio1.doClick();
                     	if(temp.getSkills().contains(skillRadio2.getText()))
@@ -706,10 +740,10 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         //set stats
                         strText.setText("" + temp.getStats()[0]);
                         dexText.setText("" + temp.getStats()[1]);
-                        strText.setText("" + temp.getStats()[2]);
-                        dexText.setText("" + temp.getStats()[3]);
-                        strText.setText("" + temp.getStats()[4]);
-                        dexText.setText("" + temp.getStats()[5]);
+                        conText.setText("" + temp.getStats()[2]);
+                        intText.setText("" + temp.getStats()[3]);
+                        wisText.setText("" + temp.getStats()[4]);
+                        chaText.setText("" + temp.getStats()[5]);
                         
                         //set ac 
                         acText.setText(""+ temp.getArmor());
@@ -718,12 +752,8 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         hpText.setText(""+ temp.getMaxHP());
                         
                         playerNameText.setText(temp.getPlayer());
-//                        //for saving stats
-//                        int[] stats = new int[] {Integer.parseInt(strText.getText()),Integer.parseInt(dexText.getText()),
-//                        						 Integer.parseInt(conText.getText()),Integer.parseInt(intText.getText()),
-//                        						 Integer.parseInt(wisText.getText()),Integer.parseInt(chaText.getText())};
                         
-                        //saveChar.setEnabled(true);
+                        bgText.setText(temp.getBackground());
                     }
 
                     catch (Exception ex) {
@@ -832,7 +862,7 @@ public class CharacterEditor extends JFrame implements ActionListener{
         	//String name, String ethicalAlign, String moralAlign, Race race, CharacterClass charClass, int level, int exp, int[] stats, String skills, String background, String traits, String ideals,
         	//String bonds, String flaws, int armor, int maxHP, String features, String profs, String equipment, String player
         	
-        	try (FileOutputStream file = new FileOutputStream(/*".\\DNDCompanion\\ExampleChars\\" +*/ temp.getName() + ".char");
+        	try (FileOutputStream file = new FileOutputStream(/*"\\src\\DNDCompanion\\ExampleChars\\" +*/ temp.getName() + ".char");
             		ObjectOutputStream out = new ObjectOutputStream(file);) {
             	out.writeObject(temp);
             } catch (Exception ex) {
