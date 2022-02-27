@@ -32,46 +32,90 @@ public abstract class Race implements Serializable{
         this.mods = mods;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getName(){
         return this.name;
     }
 
+    
+    /** 
+     * @return String[]
+     */
     public String[] getSubraces(){
         return this.subraces;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getSize(){
         return this.size;
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getSpeed(){
         return this.speed;
     }
 
+    
+    /** 
+     * @return int[]
+     */
     public int[] getMods(){
         return this.mods;
     }
 
+    
+    /** 
+     * @param name
+     */
     public void setName(String name){
         this.name = name;
     }
 
+    
+    /** 
+     * @param subraces
+     */
     public void setSubraces(String[] subraces){
         this.subraces = subraces;
     }
 
+    
+    /** 
+     * @param size
+     */
     public void setSize(String size){
         this.size = size;
     }
 
+    
+    /** 
+     * @param speed
+     */
     public void setSpeed(int speed){
         this.speed = speed;
     }
 
+    
+    /** 
+     * @param mods
+     */
     public void setMods(int[] mods){
         this.mods = mods;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String toString(){
         return
         "race=" + this.name + "{\n\t" +

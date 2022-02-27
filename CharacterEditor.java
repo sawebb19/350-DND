@@ -569,6 +569,10 @@ public class CharacterEditor extends JFrame implements ActionListener{
         getContentPane().setLayout(null);
     }
 
+    
+    /** 
+     * @param e
+     */
     public void actionPerformed(ActionEvent e){
         Object src = e.getSource();
         if(src == close){
@@ -871,6 +875,10 @@ public class CharacterEditor extends JFrame implements ActionListener{
         }
     }
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args){
         new CharacterEditor();
     }

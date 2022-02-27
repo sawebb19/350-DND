@@ -26,14 +26,26 @@ public class Human extends Race{
         this.langs = new String[]{"Common"};
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getEthnicity(){
         return ethnic;
     }
 
+    
+    /** 
+     * @param ethnic
+     */
     public void setEthnicity(String ethnic){
         this.ethnic = ethnic;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString(){
         return
