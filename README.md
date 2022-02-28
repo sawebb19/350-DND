@@ -12,8 +12,8 @@ Sam's Notes:
 > Alignment is now Strings istead of ints. Enums and ints were dumb ideas.
 
 Nick's Notes:
-> I need to remove a few items from the editor since they're now in the Race/Class classes. 
+> Character Sheet and Editor are how they will be barring minor changes to location of a few components. Nothing funciton will change.
 
-> We should be able to start save/load and setting up the menu items once we have subraces set up.
+> You can switch back and forth between GUIs with the window menu. 
 
-> Wrote up the Load action for the Editor but I think it'll have to change with how the toString is setup rn. What I wrote assumes that an object can be pull out of the .char file but that's not what happens. ...Double-checked and I was right, it doesn't work with the DNDChar toString. It might work with default toString I'll do some more testing for that.
+> We'll need to do code coverage on everything but the guis basically. That's a job for tomorrow night.

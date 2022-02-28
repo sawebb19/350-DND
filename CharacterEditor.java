@@ -25,8 +25,7 @@ public class CharacterEditor extends JFrame implements ActionListener{
     private JMenuItem saveChar;
     private JMenuItem close;
     private JMenu windowMenu;
-    private JMenuItem charEditor;
-    private JMenuItem charSheet;
+    private JMenuItem switchWindow;
     
     private JLabel charNameLabel;
     private JLabel classLabel;
@@ -50,6 +49,7 @@ public class CharacterEditor extends JFrame implements ActionListener{
     private JLabel featuresLabel;
     private JLabel equipLabel;
     private JLabel profLabel;
+    private JLabel evilLabel;
     
     private JTextField charNameText;
     private JTextField bgText;
@@ -76,7 +76,6 @@ public class CharacterEditor extends JFrame implements ActionListener{
     private JTextArea featuresTextArea;
     private JTextArea equipTextArea;
     private JTextArea profTextArea;
-    
     
     private JRadioButton skillRadio1;
     private JRadioButton skillRadio2;
@@ -108,17 +107,10 @@ public class CharacterEditor extends JFrame implements ActionListener{
     private JRadioButton alignRadioCN;
     private JRadioButton alignRadioCE;
     
-    
     private JSeparator separator1;
     private JSeparator separator2;
     private JSeparator separator3;
     private JSeparator separator4;
-    
-    
-
-//    close.addActionListener(this);
-//    openChar.addActionListener(this);
-//    saveChar.addActionListener(this);
 
     public CharacterEditor(){
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,309 +127,307 @@ public class CharacterEditor extends JFrame implements ActionListener{
         fileMenu.add(close);
         
         windowMenu = new JMenu("Window");
-        charEditor = new JMenuItem("Character Editor");
-        charSheet  = new JMenuItem("Character Sheet");
+        switchWindow = new JMenuItem("Switch View");
         
-        windowMenu.add(charEditor);
-        windowMenu.add(charSheet);
+        
+        windowMenu.add(switchWindow);
 
         openChar.addActionListener(this);
         saveChar.addActionListener(this);
         close.addActionListener(this);
-        charEditor.addActionListener(this);
-        charSheet.addActionListener(this);
+        switchWindow.addActionListener(this);
 
         menus.add(fileMenu);
         menus.add(windowMenu);
         setJMenuBar(menus);
         
         charNameText = new JTextField();
-        charNameText.setBounds(39, 26, 273, 34);
+        charNameText.setBounds(455, 89, 273, 34);
         getContentPane().add(charNameText);
         charNameText.setColumns(10);
         
         charNameLabel = new JLabel("Character Name");
-        charNameLabel.setBounds(39, 11, 117, 14);
+        charNameLabel.setBounds(455, 74, 117, 14);
         getContentPane().add(charNameLabel);
         
         classLabel = new JLabel("Class & Lvl");
-        classLabel.setBounds(40, 69, 70, 14);
+        classLabel.setBounds(456, 132, 70, 14);
         getContentPane().add(classLabel);
         
         String[] classChoice = {"", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
         classBox = new JComboBox(classChoice);
-        classBox.setBounds(40, 84, 85, 25);
+        classBox.setBounds(456, 147, 85, 25);
         classBox.setSelectedIndex(0);
         getContentPane().add(classBox);
         
         String[] lvlChoice = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"};
         lvlBox = new JComboBox(lvlChoice);
-        lvlBox.setBounds(124, 84, 40, 25);
+        lvlBox.setBounds(540, 147, 40, 25);
         lvlBox.setSelectedIndex(0);
         getContentPane().add(lvlBox);
         
         String[] raceChoice = {"","Dragonborn","Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Tiefling"};
         raceBox = new JComboBox(raceChoice);
-        raceBox.setBounds(188, 84, 124, 25);
+        raceBox.setBounds(604, 147, 124, 25);
         raceBox.addActionListener(this);
         getContentPane().add(raceBox);
         
         subraceBox = new JComboBox(new String[]{""});
-        subraceBox.setBounds(188, 135, 124, 25);
+        subraceBox.setBounds(604, 198, 124, 25);
         getContentPane().add(subraceBox);
         
         raceLabel = new JLabel("Race");
-        raceLabel.setBounds(188, 69, 56, 14);
+        raceLabel.setBounds(604, 132, 56, 14);
         getContentPane().add(raceLabel);
         
         playerNameLabel = new JLabel("Player Name");
-        playerNameLabel.setBounds(39, 171, 86, 14);
+        playerNameLabel.setBounds(455, 234, 86, 14);
         getContentPane().add(playerNameLabel);
         
         
         playerNameText = new JTextField();
-        playerNameText.setBounds(39, 186, 125, 25);
+        playerNameText.setBounds(455, 249, 125, 25);
         getContentPane().add(playerNameText);
         
         bgLabel = new JLabel("Background");
-        bgLabel.setBounds(188, 171, 83, 14);
+        bgLabel.setBounds(604, 234, 83, 14);
         getContentPane().add(bgLabel);
         
         bgText = new JTextField();
         bgText.setColumns(10);
-        bgText.setBounds(188, 186, 124, 25);
+        bgText.setBounds(604, 249, 124, 25);
         getContentPane().add(bgText);
         
         xpLabel = new JLabel("Experience");
-        xpLabel.setBounds(39, 120, 84, 14);
+        xpLabel.setBounds(455, 183, 84, 14);
         getContentPane().add(xpLabel);
         
         xpText = new JTextField();
         xpText.setColumns(10);
-        xpText.setBounds(39, 135, 125, 25);
+        xpText.setBounds(455, 198, 125, 25);
         getContentPane().add(xpText);
         
         subraceLabel = new JLabel("Subrace");
-        subraceLabel.setBounds(188, 120, 83, 14);
+        subraceLabel.setBounds(604, 183, 83, 14);
         getContentPane().add(subraceLabel);
         
         //separating alignment from skills
         separator1 = new JSeparator(SwingConstants.VERTICAL);
-        separator1.setBounds(542, 118, 2, 177);
+        separator1.setBounds(958, 181, 2, 177);
         getContentPane().add(separator1);
         
         //Skills header and radio buttons for each skill
         skillsLabel = new JLabel("Skills");
-        skillsLabel.setBounds(705, 120, 46, 14);
+        skillsLabel.setBounds(1121, 183, 46, 14);
         getContentPane().add(skillsLabel);
         
         skillRadio1 = new JRadioButton("Acrobatics");
-        skillRadio1.setBounds(568, 142, 109, 23);
+        skillRadio1.setBounds(984, 205, 109, 23);
         getContentPane().add(skillRadio1);
         
         skillRadio2 = new JRadioButton("Animal Handling");
-        skillRadio2.setBounds(568, 168, 117, 23);
+        skillRadio2.setBounds(984, 231, 117, 23);
         getContentPane().add(skillRadio2);
         
         skillRadio3 = new JRadioButton("Arcana");
-        skillRadio3.setBounds(568, 194, 109, 23);
+        skillRadio3.setBounds(984, 257, 109, 23);
         getContentPane().add(skillRadio3);
         
         skillRadio4 = new JRadioButton("Athletics");
-        skillRadio4.setBounds(568, 220, 109, 23);
+        skillRadio4.setBounds(984, 283, 109, 23);
         getContentPane().add(skillRadio4);
         
         skillRadio5 = new JRadioButton("Deception");
-        skillRadio5.setBounds(568, 246, 109, 23);
+        skillRadio5.setBounds(984, 309, 109, 23);
         getContentPane().add(skillRadio5);
         
         skillRadio6 = new JRadioButton("History");
-        skillRadio6.setBounds(568, 272, 109, 23);
+        skillRadio6.setBounds(984, 335, 109, 23);
         getContentPane().add(skillRadio6);
 
         skillRadio7 = new JRadioButton("Insight");
-        skillRadio7.setBounds(687, 142, 109, 23);
+        skillRadio7.setBounds(1103, 205, 109, 23);
         getContentPane().add(skillRadio7);
         
         skillRadio8 = new JRadioButton("Intimidation");
-        skillRadio8.setBounds(687, 168, 109, 23);
+        skillRadio8.setBounds(1103, 231, 109, 23);
         getContentPane().add(skillRadio8);
         
         skillRadio9 = new JRadioButton("Investigation");
-        skillRadio9.setBounds(687, 194, 109, 23);
+        skillRadio9.setBounds(1103, 257, 109, 23);
         getContentPane().add(skillRadio9);
         
         skillRadio10 = new JRadioButton("Medicine");
-        skillRadio10.setBounds(687, 220, 109, 23);
+        skillRadio10.setBounds(1103, 283, 109, 23);
         getContentPane().add(skillRadio10);
         
         skillRadio11 = new JRadioButton("Nature");
-        skillRadio11.setBounds(687, 246, 109, 23);
+        skillRadio11.setBounds(1103, 309, 109, 23);
         getContentPane().add(skillRadio11);
         
         skillRadio12 = new JRadioButton("Perception");
-        skillRadio12.setBounds(687, 272, 109, 23);
+        skillRadio12.setBounds(1103, 335, 109, 23);
         getContentPane().add(skillRadio12);
         
         skillRadio13 = new JRadioButton("Performance");
-        skillRadio13.setBounds(798, 142, 109, 23);
+        skillRadio13.setBounds(1214, 205, 109, 23);
         getContentPane().add(skillRadio13);
         
         skillRadio14 = new JRadioButton("Persuasion");
-        skillRadio14.setBounds(798, 168, 109, 23);
+        skillRadio14.setBounds(1214, 231, 109, 23);
         getContentPane().add(skillRadio14);
         
         skillRadio15 = new JRadioButton("Religion");
-        skillRadio15.setBounds(798, 194, 109, 23);
+        skillRadio15.setBounds(1214, 257, 109, 23);
         getContentPane().add(skillRadio15);
         
         skillRadio16 = new JRadioButton("Sleight of Hand");
-        skillRadio16.setBounds(798, 220, 117, 23);
+        skillRadio16.setBounds(1214, 283, 117, 23);
         getContentPane().add(skillRadio16);
         
         skillRadio17 = new JRadioButton("Stealth");
-        skillRadio17.setBounds(798, 246, 109, 23);
+        skillRadio17.setBounds(1214, 309, 109, 23);
         getContentPane().add(skillRadio17);
         
         skillRadio18 = new JRadioButton("Survival");
-        skillRadio18.setBounds(798, 272, 109, 23);
+        skillRadio18.setBounds(1214, 335, 109, 23);
         getContentPane().add(skillRadio18);
         
         //Alignment header + radio button for each align.
         alignmentLabel = new JLabel("Alignment");
-        alignmentLabel.setBounds(411, 120, 70, 14);
+        alignmentLabel.setBounds(827, 183, 70, 14);
         getContentPane().add(alignmentLabel);
         
         alignGroup = new ButtonGroup();
         
         alignRadioLG = new JRadioButton();
-        alignRadioLG.setBounds(381, 157, 20, 23);
+        alignRadioLG.setBounds(797, 220, 20, 23);
         getContentPane().add(alignRadioLG);
         alignGroup.add(alignRadioLG);
         
         alignRadioLN = new JRadioButton();
-        alignRadioLN.setBounds(381, 207, 20, 23);
+        alignRadioLN.setBounds(797, 270, 20, 23);
         getContentPane().add(alignRadioLN);
         alignGroup.add(alignRadioLN);
         
         alignRadioLE = new JRadioButton();
-        alignRadioLE.setBounds(381, 257, 20, 23);
+        alignRadioLE.setBounds(797, 320, 20, 23);
         getContentPane().add(alignRadioLE);
         alignGroup.add(alignRadioLE);
         
         alignRadioNG = new JRadioButton();
-        alignRadioNG.setBounds(431, 157, 20, 23);
+        alignRadioNG.setBounds(847, 220, 20, 23);
         getContentPane().add(alignRadioNG);
         alignGroup.add(alignRadioNG);
         
         alignRadioNN = new JRadioButton();
-        alignRadioNN.setBounds(431, 207, 20, 23);
+        alignRadioNN.setBounds(847, 270, 20, 23);
         getContentPane().add(alignRadioNN);
         alignGroup.add(alignRadioNN);
         
         alignRadioNE = new JRadioButton();
-        alignRadioNE.setBounds(431, 257, 20, 23);
+        alignRadioNE.setBounds(847, 320, 20, 23);
         getContentPane().add(alignRadioNE);
         alignGroup.add(alignRadioNE);
         
         alignRadioCG = new JRadioButton();
-        alignRadioCG.setBounds(481, 157, 20, 23);
+        alignRadioCG.setBounds(897, 220, 20, 23);
         getContentPane().add(alignRadioCG);
         alignGroup.add(alignRadioCG);
         
         alignRadioCN = new JRadioButton();
-        alignRadioCN.setBounds(481, 207, 20, 23);
+        alignRadioCN.setBounds(897, 270, 20, 23);
         getContentPane().add(alignRadioCN);
         alignGroup.add(alignRadioCN);
         
         alignRadioCE = new JRadioButton();
-        alignRadioCE.setBounds(481, 257, 20, 23);
+        alignRadioCE.setBounds(897, 320, 20, 23);
         getContentPane().add(alignRadioCE);
         alignGroup.add(alignRadioCE);
         
         //separate skills from stats
         separator2 = new JSeparator(SwingConstants.HORIZONTAL);
-        separator2.setBounds(343, 107, 595, 2);
+        separator2.setBounds(759, 170, 595, 2);
         getContentPane().add(separator2);
         
         //stat display/input
         strText = new JTextField();
         strText.setFont(new Font("Tahoma", Font.PLAIN, 20));
-        strText.setBounds(392, 51, 40, 32);
+        strText.setBounds(808, 114, 40, 32);
         getContentPane().add(strText);
         strText.setColumns(10);
         
         dexText = new JTextField();
         dexText.setFont(new Font("Tahoma", Font.PLAIN, 20));
         dexText.setColumns(10);
-        dexText.setBounds(442, 51, 40, 32);
+        dexText.setBounds(858, 114, 40, 32);
         getContentPane().add(dexText);
         
         conText = new JTextField();
         conText.setFont(new Font("Tahoma", Font.PLAIN, 20));
         conText.setColumns(10);
-        conText.setBounds(492, 51, 40, 32);
+        conText.setBounds(908, 114, 40, 32);
         getContentPane().add(conText);
         
         intText = new JTextField();
         intText.setFont(new Font("Tahoma", Font.PLAIN, 20));
         intText.setColumns(10);
-        intText.setBounds(542, 51, 40, 32);
+        intText.setBounds(958, 114, 40, 32);
         getContentPane().add(intText);
         
         wisText = new JTextField();
         wisText.setFont(new Font("Tahoma", Font.PLAIN, 20));
         wisText.setColumns(10);
-        wisText.setBounds(592, 51, 40, 32);
+        wisText.setBounds(1008, 114, 40, 32);
         getContentPane().add(wisText);
         
         chaText = new JTextField();
         chaText.setFont(new Font("Tahoma", Font.PLAIN, 20));
         chaText.setColumns(10);
-        chaText.setBounds(642, 51, 40, 32);
+        chaText.setBounds(1058, 114, 40, 32);
         getContentPane().add(chaText);
         
         strLabel = new JLabel("STR");
         strLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        strLabel.setBounds(392, 34, 40, 14);
+        strLabel.setBounds(808, 97, 40, 14);
         getContentPane().add(strLabel);
         
         dexLabel = new JLabel("DEX");
         dexLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        dexLabel.setBounds(442, 34, 40, 14);
+        dexLabel.setBounds(858, 97, 40, 14);
         getContentPane().add(dexLabel);
         
         conLabel = new JLabel("CON");
         conLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        conLabel.setBounds(492, 34, 40, 14);
+        conLabel.setBounds(908, 97, 40, 14);
         getContentPane().add(conLabel);
         
         intLabel = new JLabel("INT");
         intLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        intLabel.setBounds(542, 34, 40, 14);
+        intLabel.setBounds(958, 97, 40, 14);
         getContentPane().add(intLabel);
         
         wisLabel = new JLabel("WIS");
         wisLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        wisLabel.setBounds(592, 34, 40, 14);
+        wisLabel.setBounds(1008, 97, 40, 14);
         getContentPane().add(wisLabel);
         
         chaLabel = new JLabel("CHA");
         chaLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        chaLabel.setBounds(642, 34, 40, 14);
+        chaLabel.setBounds(1058, 97, 40, 14);
         getContentPane().add(chaLabel);
         
 
   
         separator3 = new JSeparator(SwingConstants.VERTICAL);
-        separator3.setBounds(333, 10, 2, 626);
+        separator3.setBounds(749, 73, 2, 626);
         getContentPane().add(separator3);
         
         traitsTextArea = new JTextArea();
         traitsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
         traitsTextArea.setWrapStyleWord(true);
         traitsTextArea.setLineWrap(true);
-        traitsTextArea.setBounds(39, 257, 273, 80);
+        traitsTextArea.setBounds(455, 320, 273, 80);
 //        TraitsTextArea.createRaisedBevelBorder();
         getContentPane().add(traitsTextArea);
         
@@ -445,127 +435,129 @@ public class CharacterEditor extends JFrame implements ActionListener{
         idealsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
         idealsTextArea.setWrapStyleWord(true);
         idealsTextArea.setLineWrap(true);
-        idealsTextArea.setBounds(39, 364, 273, 80);
+        idealsTextArea.setBounds(455, 427, 273, 80);
         getContentPane().add(idealsTextArea);
         
         bondsTextArea = new JTextArea();
         bondsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
         bondsTextArea.setWrapStyleWord(true);
         bondsTextArea.setLineWrap(true);
-        bondsTextArea.setBounds(39, 471, 273, 80);
+        bondsTextArea.setBounds(455, 534, 273, 80);
         getContentPane().add(bondsTextArea);
         
         flawsTextArea = new JTextArea();
         flawsTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
         flawsTextArea.setWrapStyleWord(true);
         flawsTextArea.setLineWrap(true);
-        flawsTextArea.setBounds(39, 578, 272, 80);
+        flawsTextArea.setBounds(455, 641, 272, 80);
         getContentPane().add(flawsTextArea);
         
         traitsLabel = new JLabel("Personality Traits");
-        traitsLabel.setBounds(39, 241, 100, 14);
+        traitsLabel.setBounds(455, 304, 100, 14);
         getContentPane().add(traitsLabel);
         
         idealsLabel = new JLabel("Ideals");
-        idealsLabel.setBounds(39, 348, 46, 14);
+        idealsLabel.setBounds(455, 411, 46, 14);
         getContentPane().add(idealsLabel);
         
         bondsLabel = new JLabel("Bonds");
-        bondsLabel.setBounds(39, 455, 46, 14);
+        bondsLabel.setBounds(455, 518, 46, 14);
         getContentPane().add(bondsLabel);
         
         flawsLabel = new JLabel("Flaws");
-        flawsLabel.setBounds(39, 562, 46, 14);
+        flawsLabel.setBounds(455, 625, 46, 14);
         getContentPane().add(flawsLabel);
         
         acText = new JTextField();
         acText.setFont(new Font("Tahoma", Font.PLAIN, 20));
         acText.setColumns(10);
-        acText.setBounds(792, 51, 40, 32);
+        acText.setBounds(1208, 114, 40, 32);
         getContentPane().add(acText);
         
         JLabel acLabel = new JLabel("AC");
         acLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-        acLabel.setBounds(792, 34, 40, 14);
+        acLabel.setBounds(1208, 97, 40, 14);
         getContentPane().add(acLabel);
         
         hpText = new JTextField();
         hpText.setFont(new Font("Tahoma", Font.PLAIN, 20));
         hpText.setColumns(10);
-        hpText.setBounds(842, 51, 40, 32);
+        hpText.setBounds(1258, 114, 40, 32);
         getContentPane().add(hpText);
         
         JLabel hpLabel = new JLabel("MAX\r\n HP");
         hpLabel.setFont(new Font("Tahoma", Font.PLAIN, 13));
-        hpLabel.setBounds(840, 35, 61, 14);
+        hpLabel.setBounds(1256, 98, 61, 14);
         getContentPane().add(hpLabel);
         
         featuresTextArea = new JTextArea();
         featuresTextArea.setWrapStyleWord(true);
         featuresTextArea.setLineWrap(true);
         featuresTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
-        featuresTextArea.setBounds(353, 334, 185, 324);
+        featuresTextArea.setBounds(769, 397, 185, 324);
         getContentPane().add(featuresTextArea);
         
         featuresLabel = new JLabel("Features & Traits");
-        featuresLabel.setBounds(401, 318, 100, 14);
+        featuresLabel.setBounds(817, 381, 100, 14);
         getContentPane().add(featuresLabel);
         
         equipLabel = new JLabel("Equipment");
-        equipLabel.setBounds(832, 318, 69, 14);
+        equipLabel.setBounds(1248, 381, 69, 14);
         getContentPane().add(equipLabel);
         
         equipTextArea = new JTextArea();
         equipTextArea.setWrapStyleWord(true);
         equipTextArea.setLineWrap(true);
         equipTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
-        equipTextArea.setBounds(763, 334, 185, 324);
+        equipTextArea.setBounds(1179, 397, 185, 324);
         getContentPane().add(equipTextArea);
         
         profTextArea = new JTextArea();
         profTextArea.setWrapStyleWord(true);
         profTextArea.setLineWrap(true);
         profTextArea.setFont(new Font("Monospaced", Font.PLAIN, 10));
-        profTextArea.setBounds(558, 334, 185, 324);
+        profTextArea.setBounds(974, 397, 185, 324);
         getContentPane().add(profTextArea);
         
         profLabel = new JLabel("Proficiencies");
-        profLabel.setBounds(621, 318, 77, 14);
+        profLabel.setBounds(1037, 381, 77, 14);
         getContentPane().add(profLabel);
         
         separator4 = new JSeparator(SwingConstants.HORIZONTAL);
-        separator4.setBounds(343, 305, 595, 2);
+        separator4.setBounds(759, 368, 595, 2);
         getContentPane().add(separator4);
         
         
         JLabel goodLabel = new JLabel("Good");
-        goodLabel.setBounds(379, 140, 46, 14);
+        goodLabel.setBounds(795, 203, 46, 14);
         getContentPane().add(goodLabel);
         
         JLabel lawfulLabel = new JLabel("Lawful");
-        lawfulLabel.setBounds(338, 161, 46, 14);
+        lawfulLabel.setBounds(754, 224, 46, 14);
         getContentPane().add(lawfulLabel);
         
         JLabel neutralLawLabel = new JLabel("Neutral");
-        neutralLawLabel.setBounds(338, 211, 46, 14);
+        neutralLawLabel.setBounds(754, 274, 46, 14);
         getContentPane().add(neutralLawLabel);
         
         JLabel chaoticLabel = new JLabel("Chaotic");
-        chaoticLabel.setBounds(338, 261, 46, 14);
+        chaoticLabel.setBounds(754, 324, 46, 14);
         getContentPane().add(chaoticLabel);
         
         JLabel neutralMoralLabel = new JLabel("Neutral");
-        neutralMoralLabel.setBounds(424, 140, 46, 14);
+        neutralMoralLabel.setBounds(840, 203, 46, 14);
         getContentPane().add(neutralMoralLabel);
         
-        JLabel evilLabel = new JLabel("Evil");
-        evilLabel.setBounds(484, 140, 46, 14);
+        evilLabel = new JLabel("Evil");
+        evilLabel.setBounds(900, 203, 46, 14);
         getContentPane().add(evilLabel);
         
         
 //      JFrame.setLocationRelativeTo(null);
+//        pack();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);
-        setSize(1920,1000);
+//        setSize(1920,1000);
         getContentPane().setLayout(null);
     }
 
@@ -872,6 +864,22 @@ public class CharacterEditor extends JFrame implements ActionListener{
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }
+        if(src == raceBox) {
+        	int n = raceBox.getSelectedIndex();
+        	
+        	
+        	if(n==2) {subraceBox.removeAllItems(); subraceBox.addItem("Hill"); subraceBox.addItem("Mountain");}
+        	else if(n==3) {subraceBox.removeAllItems(); subraceBox.addItem("High"); subraceBox.addItem("Wood");}
+        	else if(n==4) {subraceBox.removeAllItems(); subraceBox.addItem("Deep"); subraceBox.addItem("Rock");}
+        	else if(n==6) {subraceBox.removeAllItems(); subraceBox.addItem("Lightfoot"); subraceBox.addItem("Stout");}
+        	else {subraceBox.removeAllItems(); subraceBox.addItem("");}
+        	
+        	subraceBox.updateUI();
+        }
+        if(src == switchWindow) {
+        	new CharacterSheet();
+        	this.dispose();
         }
     }
 

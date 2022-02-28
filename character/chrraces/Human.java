@@ -56,4 +56,11 @@ public class Human extends Race{
         "langs=" + Arrays.toString(this.langs) + "\n\t" +
         "mods=" + Arrays.toString(this.mods) + "\n}\n";
     }
+
+
+	@Override
+	public String getSubrace() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

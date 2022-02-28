@@ -11,4 +11,10 @@ public class HalfOrc extends Race{
         this.speed = 30;
         this.langs = new String[]{"Common", "Orc"};
     }
+
+	@Override
+	public String getSubrace() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

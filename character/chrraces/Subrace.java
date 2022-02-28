@@ -27,6 +27,10 @@ Subrace extends Race{
         this.speed = speed;
         this.mods = mods;
     }
+    
+    public String getSubrace() {
+    	return kind;
+    }
 
     
     /** 

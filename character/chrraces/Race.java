@@ -112,6 +112,11 @@ public abstract class Race implements Serializable{
         this.mods = mods;
     }
 
+    /**
+     * @return String
+     */
+    public abstract String getSubrace();
+    
     
     /** 
      * @return String

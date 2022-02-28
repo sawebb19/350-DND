@@ -11,5 +11,11 @@ public class Tiefling extends Race{
         this.speed = 30;
         this.langs = new String[]{"Common", "Infernal"};
     }
+
+	@Override
+	public String getSubrace() {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 }
