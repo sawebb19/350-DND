@@ -1,7 +1,7 @@
 package DNDCompanion.character.chrraces;
 
-public abstract class
-Halfling extends Subrace{
+@SuppressWarnings("serial")
+public abstract class Halfling extends Subrace{
     
     protected Halfling(){
         this.name = "Halfling";

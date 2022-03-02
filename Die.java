@@ -1,7 +1,12 @@
 package DNDCompanion;
 
 import java.util.Random;
+/**
+ * Class for rolling dice in app. Not implemented in current Release.
 
+ * @author Nick Ford
+ *
+ */
 public class Die {
 	int faces;
 	

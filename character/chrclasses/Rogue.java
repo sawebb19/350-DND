@@ -1,7 +1,17 @@
 package DNDCompanion.character.chrclasses;
 
-public class Rogue extends CharacterClass{
-    public Rogue(){
+/**
+ * Class for the Rogue character class.
+
+ * @author Sam Webb
+ *
+ */
+@SuppressWarnings("serial")
+public class Rogue extends CharacterClass {
+	/**
+	 * Constructor for Rogue Class.
+	 */
+    public Rogue() {
         this.name = "Rogue";
         this.hit = 8;
         this.saves[1] = 1; // Dexterity

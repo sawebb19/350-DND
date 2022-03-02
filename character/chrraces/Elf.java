@@ -1,7 +1,7 @@
 package DNDCompanion.character.chrraces;
 
-public abstract class
-Elf extends Subrace{
+@SuppressWarnings("serial")
+public abstract class Elf extends Subrace{
 
     protected Elf(){
         this.name = "Elf";

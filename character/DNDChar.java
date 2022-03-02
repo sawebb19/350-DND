@@ -1,16 +1,21 @@
 package DNDCompanion.character;
 
-import java.io.Serializable; // Allows you to save and load the char
 
 import DNDCompanion.character.chrclasses.*;
 import DNDCompanion.character.chrraces.*;
-import java.util.Arrays;
+import java.io.Serializable; // Allows you to save and load the char
 
+/**
+ * Class for the storing of character data from GUI.
 
-public class DNDChar implements Serializable{
+ * @author Sam Webb and Nick Ford
+ *
+ */
+@SuppressWarnings("serial")
+public class DndChar implements Serializable {
     private String name;
-    private String ethicalAlign;// L: Lawful, N: Neutral, C: Chaotic
-    private String moralAlign;// G: Good, N: Neutral, E: Evil
+    private String ethicalAlign; // L: Lawful, N: Neutral, C: Chaotic
+    private String moralAlign; // G: Good, N: Neutral, E: Evil
     private Race race;
     private CharacterClass charClass;
     private int level;
@@ -22,7 +27,7 @@ public class DNDChar implements Serializable{
     private String bonds;
     private String flaws;
     private int armor;
-    private int maxHP;
+    private int maxHp;
     private String features;
     private String profs;
     private String equipment;
@@ -32,10 +37,34 @@ public class DNDChar implements Serializable{
     private int[] stats;
     private int[] mods = new int[6];
 
-    public DNDChar(){
+    public DndChar() {
     }
 
-    public DNDChar(String name,
+    /**
+     * Constructor that takes all character data as parameters. Used in saving character objects.
+
+     * @param name Character Name
+     * @param ethicalAlign Ethical alignment piece; L, N, or C.
+     * @param moralAlign Moral alignment piece; G, N, or E.
+     * @param race Object represents the race of the character.
+     * @param charClass Object represents the class of the character.
+     * @param level Character level.
+     * @param exp Character experience points.
+     * @param stats Array of the character's stats.
+     * @param skills String containing the name of all skills the character is proficient in.
+     * @param background Character background.
+     * @param traits Character personality traits text.
+     * @param ideals Character ideals text.
+     * @param bonds Character bonds text.
+     * @param flaws Character flaws text.
+     * @param armor Character armor class.
+     * @param maxHp Character maximum Health Points.
+     * @param features Character features and racial traits text.
+     * @param profs Character proficiencies (Ex: languages, weapon types, etc.).
+     * @param equipment Character equipment text.
+     * @param player Name of person who plays the character.
+     */
+    public DndChar(String name,
                     String ethicalAlign, 
                     String moralAlign, 
                     Race race,
@@ -47,9 +76,9 @@ public class DNDChar implements Serializable{
                     String background, String traits,
                     String ideals, String bonds,
                     String flaws, int armor,
-                    int maxHP, String features,
+                    int maxHp, String features,
                     String profs, String equipment,
-                    String player){
+                    String player) {
 
         this.name = name;
         this.ethicalAlign = ethicalAlign;
@@ -59,7 +88,7 @@ public class DNDChar implements Serializable{
         this.level = level;
         this.exp = exp;
         this.stats = stats;
-        for(int i=0; i<stats.length; i++) { //mods are based on stats
+        for (int i = 0; i < stats.length; i++) { //mods are based on stats
         	mods[i] = (stats[i] / 2) - 5;
         }
         this.skills = skills;
@@ -69,7 +98,7 @@ public class DNDChar implements Serializable{
         this.bonds = bonds;
         this.flaws = flaws;
         this.armor = armor;
-        this.maxHP = maxHP;
+        this.maxHp = maxHp;
         this.features = features;
         this.profs = profs;
         this.equipment = equipment;
@@ -81,15 +110,15 @@ public class DNDChar implements Serializable{
     /*
      * getters for each field
      */
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
-    public Race getRace(){
+    public Race getRace() {
         return this.race;
     }
 
-    public CharacterClass getCharClass(){
+    public CharacterClass getCharClass() {
         return this.charClass;
     }
     
@@ -105,7 +134,7 @@ public class DNDChar implements Serializable{
     	return exp;
     }
 
-    public String getAlignment(){
+    public String getAlignment() {
         return ethicalAlign + moralAlign;
     }
     
@@ -137,8 +166,8 @@ public class DNDChar implements Serializable{
     	return armor;
     }
     
-    public int getMaxHP() {
-    	return maxHP;
+    public int getMaxHp() {
+    	return maxHp;
     }
 
     public String getFeatures() {
@@ -157,19 +186,19 @@ public class DNDChar implements Serializable{
     	return player;
     }
     
-    public String toString(){
-        return
-        "name=" + this.name + "\n" +
-        "ethical=" + this.ethicalAlign + "\n" +
-        "moral=" + this.moralAlign + "\n" +
-         race.toString() +
-         charClass.toString() +
-         "level=" + this.level + "\n" +
-         "exp=" + this.exp + "\n" +
-         "stats=" + Arrays.toString(this.stats) + "\n" +
-         "mods=" + Arrays.toString(this.mods);
-    }
-    
+//    public String toString(){
+//        return
+//        "name=" + this.name + "\n" +
+//        "ethical=" + this.ethicalAlign + "\n" +
+//        "moral=" + this.moralAlign + "\n" +
+//         race.toString() +
+//         charClass.toString() +
+//         "level=" + this.level + "\n" +
+//         "exp=" + this.exp + "\n" +
+//         "stats=" + Arrays.toString(this.stats) + "\n" +
+//         "mods=" + Arrays.toString(this.mods);
+//    }
+
     public static void main(String[] args) {
     	
     }

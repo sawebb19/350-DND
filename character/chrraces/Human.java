@@ -2,6 +2,7 @@ package DNDCompanion.character.chrraces;
 
 import java.util.Arrays;
 
+@SuppressWarnings("serial")
 public class Human extends Race{
     
     private String ethnic;

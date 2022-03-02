@@ -1,5 +1,6 @@
 package DNDCompanion.character.chrraces;
 
+@SuppressWarnings("serial")
 public class HalflingStout extends Halfling{
     
     public HalflingStout(){

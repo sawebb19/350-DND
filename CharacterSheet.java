@@ -1,33 +1,35 @@
 package DNDCompanion;
 
-import javax.swing.*;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
-import java.io.IOException;
 import DNDCompanion.character.*;
 import DNDCompanion.character.chrclasses.*;
 import DNDCompanion.character.chrraces.*;
-import java.awt.BorderLayout;
-import java.awt.Font;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.SystemColor;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.text.DecimalFormat;
+import javax.swing.*;
 
+/**
+ * GUI Class for displaying a DndChar object for gameplay.
 
+ * @author Nick Ford
+ * @author Sam Webb
+ *
+ */
+@SuppressWarnings("serial")
 public class CharacterSheet extends JFrame implements ActionListener {
 
     private JMenuBar menus;
 
     private JMenu fileMenu;
     private JMenuItem openChar;
-//    private JMenuItem saveChar;
-//    private JMenuItem newChar;
+    //    private JMenuItem saveChar;
+    //    private JMenuItem newChar;
     private JMenuItem close;
     private JMenu windowMenu;
     private JMenuItem switchWindow;
@@ -65,7 +67,7 @@ public class CharacterSheet extends JFrame implements ActionListener {
     private JLabel chaSave;
     private JTextField chaSaveMod;
     private JRadioButton chaSaveRad;
-    private JLabel SavThroLabel;
+    private JLabel savThroLabel;
     private JLabel strStatLabel;
     private JLabel dexStatLabel;
     private JLabel conStatLabel;
@@ -77,28 +79,28 @@ public class CharacterSheet extends JFrame implements ActionListener {
     private JTextField bgText;
     private JLabel bgLabel;
     private JTextField alignText;
-    private JLabel AlignLabel;
-    private JTextField pName;
-    private JLabel pNameLabel;
+    private JLabel alignLabel;
+    private JTextField playerName;
+    private JLabel playerNameLabel;
     private JTextField xpText;
     private JLabel xpLabel;
     
     private JLabel strSave;
     private JRadioButton strSaveRad;
-    private JSeparator SaveOutline1;
-    private JSeparator SaveOutline2;
-    private JSeparator SaveOutline3;
-    private JSeparator SaveOutline4;
+    private JSeparator saveOutline1;
+    private JSeparator saveOutline2;
+    private JSeparator saveOutline3;
+    private JSeparator saveOutline4;
     
     private JRadioButton skillRad1;
     private JLabel skillLabel1;
     private JLabel skillLabel2;
     private JRadioButton skillRad2;
     private JLabel skillsLabel;
-    private JSeparator SkillOutline1;
-    private JSeparator SkillOutline2;
-    private JSeparator SkillOutline3;
-    private JSeparator SkillOutline4;
+    private JSeparator skillOutline1;
+    private JSeparator skillOutline2;
+    private JSeparator skillOutline3;
+    private JSeparator skillOutline4;
     private JTextField skillMod1;
     private JTextField skillMod2;
     private JRadioButton skillRad3;
@@ -207,7 +209,7 @@ public class CharacterSheet extends JFrame implements ActionListener {
     private JLabel bondsLabel;
     private JLabel flawsLabel;
     private JTextField passiveText;
-    private JLabel ProfBonusLabel;
+    private JLabel profBonusLabel;
     private JLabel hpDivSign;
     private JLabel profsLabel;
     private JTextArea profsText;
@@ -216,6 +218,9 @@ public class CharacterSheet extends JFrame implements ActionListener {
     private JTextArea equipText;
     private JTextArea featuresText;
 
+    /**
+     * Constructor for CharacterSheet that loads all the GUI components.
+     */
     public CharacterSheet() {
 
         // Menus
@@ -223,9 +228,7 @@ public class CharacterSheet extends JFrame implements ActionListener {
         menus = new JMenuBar();
 
         fileMenu = new JMenu("File");
-//        newChar = new JMenuItem("New Character");
         openChar = new JMenuItem("Open Character");
-//        saveChar = new JMenuItem("Save Character");
         close = new JMenuItem("Close");
         windowMenu = new JMenu("Window");
         switchWindow = new JMenuItem("Switch View");
@@ -233,15 +236,11 @@ public class CharacterSheet extends JFrame implements ActionListener {
         
         windowMenu.add(switchWindow);
 
-//        fileMenu.add(newChar);
         fileMenu.add(openChar);
-//        fileMenu.add(saveChar);
         fileMenu.addSeparator();
         fileMenu.add(close);
 
-//        newChar.addActionListener(this);
         openChar.addActionListener(this);
-//        saveChar.addActionListener(this);
         close.addActionListener(this);
         switchWindow.addActionListener(this);
 
@@ -252,15 +251,15 @@ public class CharacterSheet extends JFrame implements ActionListener {
         // Items inside CharacterSheet
 
         charNameLabel = new JLabel("Character Name");
-        charNameLabel.setBounds(501,97,98,15);
+        charNameLabel.setBounds(501, 97, 98, 15);
         getContentPane().add(charNameLabel);
         
         charRace = new JLabel("Race");
-        charRace.setBounds(789,117,70,15);
+        charRace.setBounds(789, 117, 70, 15);
         getContentPane().add(charRace);
         
         charClass = new JLabel("Class & Level");
-        charClass.setBounds(789,66,84,15);
+        charClass.setBounds(789, 66, 84, 15);
         getContentPane().add(charClass);
         
         
@@ -494,27 +493,27 @@ public class CharacterSheet extends JFrame implements ActionListener {
         
         
         
-        SaveOutline1 = new JSeparator();
-        SaveOutline1.setBounds(543, 155, 165, 2);
-        getContentPane().add(SaveOutline1);
+        saveOutline1 = new JSeparator();
+        saveOutline1.setBounds(543, 155, 165, 2);
+        getContentPane().add(saveOutline1);
         
-        SaveOutline2 = new JSeparator();
-        SaveOutline2.setBounds(543, 355, 165, 2);
-        getContentPane().add(SaveOutline2);
+        saveOutline2 = new JSeparator();
+        saveOutline2.setBounds(543, 355, 165, 2);
+        getContentPane().add(saveOutline2);
         
-        SaveOutline3 = new JSeparator();
-        SaveOutline3.setOrientation(SwingConstants.VERTICAL);
-        SaveOutline3.setBounds(542, 155, 2, 200);
-        getContentPane().add(SaveOutline3);
+        saveOutline3 = new JSeparator();
+        saveOutline3.setOrientation(SwingConstants.VERTICAL);
+        saveOutline3.setBounds(542, 155, 2, 200);
+        getContentPane().add(saveOutline3);
         
-        SaveOutline4 = new JSeparator();
-        SaveOutline4.setOrientation(SwingConstants.VERTICAL);
-        SaveOutline4.setBounds(708, 155, 2, 200);
-        getContentPane().add(SaveOutline4);
+        saveOutline4 = new JSeparator();
+        saveOutline4.setOrientation(SwingConstants.VERTICAL);
+        saveOutline4.setBounds(708, 155, 2, 200);
+        getContentPane().add(saveOutline4);
         
-        SavThroLabel = new JLabel("Saving Throws");
-        SavThroLabel.setBounds(593, 337, 91, 14);
-        getContentPane().add(SavThroLabel);
+        savThroLabel = new JLabel("Saving Throws");
+        savThroLabel.setBounds(593, 337, 91, 14);
+        getContentPane().add(savThroLabel);
         
         
         
@@ -550,20 +549,20 @@ public class CharacterSheet extends JFrame implements ActionListener {
         alignText.setBounds(990, 80, 178, 34);
         getContentPane().add(alignText);
         
-        AlignLabel = new JLabel("Alignment");
-        AlignLabel.setBounds(992, 117, 70, 15);
-        getContentPane().add(AlignLabel);
+        alignLabel = new JLabel("Alignment");
+        alignLabel.setBounds(992, 117, 70, 15);
+        getContentPane().add(alignLabel);
         
-        pName = new JTextField();
-        pName.setEditable(false);
-        pName.setColumns(10);
-        pName.setBackground(Color.WHITE);
-        pName.setBounds(1195, 31, 178, 34);
-        getContentPane().add(pName);
+        playerName = new JTextField();
+        playerName.setEditable(false);
+        playerName.setColumns(10);
+        playerName.setBackground(Color.WHITE);
+        playerName.setBounds(1195, 31, 178, 34);
+        getContentPane().add(playerName);
         
-        pNameLabel = new JLabel("Player Name");
-        pNameLabel.setBounds(1197, 66, 84, 15);
-        getContentPane().add(pNameLabel);
+        playerNameLabel = new JLabel("Player Name");
+        playerNameLabel.setBounds(1197, 66, 84, 15);
+        getContentPane().add(playerNameLabel);
         
         xpText = new JTextField();
         xpText.setEditable(false);
@@ -591,23 +590,23 @@ public class CharacterSheet extends JFrame implements ActionListener {
         skillLabel1.setBounds(610, 384, 85, 20);
         getContentPane().add(skillLabel1);
         
-        SkillOutline1 = new JSeparator();
-        SkillOutline1.setBounds(542, 368, 165, 2);
-        getContentPane().add(SkillOutline1);
+        skillOutline1 = new JSeparator();
+        skillOutline1.setBounds(542, 368, 165, 2);
+        getContentPane().add(skillOutline1);
         
-        SkillOutline2 = new JSeparator();
-        SkillOutline2.setOrientation(SwingConstants.VERTICAL);
-        SkillOutline2.setBounds(541, 368, 2, 543);
-        getContentPane().add(SkillOutline2);
+        skillOutline2 = new JSeparator();
+        skillOutline2.setOrientation(SwingConstants.VERTICAL);
+        skillOutline2.setBounds(541, 368, 2, 543);
+        getContentPane().add(skillOutline2);
         
-        SkillOutline4 = new JSeparator();
-        SkillOutline4.setOrientation(SwingConstants.VERTICAL);
-        SkillOutline4.setBounds(706, 368, 2, 543);
-        getContentPane().add(SkillOutline4);
+        skillOutline4 = new JSeparator();
+        skillOutline4.setOrientation(SwingConstants.VERTICAL);
+        skillOutline4.setBounds(706, 368, 2, 543);
+        getContentPane().add(skillOutline4);
         
-        SkillOutline3 = new JSeparator();
-        SkillOutline3.setBounds(542, 911, 165, 2);
-        getContentPane().add(SkillOutline3);
+        skillOutline3 = new JSeparator();
+        skillOutline3.setBounds(542, 911, 165, 2);
+        getContentPane().add(skillOutline3);
         
         skillsLabel = new JLabel("Skill Proficiencies");
         skillsLabel.setBounds(575, 893, 105, 14);
@@ -877,9 +876,9 @@ public class CharacterSheet extends JFrame implements ActionListener {
         getContentPane().add(profBonusText);
         profBonusText.setColumns(10);
         
-        ProfBonusLabel = new JLabel("Proficiency Bonus");
-        ProfBonusLabel.setBounds(907, 252, 107, 14);
-        getContentPane().add(ProfBonusLabel);
+        profBonusLabel = new JLabel("Proficiency Bonus");
+        profBonusLabel.setBounds(907, 252, 107, 14);
+        getContentPane().add(profBonusLabel);
         
         acText = new JTextField();
         acText.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1253,58 +1252,14 @@ public class CharacterSheet extends JFrame implements ActionListener {
 
         pack();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        setVisible(true);
-//        setSize(1920, 1025);
-
-//        Race race = new HalfOrc();
-//        CharacterClass paladin = new Paladin();
-//
-//        // Test Character For Saving/Loading
-//        character = new Character("Terry", // Name
-//                "Neutral", // Ethical Align
-//                "Evil", // Moral Align
-//                race,
-//                paladin,
-//                1, // Level
-//                0, // Exp
-//                new int[] { 3, 3, 3, 3, 3, 3 }, // Stats
-//                new int[] { 0, 0, 0, 0, 0, 0 }); // Modifiers
-
-
-//        //test Character
-//    	String name = "Biff";
-//        String ethicalAlign = "C";
-//        String moralAlign = "N";
-//        Race race = new HalfElf();
-//        CharacterClass charClass = new Rogue();
-//        int level = 3;
-//        int exp = 0;
-//        int[] stats = {10,10,10,10,10,15};
-//        String skills = "SurvivalReligionAcrobatics";
-//        String background = "Acolyte"; 
-//        String traits = "trait1, trait2";
-//        String ideals = "ideals are cool"; 
-//        String bonds = "bonded to none";
-//        String flaws = "not cool enough"; 
-//        int armor = 16;
-//        int maxHP = 24; 
-//        String features = "cool aura";
-//        String profs = "martial, simple, and ranged weapons"; 
-//        String equipment = "greataxe and rapier";
-//        String player = "Nick";
-//        
-//        dndChar = new DNDChar(name, ethicalAlign, moralAlign, 
-//                				   race, charClass, level, exp, 
-//                				   stats, skills, background, 
-//                				   traits, ideals, bonds, flaws, 
-//                				   armor, maxHP, features, profs, 
-//                				   equipment, player);
-        
+        setVisible(true);        
     }
 
     
     /** 
-     * @param e
+     * Method to take care of actions initiated by the GUI.
+
+     * @param e An event performed by one of the Listened-to JFrame items
      */
     public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
@@ -1324,7 +1279,7 @@ public class CharacterSheet extends JFrame implements ActionListener {
                     try (FileInputStream file = new FileInputStream(path);
                             ObjectInputStream in = new ObjectInputStream(file);) {
 
-                        DNDChar temp = (DNDChar) in.readObject();
+                        DndChar temp = (DndChar) in.readObject();
 
                         DecimalFormat df = new DecimalFormat("+0;-0");
                         
@@ -1332,33 +1287,55 @@ public class CharacterSheet extends JFrame implements ActionListener {
                         charName.setText(temp.getName());
                         
                         //character race
-                        //raceText.setText(temp.getRace().getName());
                         String race = temp.getRace().getName(); 
-                        if(temp.getRace() == null) {
+                        if (temp.getRace() == null) {
                         	raceText.setText("");
-                        }else if(temp.getRace() instanceof Dragonborn || temp.getRace() instanceof Human || temp.getRace() instanceof HalfElf ||
-                        		temp.getRace() instanceof HalfOrc || temp.getRace() instanceof Tiefling) {
+                        } else if (temp.getRace() instanceof Dragonborn 
+                        		|| temp.getRace() instanceof Human 
+                        		|| temp.getRace() instanceof HalfElf 
+                        		|| temp.getRace() instanceof HalfOrc 
+                        		|| temp.getRace() instanceof Tiefling) {
                         	raceText.setText(race);
-                        }else {
-                        	raceText.setText(temp.getRace().getSubrace() +" "+ race);
+                        } else {
+                        	raceText.setText(temp.getRace().getSubrace() + " " + race);
                         }
                         
                         //character class and level
-                        classLvl.setText(temp.getCharClass().getName() +" "+ temp.getLevel()); 
+                        classLvl.setText(temp.getCharClass().getName() + " " + temp.getLevel()); 
                         
                         //char alignment
                         String alignment = temp.getAlignment();
-                        switch(alignment) {
-                    	default: alignText.setText(""); break;
-                    	case "LG": alignText.setText("Lawful Good"); break;
-                    	case "LN": alignText.setText("Lawful Neutral"); break; 
-                    	case "LE": alignText.setText("Lawful Evil"); break;
-                    	case "NG": alignText.setText("Neutral Good"); break;
-                    	case "NN": alignText.setText("True Neutral"); break;
-                    	case "NE": alignText.setText("Neutral Evil"); break; 
-                    	case "CG": alignText.setText("Chaotic Good"); break;
-                    	case "CN": alignText.setText("Chaotic Neutral"); break; 
-                    	case "CE": alignText.setText("Chaotic Evil"); break; 
+                        switch (alignment) {
+                    	default: 
+                    		alignText.setText(""); 
+                    		break;
+                    	case "LG": 
+                    		alignText.setText("Lawful Good"); 
+                    		break;
+                    	case "LN": 
+                    		alignText.setText("Lawful Neutral"); 
+                    		break; 
+                    	case "LE": 
+                    		alignText.setText("Lawful Evil"); 
+                    		break;
+                    	case "NG": 
+                    		alignText.setText("Neutral Good"); 
+                    		break;
+                    	case "NN": 
+                    		alignText.setText("True Neutral"); 
+                    		break;
+                    	case "NE": 
+                    		alignText.setText("Neutral Evil"); 
+                    		break; 
+                    	case "CG": 
+                    		alignText.setText("Chaotic Good"); 
+                    		break;
+                    	case "CN": 
+                    		alignText.setText("Chaotic Neutral"); 
+                    		break; 
+                    	case "CE": 
+                    		alignText.setText("Chaotic Evil"); 
+                    		break; 
                         }
                     	
                         //char experience
@@ -1373,153 +1350,309 @@ public class CharacterSheet extends JFrame implements ActionListener {
                         chaStat.setText("" + temp.getStats()[5]);
                         
                         //mods
-                        strMod.setText("" + df.format(temp.getStats()[0]/2 -5));
-                        dexMod.setText("" + df.format(temp.getStats()[1]/2 -5));
-                        conMod.setText("" + df.format(temp.getStats()[2]/2 -5));
-                        intMod.setText("" + df.format(temp.getStats()[3]/2 -5));
-                        wisMod.setText("" + df.format(temp.getStats()[4]/2 -5));
-                        chaMod.setText("" + df.format(temp.getStats()[5]/2 -5));
+                        strMod.setText("" + df.format(temp.getStats()[0] / 2 - 5));
+                        dexMod.setText("" + df.format(temp.getStats()[1] / 2 - 5));
+                        conMod.setText("" + df.format(temp.getStats()[2] / 2 - 5));
+                        intMod.setText("" + df.format(temp.getStats()[3] / 2 - 5));
+                        wisMod.setText("" + df.format(temp.getStats()[4] / 2 - 5));
+                        chaMod.setText("" + df.format(temp.getStats()[5] / 2 - 5));
                         
                     	//skill radios
                     	//deselect all skills
-                    	if(skillRad1.isSelected()) {skillRad1.doClick();}
-                    	if(skillRad2.isSelected()) {skillRad2.doClick();}
-                    	if(skillRad3.isSelected()) {skillRad3.doClick();}
-                    	if(skillRad4.isSelected()) {skillRad4.doClick();}
-                    	if(skillRad5.isSelected()) {skillRad5.doClick();}
-                    	if(skillRad6.isSelected()) {skillRad6.doClick();}
-                    	if(skillRad7.isSelected()) {skillRad7.doClick();}
-                    	if(skillRad8.isSelected()) {skillRad8.doClick();}
-                    	if(skillRad9.isSelected()) {skillRad9.doClick();}
-                    	if(skillRad10.isSelected()) {skillRad10.doClick();}
-                    	if(skillRad11.isSelected()) {skillRad11.doClick();}
-                    	if(skillRad12.isSelected()) {skillRad12.doClick();}
-                    	if(skillRad13.isSelected()) {skillRad13.doClick();}
-                    	if(skillRad14.isSelected()) {skillRad14.doClick();}
-                    	if(skillRad15.isSelected()) {skillRad15.doClick();}
-                    	if(skillRad16.isSelected()) {skillRad16.doClick();}
-                    	if(skillRad17.isSelected()) {skillRad17.doClick();}
-                    	if(skillRad18.isSelected()) {skillRad18.doClick();}
-                    	//select right ones
-                    	if(temp.getSkills().contains(skillLabel1.getText()))
+                    	if (skillRad1.isSelected()) {
                     		skillRad1.doClick();
-                    	if(temp.getSkills().contains(skillLabel2.getText()))
+                    	}
+                    	if (skillRad2.isSelected()) {
                     		skillRad2.doClick();
-                    	if(temp.getSkills().contains(skillLabel3.getText()))
+                    	}
+                    	if (skillRad3.isSelected()) {
                     		skillRad3.doClick();
-                    	if(temp.getSkills().contains(skillLabel4.getText()))
+                    	}
+                    	if (skillRad4.isSelected()) {
                     		skillRad4.doClick();
-                    	if(temp.getSkills().contains(skillLabel5.getText()))
+                    	}
+                    	if (skillRad5.isSelected()) {
                     		skillRad5.doClick();
-                    	if(temp.getSkills().contains(skillLabel6.getText()))
+                    	}
+                    	if (skillRad6.isSelected()) {
                     		skillRad6.doClick();
-                    	if(temp.getSkills().contains(skillLabel7.getText()))
+                    	}
+                    	if (skillRad7.isSelected()) {
                     		skillRad7.doClick();
-                    	if(temp.getSkills().contains(skillLabel8.getText()))
+                    	}
+                    	if (skillRad8.isSelected()) {
                     		skillRad8.doClick();
-                    	if(temp.getSkills().contains(skillLabel9.getText()))
+                    	}
+                    	if (skillRad9.isSelected()) {
                     		skillRad9.doClick();
-                    	if(temp.getSkills().contains(skillLabel10.getText()))
+                    	}
+                    	if (skillRad10.isSelected()) {
                     		skillRad10.doClick();
-                    	if(temp.getSkills().contains(skillLabel11.getText()))
+                    	}
+                    	if (skillRad11.isSelected()) {
                     		skillRad11.doClick();
-                    	if(temp.getSkills().contains(skillLabel12.getText()))
+                    	}
+                    	if (skillRad12.isSelected()) {
                     		skillRad12.doClick();
-                    	if(temp.getSkills().contains(skillLabel13.getText()))
+                    	}
+                    	if (skillRad13.isSelected()) {
                     		skillRad13.doClick();
-                    	if(temp.getSkills().contains(skillLabel14.getText()))
+                    	}
+                    	if (skillRad14.isSelected()) {
                     		skillRad14.doClick();
-                    	if(temp.getSkills().contains(skillLabel15.getText()))
+                    	}
+                    	if (skillRad15.isSelected()) {
                     		skillRad15.doClick();
-                    	if(temp.getSkills().contains(skillLabel16.getText()))
-                    		skillRad16.doClick();		
-                    	if(temp.getSkills().contains(skillLabel17.getText()))
-                    		skillRad17.doClick();	
-                    	if(temp.getSkills().contains(skillLabel18.getText()))
+                    	}
+                    	if (skillRad16.isSelected()) {
+                    		skillRad16.doClick();
+                    	}
+                    	if (skillRad17.isSelected()) {
+                    		skillRad17.doClick();
+                    	}
+                    	if (skillRad18.isSelected()) {
                     		skillRad18.doClick();
+                    	}
+                    	//select right ones
+                    	if (temp.getSkills().contains(skillLabel1.getText())) {
+                    		skillRad1.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel2.getText())) {
+                    		skillRad2.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel3.getText())) {
+                    		skillRad3.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel4.getText())) {
+                    		skillRad4.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel5.getText())) {
+                    		skillRad5.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel6.getText())) {
+                    		skillRad6.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel7.getText())) {
+                    		skillRad7.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel8.getText())) {
+                    		skillRad8.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel9.getText())) {
+                    		skillRad9.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel10.getText())) {
+                    		skillRad10.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel11.getText())) {
+                    		skillRad11.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel12.getText())) {
+                    		skillRad12.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel13.getText())) {
+                    		skillRad13.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel14.getText())) {
+                    		skillRad14.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel15.getText())) {
+                    		skillRad15.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel16.getText())) {
+                    		skillRad16.doClick(); 
+                    	}
+                    	if (temp.getSkills().contains(skillLabel17.getText())) {
+                    		skillRad17.doClick();
+                    	}
+                    	if (temp.getSkills().contains(skillLabel18.getText())) {
+                    		skillRad18.doClick();
+                    	}
                     	
                     	//proficiency bonus
-                    	if(temp.getLevel() < 5) {profBonusText.setText("+2");
-                    	}else if(temp.getLevel() < 9) {profBonusText.setText("+3");
-                    	}else if(temp.getLevel() < 13) {profBonusText.setText("+4");
-                    	}else if(temp.getLevel() < 17) {profBonusText.setText("+5");
-                    	}else {profBonusText.setText("+6");}
+                    	if (temp.getLevel() < 5) {
+                    		profBonusText.setText("+2");
+                    	} else if (temp.getLevel() < 9) {
+                    		profBonusText.setText("+3");
+                    	} else if (temp.getLevel() < 13) {
+                    		profBonusText.setText("+4");
+                    	} else if (temp.getLevel() < 17) {
+                    		profBonusText.setText("+5");
+                    	} else {
+                    		profBonusText.setText("+6");
+                    	}
                     	
                     	//Skill Mods
                     	
-                    	int str= Integer.parseInt(strMod.getText());
-                    	int dex= Integer.parseInt(dexMod.getText());
-                    	int con= Integer.parseInt(conMod.getText());
-                    	int intel= Integer.parseInt(intMod.getText());
-                    	int wis= Integer.parseInt(wisMod.getText());
-                    	int cha= Integer.parseInt(chaMod.getText());
-                    	int bonus= Integer.parseInt(profBonusText.getText());
-                    	if(skillRad1.isSelected()) {skillMod1.setText(""+ df.format(dex + bonus));
-                    	}else {skillMod1.setText(df.format(dex));}
-                    	if(skillRad2.isSelected()) {skillMod2.setText(""+ df.format(wis + bonus));
-                    	}else {skillMod2.setText(df.format(wis));}
-                    	if(skillRad3.isSelected()) {skillMod3.setText(""+ df.format(intel + bonus));
-                    	}else {skillMod3.setText(df.format(intel));}
-                    	if(skillRad4.isSelected()) {skillMod4.setText(""+ df.format(str + bonus));
-                    	}else {skillMod4.setText(df.format(str));}
-                    	if(skillRad5.isSelected()) {skillMod5.setText(""+ df.format(cha + bonus));
-                    	}else {skillMod5.setText(df.format(cha));}
-                    	if(skillRad6.isSelected()) {skillMod6.setText(""+ df.format(intel + bonus));
-                    	}else {skillMod6.setText(df.format(intel));}
-                    	if(skillRad7.isSelected()) {skillMod7.setText(""+ df.format(wis + bonus));
-                    	}else {skillMod7.setText(df.format(wis));}
-                    	if(skillRad8.isSelected()) {skillMod8.setText(""+ df.format(cha + bonus));
-                    	}else {skillMod8.setText(df.format(cha));}
-                    	if(skillRad9.isSelected()) {skillMod9.setText(""+ df.format(intel + bonus));
-                    	}else {skillMod9.setText(df.format(intel));}
-                    	if(skillRad10.isSelected()) {skillMod10.setText(""+ df.format(wis + bonus));
-                    	}else {skillMod10.setText(df.format(wis));}
-                    	if(skillRad11.isSelected()) {skillMod11.setText(""+ df.format(intel + bonus));
-                    	}else {skillMod11.setText(df.format(intel));}
-                    	if(skillRad12.isSelected()) {skillMod12.setText(""+ df.format(wis + bonus));
-                    	}else {skillMod12.setText(df.format(wis));}
-                    	if(skillRad13.isSelected()) {skillMod13.setText(""+ df.format(cha + bonus));
-                    	}else {skillMod13.setText(df.format(cha));}
-                    	if(skillRad14.isSelected()) {skillMod14.setText(""+ df.format(cha + bonus));
-                    	}else {skillMod14.setText(df.format(cha));}
-                    	if(skillRad15.isSelected()) {skillMod15.setText(""+ df.format(intel + bonus));
-                    	}else {skillMod15.setText(df.format(intel));}
-                    	if(skillRad16.isSelected()) {skillMod16.setText(""+ df.format(dex + bonus));
-                    	}else {skillMod16.setText(df.format(dex));}
-                    	if(skillRad17.isSelected()) {skillMod17.setText(""+ df.format(dex + bonus));
-                    	}else {skillMod17.setText(df.format(dex));}
-                    	if(skillRad18.isSelected()) {skillMod18.setText(""+ df.format(wis + bonus));
-                    	}else {skillMod18.setText(df.format(wis));}
+                    	int str = Integer.parseInt(strMod.getText());
+                    	int dex = Integer.parseInt(dexMod.getText());
+                    	int con = Integer.parseInt(conMod.getText());
+                    	int intel = Integer.parseInt(intMod.getText());
+                    	int wis = Integer.parseInt(wisMod.getText());
+                    	int cha = Integer.parseInt(chaMod.getText());
+                    	int bonus = Integer.parseInt(profBonusText.getText());
+                    	if (skillRad1.isSelected()) {
+                    		skillMod1.setText("" + df.format(dex + bonus));
+                    	} else {
+                    		skillMod1.setText(df.format(dex));
+                    	}
+                    	if (skillRad2.isSelected()) {
+                    		skillMod2.setText("" + df.format(wis + bonus));
+                    	} else {
+                    		skillMod2.setText(df.format(wis));
+                    	}
+                    	if (skillRad3.isSelected()) {
+                    		skillMod3.setText("" + df.format(intel + bonus));
+                    	} else {
+                    		skillMod3.setText(df.format(intel));
+                    	}
+                    	if (skillRad4.isSelected()) {
+                    		skillMod4.setText("" + df.format(str + bonus));
+                    	} else {
+                    		skillMod4.setText(df.format(str));
+                    	}
+                    	if (skillRad5.isSelected()) {
+                    		skillMod5.setText("" + df.format(cha + bonus));
+                    	} else {
+                    		skillMod5.setText(df.format(cha));
+                    	}
+                    	if (skillRad6.isSelected()) {
+                    		skillMod6.setText("" + df.format(intel + bonus));
+                    	} else {
+                    		skillMod6.setText(df.format(intel));
+                    	}
+                    	if (skillRad7.isSelected()) {
+                    		skillMod7.setText("" + df.format(wis + bonus));
+                    	} else {
+                    		skillMod7.setText(df.format(wis));
+                    	}
+                    	if (skillRad8.isSelected()) {
+                    		skillMod8.setText("" + df.format(cha + bonus));
+                    	} else {
+                    		skillMod8.setText(df.format(cha));
+                    	}
+                    	if (skillRad9.isSelected()) {
+                    		skillMod9.setText("" + df.format(intel + bonus));
+                    	} else {
+                    		skillMod9.setText(df.format(intel));
+                    	}
+                    	if (skillRad10.isSelected()) {
+                    		skillMod10.setText("" + df.format(wis + bonus));
+                    	} else {
+                    		skillMod10.setText(df.format(wis));
+                    	}
+                    	if (skillRad11.isSelected()) {
+                    		skillMod11.setText("" + df.format(intel + bonus));
+                    	} else {
+                    		skillMod11.setText(df.format(intel));
+                    	}
+                    	if (skillRad12.isSelected()) {
+                    		skillMod12.setText("" + df.format(wis + bonus));
+                    	} else {
+                    		skillMod12.setText(df.format(wis));
+                    	}
+                    	if (skillRad13.isSelected()) {
+                    		skillMod13.setText("" + df.format(cha + bonus));
+                    	} else {
+                    		skillMod13.setText(df.format(cha));
+                    	}
+                    	if (skillRad14.isSelected()) {
+                    		skillMod14.setText("" + df.format(cha + bonus));
+                    	} else {
+                    		skillMod14.setText(df.format(cha));
+                    	}
+                    	if (skillRad15.isSelected()) {
+                    		skillMod15.setText("" + df.format(intel + bonus));
+                    	} else {
+                    		skillMod15.setText(df.format(intel));
+                    	}
+                    	if (skillRad16.isSelected()) {
+                    		skillMod16.setText("" + df.format(dex + bonus));
+                    	} else {
+                    		skillMod16.setText(df.format(dex));
+                    	}
+                    	if (skillRad17.isSelected()) {
+                    		skillMod17.setText("" + df.format(dex + bonus));
+                    	} else {
+                    		skillMod17.setText(df.format(dex));
+                    	}
+                    	if (skillRad18.isSelected()) {
+                    		skillMod18.setText("" + df.format(wis + bonus));
+                    	} else {
+                    		skillMod18.setText(df.format(wis));
+                    	}
                     	
                     	//saving throws
                     	//reset radio buttons
-                    	if(strSaveRad.isSelected()) {strSaveRad.doClick();}
-                    	if(dexSaveRad.isSelected()) {dexSaveRad.doClick();}
-                    	if(conSaveRad.isSelected()) {conSaveRad.doClick();}
-                    	if(intSaveRad.isSelected()) {intSaveRad.doClick();}
-                    	if(wisSaveRad.isSelected()) {wisSaveRad.doClick();}
-                    	if(chaSaveRad.isSelected()) {chaSaveRad.doClick();}
+                    	if (strSaveRad.isSelected()) {
+                    		strSaveRad.doClick();
+                    		}
+                    	if (dexSaveRad.isSelected()) {
+                    		dexSaveRad.doClick();
+                    	}
+                    	if (conSaveRad.isSelected()) {
+                    		conSaveRad.doClick();
+                    	}
+                    	if (intSaveRad.isSelected()) {
+                    		intSaveRad.doClick();
+                    	}
+                    	if (wisSaveRad.isSelected()) {
+                    		wisSaveRad.doClick();
+                    	}
+                    	if (chaSaveRad.isSelected()) {
+                    		chaSaveRad.doClick();
+                    	}
                     	//select radio buttons
                     	int[] saveProfs = temp.getCharClass().getSaves();
-                    	if(saveProfs[0] == 1) {strSaveRad.doClick();}
-                    	if(saveProfs[1] == 1) {dexSaveRad.doClick();}
-                    	if(saveProfs[2] == 1) {conSaveRad.doClick();}
-                    	if(saveProfs[3] == 1) {intSaveRad.doClick();}
-                    	if(saveProfs[4] == 1) {wisSaveRad.doClick();}
-                    	if(saveProfs[5] == 1) {chaSaveRad.doClick();}
+                    	if (saveProfs[0] == 1) {
+                    		strSaveRad.doClick();
+                    	}
+                    	if (saveProfs[1] == 1) {
+                    		dexSaveRad.doClick();
+                    	}
+                    	if (saveProfs[2] == 1) {
+                    		conSaveRad.doClick();
+                    	}
+                    	if (saveProfs[3] == 1) {
+                    		intSaveRad.doClick();
+                    	}
+                    	if (saveProfs[4] == 1) {
+                    		wisSaveRad.doClick();
+                    	}
+                    	if (saveProfs[5] == 1) {
+                    		chaSaveRad.doClick();
+                    	}
                     	//calc skill mods
-                    	if(strSaveRad.isSelected()) {strSaveMod.setText(""+ df.format(str + bonus));
-                    	}else {strSaveMod.setText(df.format(str));}
-                    	if(dexSaveRad.isSelected()) {dexSaveMod.setText(""+ df.format(dex + bonus));
-                    	}else {dexSaveMod.setText(df.format(dex));}
-                    	if(conSaveRad.isSelected()) {conSaveMod.setText(""+ df.format(con + bonus));
-                    	}else {conSaveMod.setText(df.format(con));}
-                    	if(intSaveRad.isSelected()) {intSaveMod.setText(""+ df.format(intel + bonus));
-                    	}else {intSaveMod.setText(df.format(intel));}
-                    	if(wisSaveRad.isSelected()) {wisSaveMod.setText(""+ df.format(wis + bonus));
-                    	}else {wisSaveMod.setText(df.format(wis));}
-                    	if(chaSaveRad.isSelected()) {chaSaveMod.setText(""+ df.format( + bonus));
-                    	}else {chaSaveMod.setText(df.format(cha));}
+                    	if (strSaveRad.isSelected()) {
+                    		strSaveMod.setText("" + df.format(str + bonus));
+                    	} else {
+                    		strSaveMod.setText(df.format(str));
+                    	}
+                    	if (dexSaveRad.isSelected()) {
+                    		dexSaveMod.setText("" + df.format(dex + bonus));
+                    	} else {
+                    		dexSaveMod.setText(df.format(dex));
+                    	}
+                    	if (conSaveRad.isSelected()) {
+                    		conSaveMod.setText("" + df.format(con + bonus));
+                    	} else {
+                    		conSaveMod.setText(df.format(con));
+                    	}
+                    	if (intSaveRad.isSelected()) {
+                    		intSaveMod.setText("" + df.format(intel + bonus));
+                    	} else {
+                    		intSaveMod.setText(df.format(intel));
+                    	}
+                    	if (wisSaveRad.isSelected()) {
+                    		wisSaveMod.setText("" + df.format(wis + bonus));
+                    	} else {
+                    		wisSaveMod.setText(df.format(wis));
+                    	}
+                    	if (chaSaveRad.isSelected()) {
+                    		chaSaveMod.setText("" + df.format(cha + bonus));
+                    	} else {
+                    		chaSaveMod.setText(df.format(cha));
+                    	}
                     	
                     	//all text areas
                         traitsText.setText(temp.getTraits());
@@ -1531,42 +1664,44 @@ public class CharacterSheet extends JFrame implements ActionListener {
                         profsText.setText(temp.getProfs());
                         
                         //set ac 
-                        acText.setText(""+ temp.getArmor());
+                        acText.setText("" + temp.getArmor());
                         
                         //set HP text boxes
-                        totalHP.setText(""+ temp.getMaxHP());
-                        currentHP.setText(""+ temp.getMaxHP());
+                        totalHP.setText("" + temp.getMaxHp());
+                        currentHP.setText("" + temp.getMaxHp());
                         
                         //set player name
-                        pName.setText(temp.getPlayer());
+                        playerName.setText(temp.getPlayer());
                         
                         //set background
                         bgText.setText(temp.getBackground());
                         
                         //speed
-                        speed.setText(""+ temp.getRace().getSpeed());
+                        speed.setText("" + temp.getRace().getSpeed());
                         
                         //passive perception
-                        passiveText.setText("" + (10 + Integer.parseInt(wisMod.getText() )) );
+                        passiveText.setText("" + (10 + Integer.parseInt(wisMod.getText())));
                         
                         //hit dice
                         int dieSize = 8;
-                        if(temp.getCharClass() instanceof Sorcerer || temp.getCharClass() instanceof Wizard) {
+                        if (temp.getCharClass() instanceof Sorcerer 
+                        		|| temp.getCharClass() instanceof Wizard) {
                         	dieSize = 6;
                         }
-                        if(temp.getCharClass() instanceof Fighter || temp.getCharClass() instanceof Paladin 
+                        if (temp.getCharClass() instanceof Fighter 
+                        		|| temp.getCharClass() instanceof Paladin 
                         		|| temp.getCharClass() instanceof Ranger) { 
                         	dieSize = 10;
                         }
-                        if(temp.getCharClass() instanceof Barbarian){ dieSize = 12;}
-                        hitDice.setText(temp.getLevel() +"d"+ dieSize);
+                        if (temp.getCharClass() instanceof Barbarian) { 
+                        	dieSize = 12;
+                        }
+                        hitDice.setText(temp.getLevel() + "d" + dieSize);
                         
                         //initiative
-                        initiative.setText(""+ df.format(dexMod.getText()));
+                        initiative.setText("" + df.format(dexMod.getText()));
                         
-                    }
-
-                    catch (Exception ex) {
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 } catch (IOException ex) {
@@ -1575,20 +1710,7 @@ public class CharacterSheet extends JFrame implements ActionListener {
 
             }
         }
-
-//        if (src == saveChar) {
-//            // Code for saving a character
-//
-//            try (FileOutputStream file = new FileOutputStream("ExampleChars/" + dndChar.getName() + ".char");
-//            		ObjectOutputStream out = new ObjectOutputStream(file);) {
-//            	out.writeObject(dndChar);
-//            }
-//
-//            catch (Exception ex) {
-//                ex.printStackTrace();
-//            }
-//        }
-        if(src == switchWindow) {
+        if (src == switchWindow) {
         	new CharacterEditor();
         	this.dispose();
         }
@@ -1597,7 +1719,9 @@ public class CharacterSheet extends JFrame implements ActionListener {
 
     
     /** 
-     * @param args
+     * Method used to start the application.
+
+     * @param args main method argument
      */
     public static void main(String[] args) {
         new CharacterSheet();

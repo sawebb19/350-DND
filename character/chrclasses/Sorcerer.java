@@ -1,7 +1,17 @@
 package DNDCompanion.character.chrclasses;
 
-public class Sorcerer extends CharacterClass{
-    public Sorcerer(){
+/**
+ * Class for the Sorcerer character class.
+
+ * @author Sam Webb
+ *
+ */
+@SuppressWarnings("serial")
+public class Sorcerer extends CharacterClass {
+	/**
+	 * Constructor for Sorcerer Class.
+	 */
+    public Sorcerer() {
         this.name = "Sorcerer";
         this.hit = 6;
         this.saves[2] = 1; // Constitution

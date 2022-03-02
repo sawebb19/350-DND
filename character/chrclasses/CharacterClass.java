@@ -3,21 +3,25 @@ package DNDCompanion.character.chrclasses;
 import java.io.Serializable;
 import java.util.Arrays;
 
+/**
+ * Interface for all dnd class classes.
+
+ * @author Sam Webb
+ *
+ */
 public abstract class
-CharacterClass implements Serializable{
+CharacterClass implements Serializable {
     
     private static final long serialVersionUID = 2L;
 
     protected String name;
     protected int hit;
-    protected int[] saves = {0,0,0,0,0,0};
+    protected int[] saves = {0, 0, 0, 0, 0, 0};
 
-    protected CharacterClass(){
+    protected CharacterClass() {
     }
 
-    protected CharacterClass(String name,
-                            int hit,
-                            int[] saves){
+    protected CharacterClass(String name, int hit, int[] saves) {
         this.name = name;
         this.hit = hit;
         this.saves = saves;
@@ -25,60 +29,74 @@ CharacterClass implements Serializable{
 
     
     /** 
-     * @return String
+     * getter for Name of the Class (DND).
+
+     * @return String Name of the Class (DND).
      */
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
     
     /** 
-     * @return int
+     * getter for hit dice for the Class (DND).
+
+     * @return int hit dice for the Class (DND).
      */
-    public int getHit(){
+    public int getHit() {
         return this.hit;
     }
 
     
     /** 
-     * @return int[]
+     * getter for save proficiencies of the Class (DND).
+
+     * @return int[] save proficiencies of the Class (DND).
      */
-    public int[] getSaves(){
+    public int[] getSaves() {
         return this.saves;
     }
 
     
     /** 
-     * @param name
+     * setter for Name of the Class (DND).
+
+     * @param name Name of the Class (DND).
      */
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
     
     /** 
-     * @param hit
+     * setter for hit dice for the Class (DND).
+
+     * @param hit hit dice for the Class (DND).
      */
-    public void setHit(int hit){
+    public void setHit(int hit) {
         this.hit = hit;
     }
 
     
     /** 
-     * @param saves
+     * setter for save proficiencies of the Class (DND).
+
+     * @param saves save proficiencies of the Class (DND).
      */
-    public void setSaves(int[] saves){
+    public void setSaves(int[] saves) {
         this.saves = saves;
     }
 
     
     /** 
-     * @return String
+     * Overriden toString() method for CharacterClass.
+
+     * @return String String to represent the object of CharacterClass.
      */
-    public String toString(){
+    @Override
+    public String toString() {
         return
-        "class=" + this.name + "{\n\t" +
-        "hit=" + this.hit + "\n\t" +
-        "saves=" + Arrays.toString(this.saves) + "\n}\n";
+        "class=" + this.name + "{\n\t" + "hit=" + this.hit + "\n\t"
+        + "saves=" + Arrays.toString(this.saves) + "\n}\n";
     }
 }

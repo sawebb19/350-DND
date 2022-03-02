@@ -1,11 +1,9 @@
 package DNDCompanion;
 
-import javax.swing.*;
-
 import DNDCompanion.character.*;
 import DNDCompanion.character.chrclasses.*;
 import DNDCompanion.character.chrraces.*;
-
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileInputStream;
@@ -13,10 +11,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.awt.Font;
-import javax.swing.BorderFactory;
+//import javax.swing.BorderFactory;
+import javax.swing.*;
 
-public class CharacterEditor extends JFrame implements ActionListener{
+/**
+ * GUI Class for displaying a DndChar object for editting.
+
+ * @author Nick Ford
+ *
+ */
+@SuppressWarnings("serial")
+public class CharacterEditor extends JFrame implements ActionListener {
 
     private JMenuBar menus;
 
@@ -64,10 +69,10 @@ public class CharacterEditor extends JFrame implements ActionListener{
     private JTextField acText;
     private JTextField hpText;
     
-    private JComboBox raceBox;
-    private JComboBox subraceBox;
-    private JComboBox classBox;
-    private JComboBox lvlBox;
+    private JComboBox<String> raceBox;
+    private JComboBox<String> subraceBox;
+    private JComboBox<String> classBox;
+    private JComboBox<String> lvlBox;
     
     private JTextArea idealsTextArea;
     private JTextArea bondsTextArea;
@@ -112,7 +117,10 @@ public class CharacterEditor extends JFrame implements ActionListener{
     private JSeparator separator3;
     private JSeparator separator4;
 
-    public CharacterEditor(){
+    /**
+     * 
+     */
+    public CharacterEditor() {
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         menus = new JMenuBar();
 
@@ -154,25 +162,28 @@ public class CharacterEditor extends JFrame implements ActionListener{
         classLabel.setBounds(456, 132, 70, 14);
         getContentPane().add(classLabel);
         
-        String[] classChoice = {"", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
-        classBox = new JComboBox(classChoice);
+        String[] classChoice = {"", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", 
+        		"Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
+        classBox = new JComboBox<>(classChoice);
         classBox.setBounds(456, 147, 85, 25);
         classBox.setSelectedIndex(0);
         getContentPane().add(classBox);
         
-        String[] lvlChoice = {"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"};
-        lvlBox = new JComboBox(lvlChoice);
+        String[] lvlChoice = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
+        		"11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+        lvlBox = new JComboBox<>(lvlChoice);
         lvlBox.setBounds(540, 147, 40, 25);
         lvlBox.setSelectedIndex(0);
         getContentPane().add(lvlBox);
         
-        String[] raceChoice = {"","Dragonborn","Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Tiefling"};
-        raceBox = new JComboBox(raceChoice);
+        String[] raceChoice = {"", "Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", 
+        		"Half-Orc", "Human", "Tiefling"};
+        raceBox = new JComboBox<>(raceChoice);
         raceBox.setBounds(604, 147, 124, 25);
         raceBox.addActionListener(this);
         getContentPane().add(raceBox);
         
-        subraceBox = new JComboBox(new String[]{""});
+        subraceBox = new JComboBox<>(new String[]{""});
         subraceBox.setBounds(604, 198, 124, 25);
         getContentPane().add(subraceBox);
         
@@ -567,7 +578,7 @@ public class CharacterEditor extends JFrame implements ActionListener{
      */
     public void actionPerformed(ActionEvent e){
         Object src = e.getSource();
-        if(src == close){
+        if (src == close){
 			System.exit(1);
 		}
         if (src == openChar) {
@@ -581,7 +592,7 @@ public class CharacterEditor extends JFrame implements ActionListener{
                     try (FileInputStream file = new FileInputStream(path);
                             ObjectInputStream in = new ObjectInputStream(file);) {
 
-                        DNDChar temp = (DNDChar) in.readObject();
+                        DndChar temp = (DndChar) in.readObject();
                         
                         //character name
                         charNameText.setText(temp.getName());
@@ -592,16 +603,36 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         
                         switch(race) {
                         	default:
-                        	case "": n=0; break;
-                        	case "Dragonborn": n=1; break;//no subrace
-                        	case "Dwarf": n=2; break;
-                        	case "Elf": n=3; break;
-                        	case "Gnome": n=4; break;
-                        	case "Half-Elf": n=5; break; //no subrace
-                        	case "Halfling": n=6; break;
-                        	case "Half-Orc": n=7; break; //no subrace
-                        	case "Human": n=8; break; 
-                        	case "Tiefling": n=9; break; //no subrace
+                        	case "": 
+                        		n=0; 
+                        		break;
+                        	case "Dragonborn": 
+                        		n=1; 
+                        		break; //no subrace
+                        	case "Dwarf": 
+                        		n=2; 
+                        		break;
+                        	case "Elf": 
+                        		n=3; 
+                        		break;
+                        	case "Gnome": 
+                        		n=4; 
+                        		break;
+                        	case "Half-Elf": 
+                        		n=5; 
+                        		break; //no subrace
+                        	case "Halfling": 
+                        		n=6; 
+                        		break;
+                        	case "Half-Orc": 
+                        		n=7; 
+                        		break; //no subrace
+                        	case "Human": 
+                        		n=8; 
+                        		break; 
+                        	case "Tiefling": 
+                        		n=9; 
+                        		break; //no subrace
                         }
                         raceBox.setSelectedIndex(n);
                         //checks for subraces and sets up the comboBox if applicable
@@ -614,14 +645,26 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         	case 7:
                         	case 9:
                         		subraces = new String[] {"N/A"}; break;
-                        	case 2: subraces = new String[] {"", "Hill Dwarf", "Mountain Dwarf"}; break;
-                        	case 3: subraces = new String[] {"", "High Elf", "Wood Elf"}; break;
-                        	case 4: subraces = new String[] {"", "Deep Gnome", "Rock Gnome"}; break;
-                        	case 6: subraces = new String[] {"", "Lightfoot Halfling", "Stout Halfling"}; break;
-                        	case 8: subraces = new String[] {"", "Calishite", "Chondathan", "Damaran", "Illuskan", "Mulan", "Rashemi", "Shou", "Tethyrian", "Turami"}; break;
+                        	case 2: 
+                        		subraces = new String[] {"", "Hill Dwarf", "Mountain Dwarf"}; 
+                        		break;
+                        	case 3: 
+                        		subraces = new String[] {"", "High Elf", "Wood Elf"}; 
+                        		break;
+                        	case 4: 
+                        		subraces = new String[] {"", "Deep Gnome", "Rock Gnome"}; 
+                        		break;
+                        	case 6: 
+                        		subraces = new String[] {"", "Lightfoot Halfling", "Stout Halfling"}; 
+                        		break;
+                        	case 8: 
+                        		subraces = new String[] {"", "Calishite", "Chondathan", "Damaran",
+                        				"Illuskan", "Mulan", "Rashemi", "Shou", "Tethyrian",
+                        				"Turami"}; 
+                        		break;
                         }
                         	
-                        	subraceBox = new JComboBox(subraces);
+                        	subraceBox = new JComboBox<>(subraces);
                         	subraceBox.setSelectedIndex(subraceBox.getSelectedIndex());
                         
                         
@@ -629,19 +672,45 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         String pClass = temp.getCharClass().getName(); 
                         switch(pClass) {
                         	default:
-                        	case "": n=0; break;
-                        	case "Barbarian": n=1; break; 
-                        	case "Bard": n=2; break;
-                        	case "Cleric": n=3; break;
-                        	case "Druid": n=4; break;
-                        	case "Fighter": n=5; break; 
-                        	case "Monk": n=6; break;
-                        	case "Paladin": n=7; break; 
-                        	case "Ranger": n=8; break; 
-                        	case "Rogue": n=9; break;
-                        	case "Sorcerer": n=10; break; 
-                        	case "Warlock": n=11; break;
-                        	case "Wizard": n=12; break;
+                        	case "": 
+                        		n=0; 
+                        		break;
+                        	case "Barbarian": 
+                        		n=1; 
+                        		break; 
+                        	case "Bard": 
+                        		n=2; 
+                        		break;
+                        	case "Cleric": 
+                        		n=3; 
+                        		break;
+                        	case "Druid": 
+                        		n=4; 
+                        		break;
+                        	case "Fighter": 
+                        		n=5; 
+                        		break; 
+                        	case "Monk": 
+                        		n=6; 
+                        		break;
+                        	case "Paladin": 
+                        		n=7; 
+                        		break; 
+                        	case "Ranger": 
+                        		n=8; 
+                        		break; 
+                        	case "Rogue": 
+                        		n=9; 
+                        		break;
+                        	case "Sorcerer": 
+                        		n=10; 
+                        		break; 
+                        	case "Warlock": 
+                        		n=11; 
+                        		break;
+                        	case "Wizard": 
+                        		n=12; 
+                        		break;
                         }
                         classBox.setSelectedIndex(n);
                         
@@ -651,16 +720,36 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         //char alignment
                         String alignment = temp.getAlignment();
                         switch(alignment) {
-                    	default: alignGroup.clearSelection(); break;
-                    	case "LG": alignRadioLG.doClick(); break;
-                    	case "LN": alignRadioLN.doClick(); break; 
-                    	case "LE": alignRadioLE.doClick(); break;
-                    	case "NG": alignRadioNG.doClick(); break;
-                    	case "NN": alignRadioNN.doClick(); break;
-                    	case "NE": alignRadioNE.doClick(); break; 
-                    	case "CG": alignRadioCG.doClick(); break;
-                    	case "CN": alignRadioCN.doClick(); break; 
-                    	case "CE": alignRadioCE.doClick(); break; 
+                    	default: 
+                    		alignGroup.clearSelection(); 
+                    		break;
+                    	case "LG": 
+                    		alignRadioLG.doClick(); 
+                    		break;
+                    	case "LN": 
+                    		alignRadioLN.doClick(); 
+                    		break; 
+                    	case "LE": 
+                    		alignRadioLE.doClick(); 
+                    		break;
+                    	case "NG": 
+                    		alignRadioNG.doClick(); 
+                    		break;
+                    	case "NN": 
+                    		alignRadioNN.doClick(); 
+                    		break;
+                    	case "NE": 
+                    		alignRadioNE.doClick(); 
+                    		break; 
+                    	case "CG": 
+                    		alignRadioCG.doClick(); 
+                    		break;
+                    	case "CN": 
+                    		alignRadioCN.doClick(); 
+                    		break; 
+                    	case "CE": 
+                    		alignRadioCE.doClick(); 
+                    		break; 
                         }
                     	
                         //char experience
@@ -668,61 +757,115 @@ public class CharacterEditor extends JFrame implements ActionListener{
                     	
                     	//skill radios
                     	//deselect all skills
-                    	if(skillRadio1.isSelected()) {skillRadio1.doClick();}
-                    	if(skillRadio2.isSelected()) {skillRadio2.doClick();}
-                    	if(skillRadio3.isSelected()) {skillRadio3.doClick();}
-                    	if(skillRadio4.isSelected()) {skillRadio4.doClick();}
-                    	if(skillRadio5.isSelected()) {skillRadio5.doClick();}
-                    	if(skillRadio6.isSelected()) {skillRadio6.doClick();}
-                    	if(skillRadio7.isSelected()) {skillRadio7.doClick();}
-                    	if(skillRadio8.isSelected()) {skillRadio8.doClick();}
-                    	if(skillRadio9.isSelected()) {skillRadio9.doClick();}
-                    	if(skillRadio10.isSelected()) {skillRadio10.doClick();}
-                    	if(skillRadio11.isSelected()) {skillRadio11.doClick();}
-                    	if(skillRadio12.isSelected()) {skillRadio12.doClick();}
-                    	if(skillRadio13.isSelected()) {skillRadio13.doClick();}
-                    	if(skillRadio14.isSelected()) {skillRadio14.doClick();}
-                    	if(skillRadio15.isSelected()) {skillRadio15.doClick();}
-                    	if(skillRadio16.isSelected()) {skillRadio16.doClick();}
-                    	if(skillRadio17.isSelected()) {skillRadio17.doClick();}
-                    	if(skillRadio18.isSelected()) {skillRadio18.doClick();}
+                    	if (skillRadio1.isSelected()) {
+                    		skillRadio1.doClick(); 
+                    	}
+                    	if (skillRadio2.isSelected()) {
+                    		skillRadio2.doClick(); 
+                    	}
+                    	if (skillRadio3.isSelected()) {
+                    		skillRadio3.doClick(); 
+                    	}
+                    	if (skillRadio4.isSelected()) {
+                    		skillRadio4.doClick(); 
+                    	}
+                    	if (skillRadio5.isSelected()) {
+                    		skillRadio5.doClick(); 
+                    	}
+                    	if (skillRadio6.isSelected()) {
+                    		skillRadio6.doClick(); 
+                    	}
+                    	if (skillRadio7.isSelected()) {
+                    		skillRadio7.doClick(); 
+                    	}
+                    	if (skillRadio8.isSelected()) {
+                    		skillRadio8.doClick(); 
+                    	}
+                    	if (skillRadio9.isSelected()) {
+                    		skillRadio9.doClick(); 
+                    	}
+                    	if (skillRadio10.isSelected()) {
+                    		skillRadio10.doClick(); 
+                    	}
+                    	if (skillRadio11.isSelected()) {
+                    		skillRadio11.doClick(); 
+                    	}
+                    	if (skillRadio12.isSelected()) {
+                    		skillRadio12.doClick(); 
+                    	}
+                    	if (skillRadio13.isSelected()) {
+                    		skillRadio13.doClick(); 
+                    	}
+                    	if (skillRadio14.isSelected()) {
+                    		skillRadio14.doClick(); 
+                    	}
+                    	if (skillRadio15.isSelected()) {
+                    		skillRadio15.doClick(); 
+                    	}
+                    	if (skillRadio16.isSelected()) {
+                    		skillRadio16.doClick(); 
+                    	}
+                    	if (skillRadio17.isSelected()) {
+                    		skillRadio17.doClick(); 
+                    	}
+                    	if (skillRadio18.isSelected()) {
+                    		skillRadio18.doClick(); 
+                    	}
                     	//select right ones
-                    	if(temp.getSkills().contains(skillRadio1.getText()))
+                    	if (temp.getSkills().contains(skillRadio1.getText())) {
                     		skillRadio1.doClick();
-                    	if(temp.getSkills().contains(skillRadio2.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio2.getText())) {
                     		skillRadio2.doClick();
-                    	if(temp.getSkills().contains(skillRadio3.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio3.getText())) {
                     		skillRadio3.doClick();
-                    	if(temp.getSkills().contains(skillRadio4.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio4.getText())) {
                     		skillRadio4.doClick();
-                    	if(temp.getSkills().contains(skillRadio5.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio5.getText())) {
                     		skillRadio5.doClick();
-                    	if(temp.getSkills().contains(skillRadio6.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio6.getText())) {
                     		skillRadio6.doClick();
-                    	if(temp.getSkills().contains(skillRadio7.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio7.getText())) {
                     		skillRadio7.doClick();
-                    	if(temp.getSkills().contains(skillRadio8.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio8.getText())) {
                     		skillRadio8.doClick();
-                    	if(temp.getSkills().contains(skillRadio9.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio9.getText())) {
                     		skillRadio9.doClick();
-                    	if(temp.getSkills().contains(skillRadio10.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio10.getText())) {
                     		skillRadio10.doClick();
-                    	if(temp.getSkills().contains(skillRadio11.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio11.getText())) {
                     		skillRadio11.doClick();
-                    	if(temp.getSkills().contains(skillRadio12.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio12.getText())) {
                     		skillRadio12.doClick();
-                    	if(temp.getSkills().contains(skillRadio13.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio13.getText())) {
                     		skillRadio13.doClick();
-                    	if(temp.getSkills().contains(skillRadio14.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio14.getText())) {
                     		skillRadio14.doClick();
-                    	if(temp.getSkills().contains(skillRadio15.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio15.getText())) {
                     		skillRadio15.doClick();
-                    	if(temp.getSkills().contains(skillRadio16.getText()))
-                    		skillRadio16.doClick();		
-                    	if(temp.getSkills().contains(skillRadio17.getText()))
+                    	}
+                    	if (temp.getSkills().contains(skillRadio16.getText())) {
+                    		skillRadio16.doClick();	
+                    	}
+                    	if (temp.getSkills().contains(skillRadio17.getText())) {
                     		skillRadio17.doClick();	
-                    	if(temp.getSkills().contains(skillRadio18.getText()))
+                    	}	
+                    	if (temp.getSkills().contains(skillRadio18.getText())) {
                     		skillRadio18.doClick();
+                    	}	
                     	
                     	//all text areas
                         traitsTextArea.setText(temp.getTraits());
@@ -742,17 +885,15 @@ public class CharacterEditor extends JFrame implements ActionListener{
                         chaText.setText("" + temp.getStats()[5]);
                         
                         //set ac 
-                        acText.setText(""+ temp.getArmor());
+                        acText.setText("" + temp.getArmor());
                         
                         //set max HP
-                        hpText.setText(""+ temp.getMaxHP());
+                        hpText.setText("" + temp.getMaxHp());
                         
                         playerNameText.setText(temp.getPlayer());
                         
                         bgText.setText(temp.getBackground());
-                    }
-
-                    catch (Exception ex) {
+                    }catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 } catch (IOException ex) {
@@ -761,20 +902,47 @@ public class CharacterEditor extends JFrame implements ActionListener{
 
             }
             
-//            temp.getName();
+
         }
-        if(src==saveChar) {
+        if (src == saveChar) {
         	String ethicalAlign = "";
         	String moralAlign = "";
-        	if(alignRadioLG.isSelected()) {ethicalAlign = "L"; moralAlign = "G";}
-        	if(alignRadioLN.isSelected()) {ethicalAlign = "L"; moralAlign = "N";}
-        	if(alignRadioLE.isSelected()) {ethicalAlign = "L"; moralAlign = "E";}
-        	if(alignRadioNG.isSelected()) {ethicalAlign = "N"; moralAlign = "G";}
-        	if(alignRadioNN.isSelected()) {ethicalAlign = "N"; moralAlign = "N";}
-        	if(alignRadioNE.isSelected()) {ethicalAlign = "N"; moralAlign = "E";}
-        	if(alignRadioCG.isSelected()) {ethicalAlign = "C"; moralAlign = "G";}
-        	if(alignRadioCN.isSelected()) {ethicalAlign = "C"; moralAlign = "N";}
-        	if(alignRadioCE.isSelected()) {ethicalAlign = "C"; moralAlign = "E";}
+        	if (alignRadioLG.isSelected()) {
+        		ethicalAlign = "L"; 
+        		moralAlign = "G"; 
+        	}
+        	if (alignRadioLN.isSelected()) {
+        		ethicalAlign = "L"; 
+        		moralAlign = "N"; 
+        	}
+        	if (alignRadioLE.isSelected()) {
+        		ethicalAlign = "L"; 
+        		moralAlign = "E"; 
+        	}
+        	if (alignRadioNG.isSelected()) {
+        		ethicalAlign = "N"; 
+        		moralAlign = "G"; 
+        	}
+        	if (alignRadioNN.isSelected()) {
+        		ethicalAlign = "N"; 
+        		moralAlign = "N"; 
+        	}
+        	if (alignRadioNE.isSelected()) {
+        		ethicalAlign = "N"; 
+        		moralAlign = "E"; 
+        	}
+        	if (alignRadioCG.isSelected()) {
+        		ethicalAlign = "C"; 
+        		moralAlign = "G"; 
+        	}
+        	if (alignRadioCN.isSelected()) {
+        		ethicalAlign = "C"; 
+        		moralAlign = "N"; 
+        	}
+        	if (alignRadioCE.isSelected()) {
+        		ethicalAlign = "C"; 
+        		moralAlign = "E"; 
+        	}
         	
         	int [] stats;
         	int str;
@@ -783,101 +951,254 @@ public class CharacterEditor extends JFrame implements ActionListener{
         	int intel;
         	int wis;
         	int cha;
-        	if(strText.getText().equals("")) {str = 0;}else {str = Integer.parseInt(strText.getText());}
-        	if(dexText.getText().equals("")) {dex = 0;}else {dex = Integer.parseInt(dexText.getText());}
-        	if(conText.getText().equals("")) {con = 0;}else {con = Integer.parseInt(conText.getText());}
-        	if(intText.getText().equals("")) {intel = 0;}else {intel = Integer.parseInt(intText.getText());}
-        	if(wisText.getText().equals("")) {wis = 0;}else {wis = Integer.parseInt(wisText.getText());}
-        	if(chaText.getText().equals("")) {cha = 0;}else {cha = Integer.parseInt(chaText.getText());}
-        	stats = new int[]{str,dex,con,intel,wis,cha};
+        	if (strText.getText().equals("")) {
+        		str = 0; 
+        	} else {
+        		str = Integer.parseInt(strText.getText()); 
+        	}
+        	if (dexText.getText().equals("")) {
+        		dex = 0; 
+        	} else {
+        		dex = Integer.parseInt(dexText.getText()); 
+        	}
+        	if (conText.getText().equals("")) {
+        		con = 0; 
+        	} else {
+        		con = Integer.parseInt(conText.getText()); 
+        	}
+        	if (intText.getText().equals("")) {
+        		intel = 0; 
+        	} else {
+        		intel = Integer.parseInt(intText.getText()); 
+        	}
+        	if (wisText.getText().equals("")) {
+        		wis = 0; 
+        	} else {
+        		wis = Integer.parseInt(wisText.getText()); 
+        	}
+        	if (chaText.getText().equals("")) {
+        		cha = 0; 
+        	} else {
+        		cha = Integer.parseInt(chaText.getText()); 
+        	}
+        	stats = new int[]{str, dex, con, intel, wis, cha};
         	
         	String skills = "";
-        	if(skillRadio1.isSelected()) {skills += skillRadio1.getText();}
-        	if(skillRadio2.isSelected()) {skills += skillRadio2.getText();}
-        	if(skillRadio3.isSelected()) {skills += skillRadio3.getText();}
-        	if(skillRadio4.isSelected()) {skills += skillRadio4.getText();}
-        	if(skillRadio5.isSelected()) {skills += skillRadio5.getText();}
-        	if(skillRadio6.isSelected()) {skills += skillRadio6.getText();}
-        	if(skillRadio7.isSelected()) {skills += skillRadio7.getText();}
-        	if(skillRadio8.isSelected()) {skills += skillRadio8.getText();}
-        	if(skillRadio9.isSelected()) {skills += skillRadio9.getText();}
-        	if(skillRadio10.isSelected()) {skills += skillRadio10.getText();}
-        	if(skillRadio11.isSelected()) {skills += skillRadio11.getText();}
-        	if(skillRadio12.isSelected()) {skills += skillRadio12.getText();}
-        	if(skillRadio13.isSelected()) {skills += skillRadio13.getText();}
-        	if(skillRadio14.isSelected()) {skills += skillRadio14.getText();}
-        	if(skillRadio15.isSelected()) {skills += skillRadio15.getText();}
-        	if(skillRadio16.isSelected()) {skills += skillRadio16.getText();}
-        	if(skillRadio17.isSelected()) {skills += skillRadio17.getText();}
-        	if(skillRadio18.isSelected()) {skills += skillRadio18.getText();}
+        	if (skillRadio1.isSelected()) {
+        		skills += skillRadio1.getText(); 
+        	}
+        	if (skillRadio2.isSelected()) {
+        		skills += skillRadio2.getText(); 
+        	}
+        	if (skillRadio3.isSelected()) {
+        		skills += skillRadio3.getText(); 
+        	}
+        	if (skillRadio4.isSelected()) {
+        		skills += skillRadio4.getText(); 
+        	}
+        	if (skillRadio5.isSelected()) {
+        		skills += skillRadio5.getText(); 
+        	}
+        	if (skillRadio6.isSelected()) {
+        		skills += skillRadio6.getText(); 
+        	}
+        	if (skillRadio7.isSelected()) {
+        		skills += skillRadio7.getText(); 
+        	}
+        	if (skillRadio8.isSelected()) {
+        		skills += skillRadio8.getText(); 
+        	}
+        	if (skillRadio9.isSelected()) {
+        		skills += skillRadio9.getText(); 
+        	}
+        	if (skillRadio10.isSelected()) {
+        		skills += skillRadio10.getText(); 
+        	}
+        	if (skillRadio11.isSelected()) {
+        		skills += skillRadio11.getText(); 
+        	}
+        	if (skillRadio12.isSelected()) {
+        		skills += skillRadio12.getText(); 
+        	}
+        	if (skillRadio13.isSelected()) {
+        		skills += skillRadio13.getText(); 
+        	}
+        	if (skillRadio14.isSelected()) {
+        		skills += skillRadio14.getText(); 
+        	}
+        	if (skillRadio15.isSelected()) {
+        		skills += skillRadio15.getText(); 
+        	}
+        	if (skillRadio16.isSelected()) {
+        		skills += skillRadio16.getText(); 
+        	}
+        	if (skillRadio17.isSelected()) {
+        		skills += skillRadio17.getText(); 
+        	}
+        	if (skillRadio18.isSelected()) {
+        		skills += skillRadio18.getText(); 
+        	}
         	
         	CharacterClass charClass = null;
-        	if(classBox.getSelectedIndex() == 0) {charClass = new Barbarian();}
-        	if(classBox.getSelectedIndex() == 1) {charClass = new Bard();}
-        	if(classBox.getSelectedIndex() == 2) {charClass = new Cleric();}
-        	if(classBox.getSelectedIndex() == 3) {charClass = new Druid();}
-        	if(classBox.getSelectedIndex() == 4) {charClass = new Fighter();}
-        	if(classBox.getSelectedIndex() == 5) {charClass = new Monk();}
-        	if(classBox.getSelectedIndex() == 6) {charClass = new Paladin();}
-        	if(classBox.getSelectedIndex() == 7) {charClass = new Ranger();}
-        	if(classBox.getSelectedIndex() == 8) {charClass = new Rogue();}
-        	if(classBox.getSelectedIndex() == 9) {charClass = new Sorcerer();}
-        	if(classBox.getSelectedIndex() == 10) {charClass = new Warlock();}
-        	if(classBox.getSelectedIndex() == 11) {charClass = new Wizard();}
+        	if (classBox.getSelectedIndex() == 0) {
+        		charClass = new Barbarian(); 
+        	}
+        	if (classBox.getSelectedIndex() == 1) {
+        		charClass = new Bard(); 
+        	}
+        	if (classBox.getSelectedIndex() == 2) {
+        		charClass = new Cleric(); 
+        	}
+        	if (classBox.getSelectedIndex() == 3) {
+        		charClass = new Druid(); 
+        	}
+        	if (classBox.getSelectedIndex() == 4) {
+        		charClass = new Fighter(); 
+        	}
+        	if (classBox.getSelectedIndex() == 5) {
+        		charClass = new Monk(); 
+        	}
+        	if (classBox.getSelectedIndex() == 6) {
+        		charClass = new Paladin(); 
+        	}
+        	if (classBox.getSelectedIndex() == 7) {
+        		charClass = new Ranger(); 
+        	}
+        	if (classBox.getSelectedIndex() == 8) {
+        		charClass = new Rogue(); 
+        	}
+        	if (classBox.getSelectedIndex() == 9) {
+        		charClass = new Sorcerer(); 
+        	}
+        	if (classBox.getSelectedIndex() == 10) {
+        		charClass = new Warlock(); 
+        	}
+        	if (classBox.getSelectedIndex() == 11) {
+        		charClass = new Wizard(); 
+        	}
         	
         	Race race = null;
-        	if(raceBox.getSelectedIndex()==0) {race = new Dragonborn(); }											//Dragonborns
-        	if(raceBox.getSelectedIndex()==1 && subraceBox.getSelectedIndex()==0) {race = new DwarfHill(); } 		//Dwarves
-        	if(raceBox.getSelectedIndex()==1 && subraceBox.getSelectedIndex()==1) {race = new DwarfMountain(); }
-        	if(raceBox.getSelectedIndex()==2 && subraceBox.getSelectedIndex()==0) {race = new ElfHigh(); } 			//Elves
-        	if(raceBox.getSelectedIndex()==2 && subraceBox.getSelectedIndex()==1) {race = new ElfWood(); }
-        	if(raceBox.getSelectedIndex()==3 && subraceBox.getSelectedIndex()==0) {race = new GnomeDeep(); } 		//Gnomes
-        	if(raceBox.getSelectedIndex()==3 && subraceBox.getSelectedIndex()==1) {race = new GnomeRock(); }
-        	if(raceBox.getSelectedIndex()==4) {race = new HalfElf(); }												//Half Elves
-        	if(raceBox.getSelectedIndex()==5 && subraceBox.getSelectedIndex()==0) {race = new HalflingLightfoot(); }//Halflings
-        	if(raceBox.getSelectedIndex()==5 && subraceBox.getSelectedIndex()==1) {race = new HalflingStout(); }
-        	if(raceBox.getSelectedIndex()==6) {race = new HalfOrc(); }												//Half Orcs
-        	if(raceBox.getSelectedIndex()==7) {race = new Human(); }												//Human
-        	if(raceBox.getSelectedIndex()==8) {race = new Tiefling(); }												//Tieflings
+        	//Dragonborns
+        	if (raceBox.getSelectedIndex() == 1) {
+        		race = new Dragonborn(); 
+        	}
+        	//Dwarves
+        	if (raceBox.getSelectedIndex() == 2 && subraceBox.getSelectedIndex() == 0) {
+        		race = new DwarfHill(); 
+        	}
+        	if (raceBox.getSelectedIndex() == 2 && subraceBox.getSelectedIndex() == 1) {
+        		race = new DwarfMountain(); 
+        	}
+        	//Elves
+        	if (raceBox.getSelectedIndex() == 3 && subraceBox.getSelectedIndex() == 0) {
+        		race = new ElfHigh(); 
+        	}
+        	if (raceBox.getSelectedIndex() == 3 && subraceBox.getSelectedIndex() == 1) {
+        		race = new ElfWood(); 
+        	}
+        	//Gnomes
+        	if (raceBox.getSelectedIndex() == 4 && subraceBox.getSelectedIndex() == 0) {
+        		race = new GnomeDeep(); 
+        	}
+        	if (raceBox.getSelectedIndex() == 4 && subraceBox.getSelectedIndex() == 1) {
+        		race = new GnomeRock(); 
+        	}
+        	//Half Elves
+        	if (raceBox.getSelectedIndex() == 5) {
+        		race = new HalfElf(); 
+        	}
+        	//Halflings
+        	if (raceBox.getSelectedIndex() == 6 && subraceBox.getSelectedIndex() == 0) {
+        		race = new HalflingLightfoot(); 
+        	}
+        	if (raceBox.getSelectedIndex() == 6 && subraceBox.getSelectedIndex() == 1) {
+        		race = new HalflingStout(); 
+        	}
+        	//Half Orcs
+        	if (raceBox.getSelectedIndex() == 7) {
+        		race = new HalfOrc(); 
+        	}
+        	//Human
+        	if (raceBox.getSelectedIndex() == 8) {
+        		race = new Human(); 
+        	}
+        	//Tieflings
+        	if (raceBox.getSelectedIndex() == 9) {
+        		race = new Tiefling(); 
+        	}
         	
         	String charName = charNameText.getText();
-        	if(charName.equals("")) {charName = "Unnamed";}
+        	if (charName.equals("")) {
+        		charName = "Unnamed"; 
+        	}
         	
         	int xp;
-        	if(xpText.getText().equals("")) {xp = 0;}else {xp =Integer.parseInt(xpText.getText());}
+        	if (xpText.getText().equals("")) {
+        		xp = 0; 
+        	}else {
+        		xp = Integer.parseInt(xpText.getText()); 
+        	}
         	
         	int armor;
-        	if(acText.getText().equals("")) {armor = 0;}else {armor =Integer.parseInt(acText.getText());}
+        	if (acText.getText().equals("")) {
+        		armor = 0; 
+        	}else {
+        		armor = Integer.parseInt(acText.getText()); 
+        	}
         	
         	int hp;
-        	if(hpText.getText().equals("")) {hp = 0;}else {hp =Integer.parseInt(hpText.getText());}
+        	if (hpText.getText().equals("")) {
+        		hp = 0; 
+        	} else {
+        		hp = Integer.parseInt(hpText.getText()); 
+        	}
         	
-        	DNDChar temp = new DNDChar(charName, ethicalAlign, moralAlign, race, charClass, (lvlBox.getSelectedIndex() +1), xp, stats, skills, bgText.getText(), 
-        			traitsTextArea.getText(), idealsTextArea.getText(), bondsTextArea.getText(), flawsTextArea.getText(), armor, hp, featuresTextArea.getText(),
+        	DndChar temp = new DndChar(charName, ethicalAlign, moralAlign, race, charClass, 
+        			(lvlBox.getSelectedIndex() + 1), xp, stats, skills, bgText.getText(), 
+        			traitsTextArea.getText(), idealsTextArea.getText(), bondsTextArea.getText(),
+        			flawsTextArea.getText(), armor, hp, featuresTextArea.getText(),	
         			profTextArea.getText(), equipTextArea.getText(), playerNameText.getText());
-        	//String name, String ethicalAlign, String moralAlign, Race race, CharacterClass charClass, int level, int exp, int[] stats, String skills, String background, String traits, String ideals,
-        	//String bonds, String flaws, int armor, int maxHP, String features, String profs, String equipment, String player
+        	//String name, String ethicalAlign, String moralAlign, Race race, 
+        	//CharacterClass charClass, int level, int exp, int[] stats, String skills, 
+        	//String background, String traits, String ideals,String bonds, String flaws,
+        	//int armor, int maxHP, String features, String profs, String equipment, String player
         	
-        	try (FileOutputStream file = new FileOutputStream(/*"\\src\\DNDCompanion\\ExampleChars\\" +*/ temp.getName() + ".char");
+        	try (FileOutputStream file = new FileOutputStream(/*"\\src\\DNDCompanion\\"
+        	+"ExampleChars\\" +*/ temp.getName() + ".char");
             		ObjectOutputStream out = new ObjectOutputStream(file);) {
             	out.writeObject(temp);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
-        if(src == raceBox) {
+        if (src == raceBox) {
         	int n = raceBox.getSelectedIndex();
         	
         	
-        	if(n==2) {subraceBox.removeAllItems(); subraceBox.addItem("Hill"); subraceBox.addItem("Mountain");}
-        	else if(n==3) {subraceBox.removeAllItems(); subraceBox.addItem("High"); subraceBox.addItem("Wood");}
-        	else if(n==4) {subraceBox.removeAllItems(); subraceBox.addItem("Deep"); subraceBox.addItem("Rock");}
-        	else if(n==6) {subraceBox.removeAllItems(); subraceBox.addItem("Lightfoot"); subraceBox.addItem("Stout");}
-        	else {subraceBox.removeAllItems(); subraceBox.addItem("");}
+        	if (n == 2) {
+        		subraceBox.removeAllItems(); 
+        		subraceBox.addItem("Hill"); 
+        		subraceBox.addItem("Mountain"); 
+        	} else if (n == 3) {
+        		subraceBox.removeAllItems(); 
+        		subraceBox.addItem("High"); 
+        		subraceBox.addItem("Wood"); 
+        	} else if (n == 4) {
+        		subraceBox.removeAllItems(); 
+        	subraceBox.addItem("Deep"); 
+        	subraceBox.addItem("Rock"); 
+        	} else if (n == 6) {
+        		subraceBox.removeAllItems(); 
+        		subraceBox.addItem("Lightfoot"); 
+        		subraceBox.addItem("Stout"); 
+        	} else {
+        		subraceBox.removeAllItems(); 
+        		subraceBox.addItem(""); 
+        	}
         	
         	subraceBox.updateUI();
         }
-        if(src == switchWindow) {
+        if (src == switchWindow) {
         	new CharacterSheet();
         	this.dispose();
         }
@@ -885,9 +1206,11 @@ public class CharacterEditor extends JFrame implements ActionListener{
 
     
     /** 
-     * @param args
+     * Method used to start the application.
+
+     * @param args main method argument
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         new CharacterEditor();
     }
 }

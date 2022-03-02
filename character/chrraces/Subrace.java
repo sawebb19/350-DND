@@ -2,8 +2,8 @@ package DNDCompanion.character.chrraces;
 
 import java.util.Arrays;
 
-public abstract class
-Subrace extends Race{
+@SuppressWarnings("serial")
+public abstract class Subrace extends Race{
 
     protected String kind = null;
     

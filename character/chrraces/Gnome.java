@@ -1,7 +1,7 @@
 package DNDCompanion.character.chrraces;
 
-public abstract class
-Gnome extends Subrace {
+@SuppressWarnings("serial")
+public abstract class Gnome extends Subrace {
 
     protected Gnome(){
         this.name = "Gnome";

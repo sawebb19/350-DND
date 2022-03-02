@@ -1,7 +1,17 @@
 package DNDCompanion.character.chrclasses;
 
-public class Paladin extends CharacterClass{
-    public Paladin(){
+/**
+ * Class for the Paladin character class.
+
+ * @author Sam Webb
+ *
+ */
+@SuppressWarnings("serial")
+public class Paladin extends CharacterClass {
+	/**
+	 * Constructor for Paladin Class.
+	 */
+    public Paladin() {
         this.name = "Paladin";
         this.hit = 10;
         this.saves[4] = 1; // Wisdom

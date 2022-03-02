@@ -1,7 +1,14 @@
 package DNDCompanion.character.chrraces;
 
+/**
+ * @author Sam Webb
+ */
+@SuppressWarnings("serial")
 public class Tiefling extends Race{
 
+	/**
+	 * 
+	 */
     public Tiefling(){
         this.name = "Tiefling";
         this.subraces = null;

@@ -1,7 +1,17 @@
 package DNDCompanion.character.chrclasses;
 
-public class Barbarian extends CharacterClass{
-    public Barbarian(){
+/**
+ * Class for the Barbarian character class.
+
+ * @author Sam Webb
+ *
+ */
+@SuppressWarnings("serial")
+public class Barbarian extends CharacterClass {
+	/**
+	 * Constructor for Barbarian Class.
+	 */
+    public Barbarian() {
         this.name = "Barbarian";
         this.hit = 12;
         this.saves[0] = 1; // Strength

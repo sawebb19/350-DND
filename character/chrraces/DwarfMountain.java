@@ -1,5 +1,6 @@
 package DNDCompanion.character.chrraces;
 
+@SuppressWarnings("serial")
 public class DwarfMountain extends Dwarf{
     
     public DwarfMountain(){
