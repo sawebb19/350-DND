@@ -17,22 +17,22 @@ public abstract class Subrace extends Race {
         super();
     }
 
-    protected Subrace(String name,
-                String[] subraces,
-                String kind,
-                String[] langs,
-                String size,
-                int speed,
-                int[] mods) {
-                 
-        this.name = name;
-        this.subraces = subraces;
-        this.kind = kind;
-        this.langs = langs;
-        this.size = size;
-        this.speed = speed;
-        this.mods = mods;
-    }
+//    protected Subrace(String name,
+//                String[] subraces,
+//                String kind,
+//                String[] langs,
+//                String size,
+//                int speed,
+//                int[] mods) {
+//                 
+//        this.name = name;
+//        this.subraces = subraces;
+//        this.kind = kind;
+//        this.langs = langs;
+//        this.size = size;
+//        this.speed = speed;
+//        this.mods = mods;
+//    }
     
     public String getSubrace() {
     	return kind;

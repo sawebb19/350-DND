@@ -23,20 +23,20 @@ public abstract class Race implements Serializable {
     protected Race() {
     }
 
-    public Race(String name,
-                String[] subraces,
-                String[] langs,
-                String size,
-                int speed,
-                int[] mods) {
-                 
-        this.name = name;
-        this.subraces = subraces;
-        this.langs = langs;
-        this.size = size;
-        this.speed = speed;
-        this.mods = mods;
-    }
+//    public Race(String name,
+//                String[] subraces,
+//                String[] langs,
+//                String size,
+//                int speed,
+//                int[] mods) {
+//                 
+//        this.name = name;
+//        this.subraces = subraces;
+//        this.langs = langs;
+//        this.size = size;
+//        this.speed = speed;
+//        this.mods = mods;
+//    }
 
     
     /** 

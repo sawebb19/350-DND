@@ -198,7 +198,7 @@ public class DndChar implements Serializable {
     //         "mods=" + Arrays.toString(this.mods);
     //    }
 
-    public static void main(String[] args) {
-    	
-    }
+//    public static void main(String[] args) {
+//    	
+//    }
 }
