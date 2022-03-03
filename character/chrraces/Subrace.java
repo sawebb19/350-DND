@@ -13,7 +13,7 @@ public abstract class Subrace extends Race {
 
     protected String kind = null;
     
-    Subrace() {
+    protected Subrace() {
         super();
     }
 
