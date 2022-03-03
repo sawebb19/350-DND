@@ -11,6 +11,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
+
 //import javax.swing.BorderFactory;
 import javax.swing.*;
 
@@ -893,8 +895,9 @@ public class CharacterEditor extends JFrame implements ActionListener {
                         playerNameText.setText(temp.getPlayer());
                         
                         bgText.setText(temp.getBackground());
-                    }catch (Exception ex) {
-                        ex.printStackTrace();
+					}catch (Exception ex){
+						JOptionPane.showMessageDialog(null, "Not a valid .char file");
+
                     }
                 } catch (IOException ex) {
                     ex.printStackTrace();
