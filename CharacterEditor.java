@@ -45,6 +45,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
 import javax.swing.JTextArea;
@@ -52,7 +53,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 /**
- * GUI Class for displaying a DndChar object for editting.
+ * GUI Class for displaying a DndChar object for editing.
 
  * @author Nick Ford
  *
@@ -935,8 +936,11 @@ public class CharacterEditor extends JFrame implements ActionListener {
                         playerNameText.setText(temp.getPlayer());
                         
                         bgText.setText(temp.getBackground());
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
+					} catch (Exception ex) {
+						JOptionPane.showMessageDialog(null, "Not a valid "
+								+ ".char file");
+
+
                     }
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -987,12 +991,13 @@ public class CharacterEditor extends JFrame implements ActionListener {
         	}
         	
         	int [] stats;
-        	int str;
-        	int dex;
-        	int con;
-        	int intel;
-        	int wis;
-        	int cha;
+        	int str = 0;
+        	int dex = 0;
+        	int con = 0;
+        	int intel = 0;
+        	int wis = 0;
+        	int cha = 0;
+			try {
         	if (strText.getText().equals("")) {
         		str = 0; 
         	} else {
@@ -1023,6 +1028,9 @@ public class CharacterEditor extends JFrame implements ActionListener {
         	} else {
         		cha = Integer.parseInt(chaText.getText()); 
         	}
+		} catch (NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null, "Invalid Stat value");
+		}
         	stats = new int[]{str, dex, con, intel, wis, cha};
         	
         	String skills = "";
@@ -1174,26 +1182,33 @@ public class CharacterEditor extends JFrame implements ActionListener {
         		charName = "Unnamed"; 
         	}
         	
-        	int xp;
+			int xp = 0;
+        	int armor = 0;
+			int hp = 0;
+			
+			try {
         	if (xpText.getText().equals("")) {
         		xp = 0; 
         	} else {
         		xp = Integer.parseInt(xpText.getText()); 
         	}
         	
-        	int armor;
+
         	if (acText.getText().equals("")) {
         		armor = 0; 
         	} else {
         		armor = Integer.parseInt(acText.getText()); 
         	}
         	
-        	int hp;
+
         	if (hpText.getText().equals("")) {
         		hp = 0; 
         	} else {
         		hp = Integer.parseInt(hpText.getText()); 
         	}
+		} catch (NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null, "Inalid Stat Value");		
+		}
         	
         	DndChar temp = new DndChar(charName, ethicalAlign, moralAlign, race,
         			charClass, (lvlBox.getSelectedIndex() + 1), xp, stats, skills,
