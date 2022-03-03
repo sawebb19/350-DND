@@ -21,7 +21,7 @@ CharacterClass implements Serializable {
     protected CharacterClass() {
     }
 
-    protected CharacterClass(String name, int hit, int[] saves) {
+    public CharacterClass(String name, int hit, int[] saves) {
         this.name = name;
         this.hit = hit;
         this.saves = saves;

@@ -23,7 +23,7 @@ public abstract class Race implements Serializable {
     protected Race() {
     }
 
-    protected Race(String name,
+    public Race(String name,
                 String[] subraces,
                 String[] langs,
                 String size,
