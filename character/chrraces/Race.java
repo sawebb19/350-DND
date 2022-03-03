@@ -3,7 +3,13 @@ package DNDCompanion.character.chrraces;
 import java.io.Serializable;
 import java.util.Arrays;
 
-public abstract class Race implements Serializable{
+/**
+ * Abstract class for Races.
+
+ * @author Sam Webb
+ *
+ */
+public abstract class Race implements Serializable {
     
     private static final long serialVersionUID = 1L;
 
@@ -12,9 +18,9 @@ public abstract class Race implements Serializable{
     protected String[] langs;
     protected String size;
     protected int speed;
-    protected int[] mods = {0,0,0,0,0,0};
+    protected int[] mods = {0, 0, 0, 0, 0, 0};
 
-    protected Race(){
+    protected Race() {
     }
 
     protected Race(String name,
@@ -22,7 +28,7 @@ public abstract class Race implements Serializable{
                 String[] langs,
                 String size,
                 int speed,
-                int[] mods){
+                int[] mods) {
                  
         this.name = name;
         this.subraces = subraces;
@@ -34,100 +40,124 @@ public abstract class Race implements Serializable{
 
     
     /** 
+     * getter for race name.
+
      * @return String
      */
-    public String getName(){
+    public String getName() {
         return this.name;
     }
 
     
     /** 
+     * getter for subrace array.
+
      * @return String[]
      */
-    public String[] getSubraces(){
+    public String[] getSubraces() {
         return this.subraces;
     }
 
     
     /** 
+     * getter for creature size.
+
      * @return String
      */
-    public String getSize(){
+    public String getSize() {
         return this.size;
     }
 
     
     /** 
+     * getter for walking speed.
+
      * @return int
      */
-    public int getSpeed(){
+    public int getSpeed() {
         return this.speed;
     }
 
     
     /** 
+     * getter for base stat mods.
+
      * @return int[]
      */
-    public int[] getMods(){
+    public int[] getMods() {
         return this.mods;
     }
 
     
     /** 
-     * @param name
+     * setter for race name.
+
+     * @param name name of the race.
      */
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
 
     
     /** 
-     * @param subraces
+     * setter for subrace array.
+
+     * @param subraces array of subrace names.
      */
-    public void setSubraces(String[] subraces){
+    public void setSubraces(String[] subraces) {
         this.subraces = subraces;
     }
 
     
     /** 
-     * @param size
+     * setter for creature size.
+
+     * @param size size of the race.
      */
-    public void setSize(String size){
+    public void setSize(String size) {
         this.size = size;
     }
 
     
     /** 
-     * @param speed
+     * setter for walking speed.
+
+     * @param speed walking speed for race.
      */
-    public void setSpeed(int speed){
+    public void setSpeed(int speed) {
         this.speed = speed;
     }
 
     
     /** 
-     * @param mods
+     * setter for base stat mods.
+
+     * @param mods base stat mods for race.
      */
-    public void setMods(int[] mods){
+    public void setMods(int[] mods) {
         this.mods = mods;
     }
 
     /**
-     * @return String
+     * abstract method for getting the type of subrace.
+
+     * @return String 
      */
     public abstract String getSubrace();
     
     
     /** 
-     * @return String
+     * method to override the default toString method.
+
+     * @return String represents the class.
      */
-    public String toString(){
+    public String toString() {
         return
-        "race=" + this.name + "{\n\t" +
-        "size=" + this.size + "\n\t" +
-        "speed=" + this.speed + "\n\t" +
-        "langs=" + Arrays.toString(this.langs) + "\n\t" +
-        "mods=" + Arrays.toString(this.mods) + "\n}\n";
+        "race=" + this.name + "{\n\t" 		
+        + "size=" + this.size + "\n\t" 
+        + "speed=" + this.speed + "\n\t" 
+        + "langs=" + Arrays.toString(this.langs) + "\n\t" 
+        + "mods=" + Arrays.toString(this.mods) + "\n}\n";
     }
 
 }

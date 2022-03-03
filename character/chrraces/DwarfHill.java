@@ -1,9 +1,18 @@
 package DNDCompanion.character.chrraces;
 
+/**
+ * Class to represent the Hill subrace of Dwarf.
+
+ * @author Sam Webb
+ *
+ */
 @SuppressWarnings("serial")
-public class DwarfHill extends Dwarf{
+public class DwarfHill extends Dwarf {
     
-    public DwarfHill(){
+	/**
+	 * Default Constructor for the class.
+	 */
+    public DwarfHill() {
         super();
         this.subraces = null;
         this.mods[4] = 1; // +1 Wisdom

@@ -1,8 +1,34 @@
 package DNDCompanion;
 
-import DNDCompanion.character.*;
-import DNDCompanion.character.chrclasses.*;
-import DNDCompanion.character.chrraces.*;
+import DNDCompanion.character.DndChar;
+
+import DNDCompanion.character.chrclasses.Barbarian;
+import DNDCompanion.character.chrclasses.Bard;
+import DNDCompanion.character.chrclasses.CharacterClass;
+import DNDCompanion.character.chrclasses.Cleric;
+import DNDCompanion.character.chrclasses.Druid;
+import DNDCompanion.character.chrclasses.Fighter;
+import DNDCompanion.character.chrclasses.Monk;
+import DNDCompanion.character.chrclasses.Paladin;
+import DNDCompanion.character.chrclasses.Ranger;
+import DNDCompanion.character.chrclasses.Rogue;
+import DNDCompanion.character.chrclasses.Sorcerer;
+import DNDCompanion.character.chrclasses.Warlock;
+import DNDCompanion.character.chrclasses.Wizard;
+import DNDCompanion.character.chrraces.Dragonborn;
+import DNDCompanion.character.chrraces.DwarfHill;
+import DNDCompanion.character.chrraces.DwarfMountain;
+import DNDCompanion.character.chrraces.ElfHigh;
+import DNDCompanion.character.chrraces.ElfWood;
+import DNDCompanion.character.chrraces.GnomeDeep;
+import DNDCompanion.character.chrraces.GnomeRock;
+import DNDCompanion.character.chrraces.HalfElf;
+import DNDCompanion.character.chrraces.HalfOrc;
+import DNDCompanion.character.chrraces.HalflingLightfoot;
+import DNDCompanion.character.chrraces.HalflingStout;
+import DNDCompanion.character.chrraces.Human;
+import DNDCompanion.character.chrraces.Race;
+import DNDCompanion.character.chrraces.Tiefling;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,8 +37,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-//import javax.swing.BorderFactory;
-import javax.swing.*;
+import javax.swing.ButtonGroup;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  * GUI Class for displaying a DndChar object for editting.
@@ -102,15 +139,15 @@ public class CharacterEditor extends JFrame implements ActionListener {
     private JRadioButton skillRadio18;
     
     private ButtonGroup alignGroup;
-    private JRadioButton alignRadioLG;
-    private JRadioButton alignRadioLN;
-    private JRadioButton alignRadioLE;
-    private JRadioButton alignRadioNG;
-    private JRadioButton alignRadioNN;
-    private JRadioButton alignRadioNE;
-    private JRadioButton alignRadioCG;
-    private JRadioButton alignRadioCN;
-    private JRadioButton alignRadioCE;
+    private JRadioButton alignRadioLg;
+    private JRadioButton alignRadioLn;
+    private JRadioButton alignRadioLe;
+    private JRadioButton alignRadioNg;
+    private JRadioButton alignRadioNn;
+    private JRadioButton alignRadioNe;
+    private JRadioButton alignRadioCg;
+    private JRadioButton alignRadioCn;
+    private JRadioButton alignRadioCe;
     
     private JSeparator separator1;
     private JSeparator separator2;
@@ -118,7 +155,7 @@ public class CharacterEditor extends JFrame implements ActionListener {
     private JSeparator separator4;
 
     /**
-     * 
+     * Constructor for Character editor GUI.
      */
     public CharacterEditor() {
     	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -163,21 +200,21 @@ public class CharacterEditor extends JFrame implements ActionListener {
         getContentPane().add(classLabel);
         
         String[] classChoice = {"", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", 
-        		"Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
+            "Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard"};
         classBox = new JComboBox<>(classChoice);
         classBox.setBounds(456, 147, 85, 25);
         classBox.setSelectedIndex(0);
         getContentPane().add(classBox);
         
         String[] lvlChoice = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", 
-        		"11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
+            "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"};
         lvlBox = new JComboBox<>(lvlChoice);
         lvlBox.setBounds(540, 147, 40, 25);
         lvlBox.setSelectedIndex(0);
         getContentPane().add(lvlBox);
         
         String[] raceChoice = {"", "Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling", 
-        		"Half-Orc", "Human", "Tiefling"};
+            "Half-Orc", "Human", "Tiefling"};
         raceBox = new JComboBox<>(raceChoice);
         raceBox.setBounds(604, 147, 124, 25);
         raceBox.addActionListener(this);
@@ -311,50 +348,50 @@ public class CharacterEditor extends JFrame implements ActionListener {
         
         alignGroup = new ButtonGroup();
         
-        alignRadioLG = new JRadioButton();
-        alignRadioLG.setBounds(797, 220, 20, 23);
-        getContentPane().add(alignRadioLG);
-        alignGroup.add(alignRadioLG);
+        alignRadioLg = new JRadioButton();
+        alignRadioLg.setBounds(797, 220, 20, 23);
+        getContentPane().add(alignRadioLg);
+        alignGroup.add(alignRadioLg);
         
-        alignRadioLN = new JRadioButton();
-        alignRadioLN.setBounds(797, 270, 20, 23);
-        getContentPane().add(alignRadioLN);
-        alignGroup.add(alignRadioLN);
+        alignRadioLn = new JRadioButton();
+        alignRadioLn.setBounds(797, 270, 20, 23);
+        getContentPane().add(alignRadioLn);
+        alignGroup.add(alignRadioLn);
         
-        alignRadioLE = new JRadioButton();
-        alignRadioLE.setBounds(797, 320, 20, 23);
-        getContentPane().add(alignRadioLE);
-        alignGroup.add(alignRadioLE);
+        alignRadioLe = new JRadioButton();
+        alignRadioLe.setBounds(797, 320, 20, 23);
+        getContentPane().add(alignRadioLe);
+        alignGroup.add(alignRadioLe);
         
-        alignRadioNG = new JRadioButton();
-        alignRadioNG.setBounds(847, 220, 20, 23);
-        getContentPane().add(alignRadioNG);
-        alignGroup.add(alignRadioNG);
+        alignRadioNg = new JRadioButton();
+        alignRadioNg.setBounds(847, 220, 20, 23);
+        getContentPane().add(alignRadioNg);
+        alignGroup.add(alignRadioNg);
         
-        alignRadioNN = new JRadioButton();
-        alignRadioNN.setBounds(847, 270, 20, 23);
-        getContentPane().add(alignRadioNN);
-        alignGroup.add(alignRadioNN);
+        alignRadioNn = new JRadioButton();
+        alignRadioNn.setBounds(847, 270, 20, 23);
+        getContentPane().add(alignRadioNn);
+        alignGroup.add(alignRadioNn);
         
-        alignRadioNE = new JRadioButton();
-        alignRadioNE.setBounds(847, 320, 20, 23);
-        getContentPane().add(alignRadioNE);
-        alignGroup.add(alignRadioNE);
+        alignRadioNe = new JRadioButton();
+        alignRadioNe.setBounds(847, 320, 20, 23);
+        getContentPane().add(alignRadioNe);
+        alignGroup.add(alignRadioNe);
         
-        alignRadioCG = new JRadioButton();
-        alignRadioCG.setBounds(897, 220, 20, 23);
-        getContentPane().add(alignRadioCG);
-        alignGroup.add(alignRadioCG);
+        alignRadioCg = new JRadioButton();
+        alignRadioCg.setBounds(897, 220, 20, 23);
+        getContentPane().add(alignRadioCg);
+        alignGroup.add(alignRadioCg);
         
-        alignRadioCN = new JRadioButton();
-        alignRadioCN.setBounds(897, 270, 20, 23);
-        getContentPane().add(alignRadioCN);
-        alignGroup.add(alignRadioCN);
+        alignRadioCn = new JRadioButton();
+        alignRadioCn.setBounds(897, 270, 20, 23);
+        getContentPane().add(alignRadioCn);
+        alignGroup.add(alignRadioCn);
         
-        alignRadioCE = new JRadioButton();
-        alignRadioCE.setBounds(897, 320, 20, 23);
-        getContentPane().add(alignRadioCE);
-        alignGroup.add(alignRadioCE);
+        alignRadioCe = new JRadioButton();
+        alignRadioCe.setBounds(897, 320, 20, 23);
+        getContentPane().add(alignRadioCe);
+        alignGroup.add(alignRadioCe);
         
         //separate skills from stats
         separator2 = new JSeparator(SwingConstants.HORIZONTAL);
@@ -574,11 +611,13 @@ public class CharacterEditor extends JFrame implements ActionListener {
 
     
     /** 
-     * @param e
+     * Method to take care of actions initiated by the GUI.
+
+     * @param e An event performed by one of the Listened-to JFrame items
      */
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e) {
         Object src = e.getSource();
-        if (src == close){
+        if (src == close) {
 			System.exit(1);
 		}
         if (src == openChar) {
@@ -601,66 +640,69 @@ public class CharacterEditor extends JFrame implements ActionListener {
                         String race = temp.getRace().getName(); 
                         int n;
                         
-                        switch(race) {
+                        switch (race) {
                         	default:
                         	case "": 
-                        		n=0; 
+                        		n = 0; 
                         		break;
                         	case "Dragonborn": 
-                        		n=1; 
+                        		n = 1; 
                         		break; //no subrace
                         	case "Dwarf": 
-                        		n=2; 
+                        		n = 2; 
                         		break;
                         	case "Elf": 
-                        		n=3; 
+                        		n = 3; 
                         		break;
                         	case "Gnome": 
-                        		n=4; 
+                        		n = 4; 
                         		break;
                         	case "Half-Elf": 
-                        		n=5; 
+                        		n = 5; 
                         		break; //no subrace
                         	case "Halfling": 
-                        		n=6; 
+                        		n = 6; 
                         		break;
                         	case "Half-Orc": 
-                        		n=7; 
+                        		n = 7; 
                         		break; //no subrace
                         	case "Human": 
-                        		n=8; 
+                        		n = 8; 
                         		break; 
                         	case "Tiefling": 
-                        		n=9; 
+                        		n = 9; 
                         		break; //no subrace
                         }
                         raceBox.setSelectedIndex(n);
                         //checks for subraces and sets up the comboBox if applicable
                         String[] subraces;
-                        switch(n) {
+                        switch (n) {
                         	default:
                         	case 0:
                         	case 1:
                         	case 5:
                         	case 7:
                         	case 9:
-                        		subraces = new String[] {"N/A"}; break;
-                        	case 2: 
-                        		subraces = new String[] {"", "Hill Dwarf", "Mountain Dwarf"}; 
+                        		subraces = new String[] {"N/A"}; 
                         		break;
-                        	case 3: 
-                        		subraces = new String[] {"", "High Elf", "Wood Elf"}; 
+                        	case 2:
+                        		subraces = new String[] {"", "Hill Dwarf", 
+                        		    "Mountain Dwarf"};
                         		break;
-                        	case 4: 
-                        		subraces = new String[] {"", "Deep Gnome", "Rock Gnome"}; 
+                        	case 3:
+                        		subraces = new String[] {"", "High Elf", "Wood Elf"};
                         		break;
-                        	case 6: 
-                        		subraces = new String[] {"", "Lightfoot Halfling", "Stout Halfling"}; 
+                        	case 4:
+                        		subraces = new String[] {"", "Deep Gnome", "Rock Gnome"};
                         		break;
-                        	case 8: 
-                        		subraces = new String[] {"", "Calishite", "Chondathan", "Damaran",
-                        				"Illuskan", "Mulan", "Rashemi", "Shou", "Tethyrian",
-                        				"Turami"}; 
+                        	case 6:
+                        		subraces = new String[] {"", "Lightfoot Halfling",
+                        		    "Stout Halfling"};
+                        		break;
+                        	case 8:
+                        		subraces = new String[] {"", "Calishite", "Chondathan",
+                        		    "Damaran", "Illuskan", "Mulan", "Rashemi", "Shou", 
+                        		    "Tethyrian", "Turami"}; 
                         		break;
                         }
                         	
@@ -669,86 +711,86 @@ public class CharacterEditor extends JFrame implements ActionListener {
                         
                         
                         //character class
-                        String pClass = temp.getCharClass().getName(); 
-                        switch(pClass) {
+                        String inputClass = temp.getCharClass().getName(); 
+                        switch (inputClass) {
                         	default:
                         	case "": 
-                        		n=0; 
+                        		n = 0; 
                         		break;
                         	case "Barbarian": 
-                        		n=1; 
+                        		n = 1; 
                         		break; 
                         	case "Bard": 
-                        		n=2; 
+                        		n = 2; 
                         		break;
                         	case "Cleric": 
-                        		n=3; 
+                        		n = 3; 
                         		break;
                         	case "Druid": 
-                        		n=4; 
+                        		n = 4; 
                         		break;
                         	case "Fighter": 
-                        		n=5; 
+                        		n = 5; 
                         		break; 
                         	case "Monk": 
-                        		n=6; 
+                        		n = 6; 
                         		break;
                         	case "Paladin": 
-                        		n=7; 
+                        		n = 7; 
                         		break; 
                         	case "Ranger": 
-                        		n=8; 
+                        		n = 8; 
                         		break; 
                         	case "Rogue": 
-                        		n=9; 
+                        		n = 9; 
                         		break;
                         	case "Sorcerer": 
-                        		n=10; 
+                        		n = 10; 
                         		break; 
                         	case "Warlock": 
-                        		n=11; 
+                        		n = 11; 
                         		break;
                         	case "Wizard": 
-                        		n=12; 
+                        		n = 12; 
                         		break;
                         }
                         classBox.setSelectedIndex(n);
                         
                         //char level
-                        lvlBox.setSelectedIndex(temp.getLevel()-1);
+                        lvlBox.setSelectedIndex(temp.getLevel() - 1);
                         
                         //char alignment
                         String alignment = temp.getAlignment();
-                        switch(alignment) {
+                        switch (alignment) {
                     	default: 
                     		alignGroup.clearSelection(); 
                     		break;
                     	case "LG": 
-                    		alignRadioLG.doClick(); 
+                    		alignRadioLg.doClick(); 
                     		break;
                     	case "LN": 
-                    		alignRadioLN.doClick(); 
+                    		alignRadioLn.doClick(); 
                     		break; 
                     	case "LE": 
-                    		alignRadioLE.doClick(); 
+                    		alignRadioLe.doClick(); 
                     		break;
                     	case "NG": 
-                    		alignRadioNG.doClick(); 
+                    		alignRadioNg.doClick(); 
                     		break;
                     	case "NN": 
-                    		alignRadioNN.doClick(); 
+                    		alignRadioNn.doClick(); 
                     		break;
                     	case "NE": 
-                    		alignRadioNE.doClick(); 
+                    		alignRadioNe.doClick(); 
                     		break; 
                     	case "CG": 
-                    		alignRadioCG.doClick(); 
+                    		alignRadioCg.doClick(); 
                     		break;
                     	case "CN": 
-                    		alignRadioCN.doClick(); 
+                    		alignRadioCn.doClick(); 
                     		break; 
                     	case "CE": 
-                    		alignRadioCE.doClick(); 
+                    		alignRadioCe.doClick(); 
                     		break; 
                         }
                     	
@@ -893,7 +935,7 @@ public class CharacterEditor extends JFrame implements ActionListener {
                         playerNameText.setText(temp.getPlayer());
                         
                         bgText.setText(temp.getBackground());
-                    }catch (Exception ex) {
+                    } catch (Exception ex) {
                         ex.printStackTrace();
                     }
                 } catch (IOException ex) {
@@ -907,39 +949,39 @@ public class CharacterEditor extends JFrame implements ActionListener {
         if (src == saveChar) {
         	String ethicalAlign = "";
         	String moralAlign = "";
-        	if (alignRadioLG.isSelected()) {
+        	if (alignRadioLg.isSelected()) {
         		ethicalAlign = "L"; 
         		moralAlign = "G"; 
         	}
-        	if (alignRadioLN.isSelected()) {
+        	if (alignRadioLn.isSelected()) {
         		ethicalAlign = "L"; 
         		moralAlign = "N"; 
         	}
-        	if (alignRadioLE.isSelected()) {
+        	if (alignRadioLe.isSelected()) {
         		ethicalAlign = "L"; 
         		moralAlign = "E"; 
         	}
-        	if (alignRadioNG.isSelected()) {
+        	if (alignRadioNg.isSelected()) {
         		ethicalAlign = "N"; 
         		moralAlign = "G"; 
         	}
-        	if (alignRadioNN.isSelected()) {
+        	if (alignRadioNn.isSelected()) {
         		ethicalAlign = "N"; 
         		moralAlign = "N"; 
         	}
-        	if (alignRadioNE.isSelected()) {
+        	if (alignRadioNe.isSelected()) {
         		ethicalAlign = "N"; 
         		moralAlign = "E"; 
         	}
-        	if (alignRadioCG.isSelected()) {
+        	if (alignRadioCg.isSelected()) {
         		ethicalAlign = "C"; 
         		moralAlign = "G"; 
         	}
-        	if (alignRadioCN.isSelected()) {
+        	if (alignRadioCn.isSelected()) {
         		ethicalAlign = "C"; 
         		moralAlign = "N"; 
         	}
-        	if (alignRadioCE.isSelected()) {
+        	if (alignRadioCe.isSelected()) {
         		ethicalAlign = "C"; 
         		moralAlign = "E"; 
         	}
@@ -1135,14 +1177,14 @@ public class CharacterEditor extends JFrame implements ActionListener {
         	int xp;
         	if (xpText.getText().equals("")) {
         		xp = 0; 
-        	}else {
+        	} else {
         		xp = Integer.parseInt(xpText.getText()); 
         	}
         	
         	int armor;
         	if (acText.getText().equals("")) {
         		armor = 0; 
-        	}else {
+        	} else {
         		armor = Integer.parseInt(acText.getText()); 
         	}
         	
@@ -1153,15 +1195,18 @@ public class CharacterEditor extends JFrame implements ActionListener {
         		hp = Integer.parseInt(hpText.getText()); 
         	}
         	
-        	DndChar temp = new DndChar(charName, ethicalAlign, moralAlign, race, charClass, 
-        			(lvlBox.getSelectedIndex() + 1), xp, stats, skills, bgText.getText(), 
-        			traitsTextArea.getText(), idealsTextArea.getText(), bondsTextArea.getText(),
-        			flawsTextArea.getText(), armor, hp, featuresTextArea.getText(),	
-        			profTextArea.getText(), equipTextArea.getText(), playerNameText.getText());
-        	//String name, String ethicalAlign, String moralAlign, Race race, 
-        	//CharacterClass charClass, int level, int exp, int[] stats, String skills, 
-        	//String background, String traits, String ideals,String bonds, String flaws,
-        	//int armor, int maxHP, String features, String profs, String equipment, String player
+        	DndChar temp = new DndChar(charName, ethicalAlign, moralAlign, race,
+        			charClass, (lvlBox.getSelectedIndex() + 1), xp, stats, skills,
+        			bgText.getText(), traitsTextArea.getText(),
+        			idealsTextArea.getText(), bondsTextArea.getText(),
+        			flawsTextArea.getText(), armor, hp, featuresTextArea.getText(),
+        			profTextArea.getText(), equipTextArea.getText(),
+        			playerNameText.getText());
+        	//String name, String ethicalAlign, String moralAlign, Race race,
+        	//CharacterClass charClass, int level, int exp, int[] stats,
+        	//String skills, String background, String traits, String ideals,
+        	//String bonds, String flaws, int armor, int maxHP, String features,
+        	//String profs, String equipment, String player
         	
         	try (FileOutputStream file = new FileOutputStream(/*"\\src\\DNDCompanion\\"
         	+"ExampleChars\\" +*/ temp.getName() + ".char");

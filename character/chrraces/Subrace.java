@@ -2,12 +2,18 @@ package DNDCompanion.character.chrraces;
 
 import java.util.Arrays;
 
+/**
+ * abstract class for subraces.
+
+ * @author Sam Webb
+ *
+ */
 @SuppressWarnings("serial")
-public abstract class Subrace extends Race{
+public abstract class Subrace extends Race {
 
     protected String kind = null;
     
-    Subrace(){
+    Subrace() {
         super();
     }
 
@@ -17,7 +23,7 @@ public abstract class Subrace extends Race{
                 String[] langs,
                 String size,
                 int speed,
-                int[] mods){
+                int[] mods) {
                  
         this.name = name;
         this.subraces = subraces;
@@ -34,16 +40,18 @@ public abstract class Subrace extends Race{
 
     
     /** 
-     * @return String
+     * class to override the default toString method.
+
+     * @return String String representation of the class.
      */
     @Override
-    public String toString(){
+    public String toString() {
         return
-        this.name + "{\n\t" +
-        "subrace=" + this.kind + "\n\t" + 
-        "size=" + this.size + "\n\t" +
-        "speed=" + this.speed + "\n\t" +
-        "langs=" + Arrays.toString(this.langs) + "\n\t" +
-        "mods=" + Arrays.toString(this.mods) + "\n}\n";
+        this.name + "{\n\t" 
+        + "subrace=" + this.kind + "\n\t" 
+        + "size=" + this.size + "\n\t" 
+        + "speed=" + this.speed + "\n\t" 
+        + "langs=" + Arrays.toString(this.langs) + "\n\t" 
+        + "mods=" + Arrays.toString(this.mods) + "\n}\n";
     }
 }

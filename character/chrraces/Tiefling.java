@@ -1,15 +1,18 @@
 package DNDCompanion.character.chrraces;
 
 /**
+ * Class to represent the Tiefling Race.
+
  * @author Sam Webb
+ *
  */
 @SuppressWarnings("serial")
-public class Tiefling extends Race{
+public class Tiefling extends Race {
 
 	/**
-	 * 
+	 * Default Constructor for the class.
 	 */
-    public Tiefling(){
+    public Tiefling() {
         this.name = "Tiefling";
         this.subraces = null;
         this.mods[3] = 1; // +1 Intelligence

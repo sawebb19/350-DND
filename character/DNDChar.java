@@ -1,8 +1,7 @@
 package DNDCompanion.character;
 
-
-import DNDCompanion.character.chrclasses.*;
-import DNDCompanion.character.chrraces.*;
+import DNDCompanion.character.chrclasses.CharacterClass;
+import DNDCompanion.character.chrraces.Race;
 import java.io.Serializable; // Allows you to save and load the char
 
 /**
@@ -186,18 +185,18 @@ public class DndChar implements Serializable {
     	return player;
     }
     
-//    public String toString(){
-//        return
-//        "name=" + this.name + "\n" +
-//        "ethical=" + this.ethicalAlign + "\n" +
-//        "moral=" + this.moralAlign + "\n" +
-//         race.toString() +
-//         charClass.toString() +
-//         "level=" + this.level + "\n" +
-//         "exp=" + this.exp + "\n" +
-//         "stats=" + Arrays.toString(this.stats) + "\n" +
-//         "mods=" + Arrays.toString(this.mods);
-//    }
+    //    public String toString(){
+    //        return
+    //        "name=" + this.name + "\n" +
+    //        "ethical=" + this.ethicalAlign + "\n" +
+    //        "moral=" + this.moralAlign + "\n" +
+    //         race.toString() +
+    //         charClass.toString() +
+    //         "level=" + this.level + "\n" +
+    //         "exp=" + this.exp + "\n" +
+    //         "stats=" + Arrays.toString(this.stats) + "\n" +
+    //         "mods=" + Arrays.toString(this.mods);
+    //    }
 
     public static void main(String[] args) {
     	

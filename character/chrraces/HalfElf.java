@@ -1,9 +1,18 @@
 package DNDCompanion.character.chrraces;
 
+/**
+ * Class to represent the Half-Elf Race.
+
+ * @author Sam Webb
+ *
+ */
 @SuppressWarnings("serial")
-public class HalfElf extends Race{
+public class HalfElf extends Race {
     
-    public HalfElf(){
+	/**
+	 * Default Constructor for the class.
+	 */
+    public HalfElf() {
         this.name = "Half-Elf";
         this.mods[5] = 2; // + 2 Charisma && +1 of Choice
         this.subraces = null;

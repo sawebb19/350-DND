@@ -2,8 +2,14 @@ package DNDCompanion.character.chrraces;
 
 import java.util.Arrays;
 
+/**
+ * Class to represent the Human Race.
+
+ * @author Sam Webb
+ *
+ */
 @SuppressWarnings("serial")
-public class Human extends Race{
+public class Human extends Race {
     
     private String ethnic;
     /* Possible ethnicies:
@@ -18,10 +24,13 @@ public class Human extends Race{
     Turami
     */
 
-    public Human(){
+    /**
+     * Default constructor for the class.
+     */
+    public Human() {
         this.name = "Human";
         this.subraces = null;
-        this.mods = new int[]{1,1,1,1,1,1}; // +1 All
+        this.mods = new int[]{1, 1, 1, 1, 1, 1}; // +1 All
         this.size = "Medium";
         this.speed = 30;
         this.langs = new String[]{"Common"};
@@ -29,35 +38,40 @@ public class Human extends Race{
 
     
     /** 
-     * @return String
+     * getter for the ethnicity.
+
+     * @return String the ethnicity as a String.
      */
-    public String getEthnicity(){
+    public String getEthnicity() {
         return ethnic;
     }
 
     
     /** 
-     * @param ethnic
+     * setter for ethnicity.
+
+     * @param ethnic the ethincity to set.
      */
-    public void setEthnicity(String ethnic){
+    public void setEthnicity(String ethnic) {
         this.ethnic = ethnic;
     }
 
     
     /** 
-     * @return String
+     * method to override the default toString method.
+
+     * @return String String representation of the class.
      */
     @Override
-    public String toString(){
+    public String toString() {
         return
-        this.name + "{\n\t" +
-        "ethnicity=" + this.ethnic + "\n\t" + 
-        "size=" + this.size + "\n\t" +
-        "speed=" + this.speed + "\n\t" +
-        "langs=" + Arrays.toString(this.langs) + "\n\t" +
-        "mods=" + Arrays.toString(this.mods) + "\n}\n";
+        this.name + "{\n\t" 		
+        + "ethnicity=" + this.ethnic + "\n\t" 
+        + "size=" + this.size + "\n\t" 
+        + "speed=" + this.speed + "\n\t" 
+        + "langs=" + Arrays.toString(this.langs) + "\n\t" 
+        + "mods=" + Arrays.toString(this.mods) + "\n}\n";
     }
-
 
 	@Override
 	public String getSubrace() {

@@ -1,9 +1,18 @@
 package DNDCompanion.character.chrraces;
 
+/**
+ * Class to represent the Halfling Race.
+
+ * @author Sam Webb
+ *
+ */
 @SuppressWarnings("serial")
-public abstract class Halfling extends Subrace{
+public abstract class Halfling extends Subrace {
     
-    protected Halfling(){
+	/**
+	 * Default Constructor.
+	 */
+    protected Halfling() {
         this.name = "Halfling";
         this.subraces = new String[]{"Lightfoot", "Stout"};
         this.mods[1] = 2; // +2 Dexterity

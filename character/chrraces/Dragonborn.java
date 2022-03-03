@@ -2,8 +2,14 @@ package DNDCompanion.character.chrraces;
 
 import java.util.Arrays;
 
+/**
+ * Class to represent the Dragonborn Race.
+
+ * @author Sam Webb
+ *
+ */
 @SuppressWarnings("serial")
-public class Dragonborn extends Race{
+public class Dragonborn extends Race {
 
     private String ancestry;
     /* Possible ancestries:
@@ -19,7 +25,10 @@ public class Dragonborn extends Race{
     White
     */
     
-    public Dragonborn(){
+    /**
+     * Default constructor for the class.
+     */
+    public Dragonborn() {
         this.name = "Dragonborn";
         this.subraces = null;
         this.mods[0] = 2; // +2 Strength
@@ -32,33 +41,39 @@ public class Dragonborn extends Race{
 
     
     /** 
-     * @return String
+     * getter for the dragonborn ancestry.
+
+     * @return String the dragonborn ancestry as a String.
      */
-    public String getAncestry(){
+    public String getAncestry() {
         return ancestry;
     }
 
     
     /** 
-     * @param ancestry
+     * setter for the dragonborn ancestry.
+
+     * @param ancestry the dragonborn ancestry as a String.
      */
-    public void setAncestry(String ancestry){
+    public void setAncestry(String ancestry) {
         this.ancestry = ancestry;
     }
 
     
     /** 
-     * @return String
+     * method to override the default toString method.
+
+     * @return String String representation of the class.
      */
     @Override
-    public String toString(){
+    public String toString() {
         return
-        this.name + "{\n\t" +
-        "ancestry=" + this.ancestry + "\n\t" + 
-        "size=" + this.size + "\n\t" +
-        "speed=" + this.speed + "\n\t" +
-        "langs=" + Arrays.toString(this.langs) + "\n\t" +
-        "mods=" + Arrays.toString(this.mods) + "\n}\n";
+        this.name + "{\n\t" 
+        + "ancestry=" + this.ancestry + "\n\t" 
+        + "size=" + this.size + "\n\t" 
+        + "speed=" + this.speed + "\n\t" 
+        + "langs=" + Arrays.toString(this.langs) + "\n\t"
+        + "mods=" + Arrays.toString(this.mods) + "\n}\n";
     }
 
 

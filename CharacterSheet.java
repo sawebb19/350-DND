@@ -1,8 +1,17 @@
 package DNDCompanion;
 
-import DNDCompanion.character.*;
-import DNDCompanion.character.chrclasses.*;
-import DNDCompanion.character.chrraces.*;
+import DNDCompanion.character.DndChar;
+import DNDCompanion.character.chrclasses.Barbarian;
+import DNDCompanion.character.chrclasses.Fighter;
+import DNDCompanion.character.chrclasses.Paladin;
+import DNDCompanion.character.chrclasses.Ranger;
+import DNDCompanion.character.chrclasses.Sorcerer;
+import DNDCompanion.character.chrclasses.Wizard;
+import DNDCompanion.character.chrraces.Dragonborn;
+import DNDCompanion.character.chrraces.HalfElf;
+import DNDCompanion.character.chrraces.HalfOrc;
+import DNDCompanion.character.chrraces.Human;
+import DNDCompanion.character.chrraces.Tiefling;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -12,7 +21,18 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.text.DecimalFormat;
-import javax.swing.*;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JRadioButton;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 /**
  * GUI Class for displaying a DndChar object for gameplay.

@@ -1,9 +1,18 @@
 package DNDCompanion.character.chrraces;
 
+/**
+ * Class to represent the Half-Orc Race.
+
+ * @author Sam Webb
+ *
+ */
 @SuppressWarnings("serial")
-public class HalfOrc extends Race{
+public class HalfOrc extends Race {
     
-    public HalfOrc(){
+	/**
+	 * Default constructor.
+	 */
+    public HalfOrc() {
         this.name = "Half-Orc";
         this.subraces = null;
         this.mods[0] = 2; // +2 Strength
