@@ -1,34 +1,5 @@
-package DNDCompanion;
+package dndcompanion;
 
-import DNDCompanion.character.DndChar;
-
-import DNDCompanion.character.chrclasses.Barbarian;
-import DNDCompanion.character.chrclasses.Bard;
-import DNDCompanion.character.chrclasses.CharacterClass;
-import DNDCompanion.character.chrclasses.Cleric;
-import DNDCompanion.character.chrclasses.Druid;
-import DNDCompanion.character.chrclasses.Fighter;
-import DNDCompanion.character.chrclasses.Monk;
-import DNDCompanion.character.chrclasses.Paladin;
-import DNDCompanion.character.chrclasses.Ranger;
-import DNDCompanion.character.chrclasses.Rogue;
-import DNDCompanion.character.chrclasses.Sorcerer;
-import DNDCompanion.character.chrclasses.Warlock;
-import DNDCompanion.character.chrclasses.Wizard;
-import DNDCompanion.character.chrraces.Dragonborn;
-import DNDCompanion.character.chrraces.DwarfHill;
-import DNDCompanion.character.chrraces.DwarfMountain;
-import DNDCompanion.character.chrraces.ElfHigh;
-import DNDCompanion.character.chrraces.ElfWood;
-import DNDCompanion.character.chrraces.GnomeDeep;
-import DNDCompanion.character.chrraces.GnomeRock;
-import DNDCompanion.character.chrraces.HalfElf;
-import DNDCompanion.character.chrraces.HalfOrc;
-import DNDCompanion.character.chrraces.HalflingLightfoot;
-import DNDCompanion.character.chrraces.HalflingStout;
-import DNDCompanion.character.chrraces.Human;
-import DNDCompanion.character.chrraces.Race;
-import DNDCompanion.character.chrraces.Tiefling;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,6 +22,31 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import dndcompanion.character.DndChar;
+import dndcompanion.character.chrclasses.Barbarian;
+import dndcompanion.character.chrclasses.Bard;
+import dndcompanion.character.chrclasses.CharacterClass;
+import dndcompanion.character.chrclasses.Cleric;
+import dndcompanion.character.chrclasses.Druid;
+import dndcompanion.character.chrclasses.Fighter;
+import dndcompanion.character.chrclasses.Monk;
+import dndcompanion.character.chrclasses.Paladin;
+import dndcompanion.character.chrclasses.Ranger;
+import dndcompanion.character.chrclasses.Rogue;
+import dndcompanion.character.chrclasses.Sorcerer;
+import dndcompanion.character.chrclasses.Warlock;
+import dndcompanion.character.chrclasses.Wizard;
+import dndcompanion.character.chrraces.Dragonborn;
+import dndcompanion.character.chrraces.Dwarf;
+import dndcompanion.character.chrraces.Elf;
+import dndcompanion.character.chrraces.Gnome;
+import dndcompanion.character.chrraces.HalfElf;
+import dndcompanion.character.chrraces.HalfOrc;
+import dndcompanion.character.chrraces.Halfling;
+import dndcompanion.character.chrraces.Human;
+import dndcompanion.character.chrraces.Race;
+import dndcompanion.character.chrraces.Tiefling;
 
 /**
  * GUI Class for displaying a DndChar object for editing.
@@ -1134,24 +1130,24 @@ public class CharacterEditor extends JFrame implements ActionListener {
         	}
         	//Dwarves
         	if (raceBox.getSelectedIndex() == 2 && subraceBox.getSelectedIndex() == 0) {
-        		race = new DwarfHill(); 
+        		race = new Dwarf("Hill"); 
         	}
         	if (raceBox.getSelectedIndex() == 2 && subraceBox.getSelectedIndex() == 1) {
-        		race = new DwarfMountain(); 
+        		race = new Dwarf("Mountain"); 
         	}
         	//Elves
         	if (raceBox.getSelectedIndex() == 3 && subraceBox.getSelectedIndex() == 0) {
-        		race = new ElfHigh(); 
+        		race = new Elf("High"); 
         	}
         	if (raceBox.getSelectedIndex() == 3 && subraceBox.getSelectedIndex() == 1) {
-        		race = new ElfWood(); 
+        		race = new Elf("Wood"); 
         	}
         	//Gnomes
         	if (raceBox.getSelectedIndex() == 4 && subraceBox.getSelectedIndex() == 0) {
-        		race = new GnomeDeep(); 
+        		race = new Gnome("Deep"); 
         	}
         	if (raceBox.getSelectedIndex() == 4 && subraceBox.getSelectedIndex() == 1) {
-        		race = new GnomeRock(); 
+        		race = new Gnome("Rock"); 
         	}
         	//Half Elves
         	if (raceBox.getSelectedIndex() == 5) {
@@ -1159,10 +1155,10 @@ public class CharacterEditor extends JFrame implements ActionListener {
         	}
         	//Halflings
         	if (raceBox.getSelectedIndex() == 6 && subraceBox.getSelectedIndex() == 0) {
-        		race = new HalflingLightfoot(); 
+        		race = new Halfling("Lightfoot"); 
         	}
         	if (raceBox.getSelectedIndex() == 6 && subraceBox.getSelectedIndex() == 1) {
-        		race = new HalflingStout(); 
+        		race = new Halfling("Stout"); 
         	}
         	//Half Orcs
         	if (raceBox.getSelectedIndex() == 7) {

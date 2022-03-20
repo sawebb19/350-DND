@@ -1,17 +1,5 @@
-package DNDCompanion;
+package dndcompanion;
 
-import DNDCompanion.character.DndChar;
-import DNDCompanion.character.chrclasses.Barbarian;
-import DNDCompanion.character.chrclasses.Fighter;
-import DNDCompanion.character.chrclasses.Paladin;
-import DNDCompanion.character.chrclasses.Ranger;
-import DNDCompanion.character.chrclasses.Sorcerer;
-import DNDCompanion.character.chrclasses.Wizard;
-import DNDCompanion.character.chrraces.Dragonborn;
-import DNDCompanion.character.chrraces.HalfElf;
-import DNDCompanion.character.chrraces.HalfOrc;
-import DNDCompanion.character.chrraces.Human;
-import DNDCompanion.character.chrraces.Tiefling;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
@@ -33,6 +21,19 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
+
+import dndcompanion.character.DndChar;
+import dndcompanion.character.chrclasses.Barbarian;
+import dndcompanion.character.chrclasses.Fighter;
+import dndcompanion.character.chrclasses.Paladin;
+import dndcompanion.character.chrclasses.Ranger;
+import dndcompanion.character.chrclasses.Sorcerer;
+import dndcompanion.character.chrclasses.Wizard;
+import dndcompanion.character.chrraces.Dragonborn;
+import dndcompanion.character.chrraces.HalfElf;
+import dndcompanion.character.chrraces.HalfOrc;
+import dndcompanion.character.chrraces.Human;
+import dndcompanion.character.chrraces.Tiefling;
 
 /**
  * GUI Class for displaying a DndChar object for gameplay.

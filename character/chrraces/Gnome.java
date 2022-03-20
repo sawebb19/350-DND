@@ -1,13 +1,14 @@
-package DNDCompanion.character.chrraces;
+package dndcompanion.character.chrraces;
 
 /**
  * Class to represent the Gnome Race.
 
  * @author Sam Webb
+ * @author Nick Ford
  *
  */
 @SuppressWarnings("serial")
-public abstract class Gnome extends Subrace {
+public class Gnome extends Subrace {
 
 	/**
 	 * Default Constructor for the class.
@@ -19,6 +20,17 @@ public abstract class Gnome extends Subrace {
         this.size = "Small";
         this.speed = 25;
         this.langs = new String[]{"Common", "Gnomish"};
-
+    }
+    
+    public Gnome(String subrace) {
+    	this();
+    	if (subrace.equals("Deep")) {
+    		this.mods[1] = 1; // +1 Dexterity
+            this.langs = new String[]{"Common", "Gnomish", "Undercommon"};
+            this.kind = "Deep";
+    	}else if (subrace.equals("Rock")) {
+    		this.mods[2] = 1; // +1 Constitution
+            this.kind = "Rock";
+    	}
     }
 }

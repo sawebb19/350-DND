@@ -1,4 +1,4 @@
-package DNDCompanion.character.chrraces;
+package dndcompanion.character.chrraces;
 
 /**
  * Class to represent the Tiefling Race.

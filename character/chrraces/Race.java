@@ -1,4 +1,4 @@
-package DNDCompanion.character.chrraces;
+package dndcompanion.character.chrraces;
 
 import java.io.Serializable;
 import java.util.Arrays;

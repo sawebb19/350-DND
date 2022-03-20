@@ -1,4 +1,4 @@
-package DNDCompanion.character.chrclasses;
+package dndcompanion.character.chrclasses;
 
 /**
  * Class for the Wizard character class.

@@ -1,39 +1,36 @@
-package DNDCompanion;
+package dndcompanion;
 
 
-import DNDCompanion.character.DndChar;
-import DNDCompanion.character.chrclasses.Barbarian;
-import DNDCompanion.character.chrclasses.Bard;
-import DNDCompanion.character.chrclasses.CharacterClass;
-import DNDCompanion.character.chrclasses.Cleric;
-import DNDCompanion.character.chrclasses.Druid;
-import DNDCompanion.character.chrclasses.Fighter;
-import DNDCompanion.character.chrclasses.Monk;
-import DNDCompanion.character.chrclasses.Paladin;
-import DNDCompanion.character.chrclasses.Ranger;
-import DNDCompanion.character.chrclasses.Rogue;
-import DNDCompanion.character.chrclasses.Sorcerer;
-import DNDCompanion.character.chrclasses.Warlock;
-import DNDCompanion.character.chrclasses.Wizard;
-import DNDCompanion.character.chrraces.Dragonborn;
-import DNDCompanion.character.chrraces.DwarfHill;
-import DNDCompanion.character.chrraces.DwarfMountain;
-import DNDCompanion.character.chrraces.ElfHigh;
-import DNDCompanion.character.chrraces.ElfWood;
-import DNDCompanion.character.chrraces.GnomeDeep;
-import DNDCompanion.character.chrraces.GnomeRock;
-import DNDCompanion.character.chrraces.HalfElf;
-import DNDCompanion.character.chrraces.HalfOrc;
-import DNDCompanion.character.chrraces.HalflingLightfoot;
-import DNDCompanion.character.chrraces.HalflingStout;
-import DNDCompanion.character.chrraces.Human;
-import DNDCompanion.character.chrraces.Race;
-import DNDCompanion.character.chrraces.Subrace;
-import DNDCompanion.character.chrraces.Tiefling;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
+
+import dndcompanion.character.DndChar;
+import dndcompanion.character.chrclasses.Barbarian;
+import dndcompanion.character.chrclasses.Bard;
+import dndcompanion.character.chrclasses.CharacterClass;
+import dndcompanion.character.chrclasses.Cleric;
+import dndcompanion.character.chrclasses.Druid;
+import dndcompanion.character.chrclasses.Fighter;
+import dndcompanion.character.chrclasses.Monk;
+import dndcompanion.character.chrclasses.Paladin;
+import dndcompanion.character.chrclasses.Ranger;
+import dndcompanion.character.chrclasses.Rogue;
+import dndcompanion.character.chrclasses.Sorcerer;
+import dndcompanion.character.chrclasses.Warlock;
+import dndcompanion.character.chrclasses.Wizard;
+import dndcompanion.character.chrraces.Dragonborn;
+import dndcompanion.character.chrraces.Dwarf;
+import dndcompanion.character.chrraces.Elf;
+import dndcompanion.character.chrraces.Gnome;
+import dndcompanion.character.chrraces.HalfElf;
+import dndcompanion.character.chrraces.HalfOrc;
+import dndcompanion.character.chrraces.Halfling;
+import dndcompanion.character.chrraces.Human;
+import dndcompanion.character.chrraces.Race;
+import dndcompanion.character.chrraces.Subrace;
+import dndcompanion.character.chrraces.Tiefling;
 
 /**
  * Class used for testing all of the DNDCompanion classes.
@@ -81,8 +78,9 @@ public class TestCompanion {
 	public void testRaceObjectCreation() {
 		Race object;	
 		object = new Dragonborn();
-		object = new DwarfHill();
-		object = new DwarfMountain();
+		object = new Dwarf();
+		object = new Dwarf("Hill");
+		object = new Dwarf("Mountain");
 		object = new ElfHigh();
 		object = new ElfWood();
 		object = new GnomeDeep();
@@ -160,7 +158,7 @@ public class TestCompanion {
 	
 	@Test
 	public void testSubraceMethods() {
-		Subrace object = new ElfWood();
+		Subrace object = new Elf("Wood");
 		assertEquals(object.getSubrace(), "Wood");
 		String testStr = "Elf" + "{\n\t" 
 		        + "subrace=" + "Wood" + "\n\t" 

@@ -1,8 +1,9 @@
-package DNDCompanion.character;
+package dndcompanion.character;
 
-import DNDCompanion.character.chrclasses.CharacterClass;
-import DNDCompanion.character.chrraces.Race;
 import java.io.Serializable; // Allows you to save and load the char
+
+import dndcompanion.character.chrclasses.CharacterClass;
+import dndcompanion.character.chrraces.Race;
 
 /**
  * Class for the storing of character data from GUI.

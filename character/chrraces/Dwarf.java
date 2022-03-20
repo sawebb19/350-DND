@@ -1,13 +1,14 @@
-package DNDCompanion.character.chrraces;
+package dndcompanion.character.chrraces;
 
 /**
  * Class to represent the Dwarf Race.
 
- * @author Sam Webb
+ * @author Sam Webb 
+ * @author Nick Ford
  *
  */
 @SuppressWarnings("serial")
-public abstract class Dwarf extends Subrace {
+public class Dwarf extends Subrace {
 
 	/**
 	 * Default Constructor for the class.
@@ -19,5 +20,16 @@ public abstract class Dwarf extends Subrace {
         this.size = "Medium";
         this.speed = 25;
         this.langs = new String[]{"Common", "Dwarvish"};
+    }
+    
+    public Dwarf(String subrace) {
+    	this();
+    	if (subrace.equals("Hill")) {
+    		this.mods[4] = 1; // +1 Wisdom
+    		this.kind = "Hill";
+    	}else if (subrace.equals("Mountain")) {
+    		this.mods[0] = 2; // +2 Strength
+            this.kind = "Mountain";
+    	}
     }
 }

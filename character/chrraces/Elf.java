@@ -1,13 +1,14 @@
-package DNDCompanion.character.chrraces;
+package dndcompanion.character.chrraces;
 
 /**
  * Class to represent the Elf Race.
 
  * @author Sam Webb
+ * @author Nick Ford
  *
  */
 @SuppressWarnings("serial")
-public abstract class Elf extends Subrace {
+public class Elf extends Subrace {
 
 	/**
 	 * Default Constructor for the class.
@@ -19,5 +20,18 @@ public abstract class Elf extends Subrace {
         this.size = "Medium";
         this.speed = 30;
         this.langs = new String[]{"Common", "Elvish"};
+    }
+    
+    public Elf(String subrace) {
+    	this();
+    	if (subrace.equals("High")) {
+    		this.mods[3] = 1; // +1 Intelligence
+            // +1 Language
+            this.kind = "High";
+    	}else if (subrace.equals("Wood")) {
+    		this.mods[4] = 1; // +1 Wisdom
+            this.speed = 35; // +5 speed
+            this.kind = "Wood";
+    	}
     }
 }
