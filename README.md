@@ -12,8 +12,8 @@ Sam's Notes:
 > Alignment is now Strings istead of ints. Enums and ints were dumb ideas.
 
 Nick's Notes:
-> Character Sheet and Editor are how they will be barring minor changes to location of a few components. Nothing funciton will change.
+> Subraces now work through constructors in their respective race class (including humans and dragonborn). Next is subclasses in the same way.
 
-> You can switch back and forth between GUIs with the window menu. 
+> I also did some work with the file choosing system for opening a saving a file. Streamlined to open/save in the ExampleChars folder.
 
-> We'll need to do code coverage on everything but the guis basically. That's a job for tomorrow night.
+> I created an App class to later streamline starting the program. Having a centralized main method allows for later jarring. The mains for the Gui classes are still there for testing but I plan to remove them before release

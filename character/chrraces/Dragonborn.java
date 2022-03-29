@@ -6,6 +6,7 @@ import java.util.Arrays;
  * Class to represent the Dragonborn Race.
 
  * @author Sam Webb
+ * @author Nick Ford
  *
  */
 @SuppressWarnings("serial")
@@ -30,15 +31,18 @@ public class Dragonborn extends Race {
      */
     public Dragonborn() {
         this.name = "Dragonborn";
-        this.subraces = null;
+        this.subraces = new String[] {"Brass", "Bronze", "Copper", "Gold", "Silver", "Black", "Blue", "Green", "Red", "White"};
         this.mods[0] = 2; // +2 Strength
         this.mods[5] = 1; // +1 Charisma
         this.size = "Medium";
         this.speed = 30;
-        this.langs = new String[]{"Common", "Draconic"};
-        
+        this.langs = new String[]{"Common", "Draconic"};   
     }
 
+    public Dragonborn(String ancestry) {
+    	this();
+    	setAncestry(ancestry);
+    }
     
     /** 
      * getter for the dragonborn ancestry.

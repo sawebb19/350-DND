@@ -13,7 +13,7 @@ public class Halfling extends Subrace {
 	/**
 	 * Default Constructor.
 	 */
-    protected Halfling() {
+	public Halfling() {
         this.name = "Halfling";
         this.subraces = new String[]{"Lightfoot", "Stout"};
         this.mods[1] = 2; // +2 Dexterity

@@ -186,6 +186,86 @@ public class DndChar implements Serializable {
     	return player;
     }
     
+    /*
+     * setters for each field
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
+
+    public void setCharClass(CharacterClass charClass) {
+        this.charClass = charClass;
+    }
+    
+    public void setStats(int[] stats) {
+    	this.stats = stats;
+    }
+    
+    public void setLevel(int level) {
+    	this.level = level;
+    }
+    
+    public void setExp(int exp) {
+    	this.exp = exp;
+    }
+
+    public void setAlignment(String ethic, String moral) {
+        this.ethicalAlign = ethic;
+        this.moralAlign = moral ;
+    }
+    
+    public void setSkills(String skills) {
+    	this.skills= skills;
+    }
+    
+    public void setBackground(String bg) {
+    	this.background = bg;
+    }
+    
+    public void setTraits(String traits) {
+    	this.traits = traits;
+    }
+    
+    public void setIdeals(String ideals) {
+    	this.ideals = ideals;
+    }
+    
+    public void setBonds(String bonds) {
+    	this.bonds = bonds;
+    }
+    
+    public void setFlaws(String flaws) {
+    	this.flaws= flaws ;
+    }
+    
+    public void setArmor(int ac) {
+    	this.armor = ac;
+    }
+    
+    public void setMaxHp(int hp) {
+    	this.maxHp = hp ;
+    }
+
+    public void setFeatures(String features) {
+    	this.features = features;
+    }
+    
+    public void setProfs(String profs) {
+    	this.profs = profs;
+    }
+    
+    public void setEquip(String equip) {
+    	this.equipment = equip;
+    }
+    
+    public void setPlayer(String player) {
+    	this.player = player;
+    }
+    
     //    public String toString(){
     //        return
     //        "name=" + this.name + "\n" +

@@ -13,7 +13,7 @@ public class Elf extends Subrace {
 	/**
 	 * Default Constructor for the class.
 	 */
-    protected Elf() {
+	public Elf() {
         this.name = "Elf";
         this.subraces = new String[]{"High", "Wood"};
         this.mods[1] = 2; // +2 Dexterity

@@ -13,7 +13,7 @@ public class Dwarf extends Subrace {
 	/**
 	 * Default Constructor for the class.
 	 */
-    protected Dwarf() {
+    public Dwarf() {
         this.name = "Dwarf";
         this.subraces = new String[]{"Hill", "Mountain"};
         this.mods[2] = 2; // +2 Constitution

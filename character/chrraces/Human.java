@@ -6,6 +6,7 @@ import java.util.Arrays;
  * Class to represent the Human Race.
 
  * @author Sam Webb
+ * @author Nick Ford
  *
  */
 @SuppressWarnings("serial")
@@ -29,11 +30,17 @@ public class Human extends Race {
      */
     public Human() {
         this.name = "Human";
-        this.subraces = null;
+        this.subraces = new String[] {"Calishite", "Chondathan", "Damaran", "Illuskan",
+        		"Mulan", "Rashemi", "Shou", "Tethyrian", "Turami"};
         this.mods = new int[]{1, 1, 1, 1, 1, 1}; // +1 All
         this.size = "Medium";
         this.speed = 30;
         this.langs = new String[]{"Common"};
+    }
+    
+    public Human(String ethnic) {
+    	this();
+    	setEthnicity(ethnic);
     }
 
     

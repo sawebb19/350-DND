@@ -1272,7 +1272,7 @@ public class CharacterSheet extends JFrame implements ActionListener {
         getContentPane().add(passiveLabel);
 
         pack();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);        
     }
 
@@ -1291,7 +1291,7 @@ public class CharacterSheet extends JFrame implements ActionListener {
         }
         if (src == openChar) {
             // Code for opening a character
-            JFileChooser sel = new JFileChooser();
+            JFileChooser sel = new JFileChooser(System.getProperty("user.dir") + "\\src\\dndcompanion\\ExampleChars");
             int status = sel.showOpenDialog(null);
             if (status == JFileChooser.APPROVE_OPTION) {
                 String path;
@@ -1308,17 +1308,20 @@ public class CharacterSheet extends JFrame implements ActionListener {
                         charName.setText(temp.getName());
                         
                         //character race
-                        String race = temp.getRace().getName(); 
+                        
                         if (temp.getRace() == null) {
                         	raceText.setText("");
-                        } else if (temp.getRace() instanceof Dragonborn 
+                        } else {
+                        	String race = temp.getRace().getName(); 
+                        	if (temp.getRace() instanceof Dragonborn 
                         		|| temp.getRace() instanceof Human 
                         		|| temp.getRace() instanceof HalfElf 
                         		|| temp.getRace() instanceof HalfOrc 
                         		|| temp.getRace() instanceof Tiefling) {
-                        	raceText.setText(race);
-                        } else {
-                        	raceText.setText(temp.getRace().getSubrace() + " " + race);
+                        		raceText.setText(race);
+                        	} else {
+                        		raceText.setText(temp.getRace().getSubrace() + " " + race);
+                        	}
                         }
                         
                         //character class and level
@@ -1720,7 +1723,8 @@ public class CharacterSheet extends JFrame implements ActionListener {
                         hitDice.setText(temp.getLevel() + "d" + dieSize);
                         
                         //initiative
-                        initiative.setText("" + df.format(dexMod.getText()));
+                        String initStr = df.format(Integer.parseInt(dexMod.getText()));
+                        initiative.setText(initStr);
                         
                     } catch (Exception ex) {
                         ex.printStackTrace();
@@ -1739,11 +1743,9 @@ public class CharacterSheet extends JFrame implements ActionListener {
     }
 
     
-    /** 
-     * Method used to start the application.
-
-     * @param args main method argument
-     */
+    /////////////////////////////////////////////////////////////////////////////
+    ///////////// Only here for testing purposes. Remove at Release /////////////
+    /////////////////////////////////////////////////////////////////////////////
     public static void main(String[] args) {
         new CharacterSheet();
     }

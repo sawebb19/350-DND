@@ -13,7 +13,7 @@ public class Gnome extends Subrace {
 	/**
 	 * Default Constructor for the class.
 	 */
-    protected Gnome() {
+	public Gnome() {
         this.name = "Gnome";
         this.subraces = new String[]{"Deep", "Rock"};
         this.mods[3] = 2; // +2 Intelligence
