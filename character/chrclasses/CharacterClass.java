@@ -1,12 +1,14 @@
 package dndcompanion.character.chrclasses;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
  * Interface for all dnd class classes.
 
  * @author Sam Webb
+ * @author Nick Ford
  *
  */
 public abstract class
@@ -17,6 +19,8 @@ CharacterClass implements Serializable {
     protected String name;
     protected int hit;
     protected int[] saves = {0, 0, 0, 0, 0, 0};
+    protected String[] features = {"", "", "", "", "", "", "", "", "", "", 
+                                   "", "", "", "", "", "", "", "", "", ""};
 
     protected CharacterClass() {
     }
@@ -87,6 +91,24 @@ CharacterClass implements Serializable {
         this.saves = saves;
     }
 
+    /**
+     * Adds a feature to the features array list.
+
+     * @param 
+     */
+    public void addFeature(String feature, int level) {
+        features[level-1] = feature;
+    }
+    
+    /**
+     * Adds a feature to the features array list.
+
+     * @param 
+     */
+    public String[] getFeatures() {
+        return this.features;
+    }
+    
     
     /** 
      * Overriden toString() method for CharacterClass.

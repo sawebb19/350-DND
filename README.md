@@ -17,3 +17,5 @@ Nick's Notes:
 > I also did some work with the file choosing system for opening a saving a file. Streamlined to open/save in the ExampleChars folder.
 
 > I created an App class to later streamline starting the program. Having a centralized main method allows for later jarring. The mains for the Gui classes are still there for testing but I plan to remove them before release
+
+> Classes with subclasses implemented: Barbarian, Fighter, Rogue
