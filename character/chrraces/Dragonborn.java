@@ -10,7 +10,7 @@ import java.util.Arrays;
  *
  */
 @SuppressWarnings("serial")
-public class Dragonborn extends Race {
+public class Dragonborn extends Subrace {
 
     private String ancestry;
     /* Possible ancestries:
@@ -50,7 +50,7 @@ public class Dragonborn extends Race {
      * @return String the dragonborn ancestry as a String.
      */
     public String getAncestry() {
-        return ancestry;
+        return this.ancestry;
     }
 
     
@@ -83,6 +83,6 @@ public class Dragonborn extends Race {
 
 	@Override
 	public String getSubrace() {
-		return null;
+		return getAncestry();
 	}
 } 

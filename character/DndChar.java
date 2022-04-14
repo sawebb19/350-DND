@@ -14,8 +14,7 @@ import dndcompanion.character.chrraces.Race;
 @SuppressWarnings("serial")
 public class DndChar implements Serializable {
     private String name;
-    private String ethicalAlign; // L: Lawful, N: Neutral, C: Chaotic
-    private String moralAlign; // G: Good, N: Neutral, E: Evil
+    private String alignment;
     private Race race;
     private CharacterClass charClass;
     private int level;
@@ -65,8 +64,7 @@ public class DndChar implements Serializable {
      * @param player Name of person who plays the character.
      */
     public DndChar(String name,
-                    String ethicalAlign, 
-                    String moralAlign, 
+                    String alignment,
                     Race race,
                     CharacterClass charClass,
                     int level,
@@ -81,8 +79,7 @@ public class DndChar implements Serializable {
                     String player) {
 
         this.name = name;
-        this.ethicalAlign = ethicalAlign;
-        this.moralAlign = moralAlign;
+        this.alignment = alignment;
         this.race = race;
         this.charClass = charClass;
         this.level = level;
@@ -135,7 +132,7 @@ public class DndChar implements Serializable {
     }
 
     public String getAlignment() {
-        return ethicalAlign + moralAlign;
+        return alignment;
     }
     
     public String getSkills() {
@@ -213,9 +210,8 @@ public class DndChar implements Serializable {
     	this.exp = exp;
     }
 
-    public void setAlignment(String ethic, String moral) {
-        this.ethicalAlign = ethic;
-        this.moralAlign = moral ;
+    public void setAlignment(String alignment) {
+        this.alignment = alignment;
     }
     
     public void setSkills(String skills) {
