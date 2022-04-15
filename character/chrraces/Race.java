@@ -87,7 +87,6 @@ public abstract class Race implements Serializable {
     public int[] getMods() {
         return this.mods;
     }
-
     
     /** 
      * setter for race name.

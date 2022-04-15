@@ -10,7 +10,7 @@ import java.util.Arrays;
  *
  */
 @SuppressWarnings("serial")
-public class Human extends Race {
+public class Human extends Subrace {
     
     private String ethnic;
     /* Possible ethnicies:

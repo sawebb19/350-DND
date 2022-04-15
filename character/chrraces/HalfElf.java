@@ -18,7 +18,7 @@ public class HalfElf extends Race {
         this.subraces = null;
         this.size = "Medium";
         this.speed = 30;
-        this.langs = new String[]{"Cmoon", "Elvish"}; // +1 of choice
+        this.langs = new String[]{"Common", "Elvish"}; // +1 of choice
 
     }
 
