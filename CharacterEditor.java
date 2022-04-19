@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Random;
+import java.util.Arrays;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
@@ -26,29 +27,8 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import dndcompanion.character.DndChar;
-import dndcompanion.character.chrclasses.Barbarian;
-import dndcompanion.character.chrclasses.Bard;
-import dndcompanion.character.chrclasses.CharacterClass;
-import dndcompanion.character.chrclasses.Cleric;
-import dndcompanion.character.chrclasses.Druid;
-import dndcompanion.character.chrclasses.Fighter;
-import dndcompanion.character.chrclasses.Monk;
-import dndcompanion.character.chrclasses.Paladin;
-import dndcompanion.character.chrclasses.Ranger;
-import dndcompanion.character.chrclasses.Rogue;
-import dndcompanion.character.chrclasses.Sorcerer;
-import dndcompanion.character.chrclasses.Warlock;
-import dndcompanion.character.chrclasses.Wizard;
-import dndcompanion.character.chrraces.Dragonborn;
-import dndcompanion.character.chrraces.Dwarf;
-import dndcompanion.character.chrraces.Elf;
-import dndcompanion.character.chrraces.Gnome;
-import dndcompanion.character.chrraces.HalfElf;
-import dndcompanion.character.chrraces.HalfOrc;
-import dndcompanion.character.chrraces.Halfling;
-import dndcompanion.character.chrraces.Human;
-import dndcompanion.character.chrraces.Race;
-import dndcompanion.character.chrraces.Tiefling;
+import dndcompanion.character.chrclasses.*;
+import dndcompanion.character.chrraces.*;
 
 /**
  * GUI Class for displaying a DndChar object for editing.
@@ -116,8 +96,6 @@ public class CharacterEditor extends JFrame implements ActionListener {
 	private JComboBox<String> classBox;
 	private JComboBox<String> lvlBox;
 
-	private JComboBox<String>[] boxes;
-
 	private JTextArea idealsTextArea;
 	private JTextArea bondsTextArea;
 	private JTextArea flawsTextArea;
@@ -165,9 +143,15 @@ public class CharacterEditor extends JFrame implements ActionListener {
 	private JSeparator separator3;
 	private JSeparator separator4;
 
-	private static final String[] CLASS_NAMES = {"", "Barbarian","Bard","Cleric","Druid","Fighter","Monk","Paladin","Ranger","Rogue","Sorcerer","Warlock","Wizard"};
-	private static final String[] RACE_NAMES = {"", "Dragonborn","Dwarf","Elf","Gnome","Half-Elf","Halfling","Half-Orc","Human","Tiefling"};
-	private static final String[] ALIGNMENTS = {"LG", "LN", "LE", "NG", "NN", "NE", "CG", "CN", "CE"};
+	private static final String[] CLASS_NAMES = { "", "Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk",
+			"Paladin", "Ranger", "Rogue", "Sorcerer", "Warlock", "Wizard" };
+	private static final String[] RACE_NAMES = { "", "Dragonborn", "Dwarf", "Elf", "Gnome", "Half-Elf", "Halfling",
+			"Half-Orc", "Human", "Tiefling" };
+	private static final String[] ALIGNMENTS = { "LG", "LN", "LE", "NG", "NN", "NE", "CG", "CN", "CE" };
+
+	private static final String[] SKILLS = { "Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception",
+			"History", "Insight", "Intimidation", "Investigation", "Medicine", "Nature", "Perception", "Performance", 
+			"Persuasion", "Religion", "Sleight of Hand", "Stealth", "Survival" };
 
 	/**
 	 * Constructor for Character editor GUI.
@@ -361,9 +345,10 @@ public class CharacterEditor extends JFrame implements ActionListener {
 		skillRadio18.setBounds(1214, 335, 109, 23);
 		getContentPane().add(skillRadio18);
 
-		skillRadios = new JRadioButton[]{skillRadio1, skillRadio2, skillRadio3, skillRadio4, skillRadio5, skillRadio6, 
-			skillRadio7, skillRadio8, skillRadio9, skillRadio10, skillRadio11, skillRadio12, skillRadio13, skillRadio14,
-			skillRadio15, skillRadio16, skillRadio17, skillRadio18};
+		skillRadios = new JRadioButton[] { skillRadio1, skillRadio2, skillRadio3, skillRadio4, skillRadio5, skillRadio6,
+				skillRadio7, skillRadio8, skillRadio9, skillRadio10, skillRadio11, skillRadio12, skillRadio13,
+				skillRadio14,
+				skillRadio15, skillRadio16, skillRadio17, skillRadio18 };
 
 		// Alignment header + radio button for each align.
 		alignmentLabel = new JLabel("Alignment");
@@ -417,9 +402,9 @@ public class CharacterEditor extends JFrame implements ActionListener {
 		getContentPane().add(alignRadioCe);
 		alignGroup.add(alignRadioCe);
 
-		alignRadios = new JRadioButton[]{alignRadioLg, alignRadioLn, alignRadioLe,
-											alignRadioNg, alignRadioNn, alignRadioNe,
-											alignRadioCg, alignRadioCn, alignRadioCe};
+		alignRadios = new JRadioButton[] { alignRadioLg, alignRadioLn, alignRadioLe,
+				alignRadioNg, alignRadioNn, alignRadioNe,
+				alignRadioCg, alignRadioCn, alignRadioCe };
 
 		// separate skills from stats
 		separator2 = new JSeparator(SwingConstants.HORIZONTAL);
@@ -463,7 +448,7 @@ public class CharacterEditor extends JFrame implements ActionListener {
 		chaText.setBounds(1058, 114, 40, 32);
 		getContentPane().add(chaText);
 
-		texts = new JTextField[]{strText, dexText, conText, intText, wisText, chaText};
+		texts = new JTextField[] { strText, dexText, conText, intText, wisText, chaText };
 
 		strLabel = new JLabel("STR");
 		strLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -939,7 +924,38 @@ public class CharacterEditor extends JFrame implements ActionListener {
 			}
 		}
 		if (src == raceBox) {
-			raceSet(raceBox.getSelectedIndex());
+			int n = raceBox.getSelectedIndex();
+			subraceBox.removeAllItems();
+			subraceBox.addItem("");
+			subraceLabel.setText("Subrace");
+			if (n == 1) {
+				String[] list = new String[] { "Brass", "Bronze", "Copper", "Gold",
+						"Silver", "Black", "Blue", "Green", "Red", "White" };
+				for (int i = 0; i < list.length; i++) {
+					subraceBox.addItem(list[i]);
+				}
+				subraceLabel.setText("Ancestry");
+			} else if (n == 2) {
+				subraceBox.addItem("Hill");
+				subraceBox.addItem("Mountain");
+			} else if (n == 3) {
+				subraceBox.addItem("High");
+				subraceBox.addItem("Wood");
+			} else if (n == 4) {
+				subraceBox.addItem("Deep");
+				subraceBox.addItem("Rock");
+			} else if (n == 6) {
+				subraceBox.addItem("Lightfoot");
+				subraceBox.addItem("Stout");
+			} else if (n == 8) {
+				String[] list = new String[] { "Calishite", "Chondathan",
+						"Damaran", "Illuskan", "Mulan", "Rashemi", "Shou",
+						"Tethyrian", "Turami" };
+				for (int i = 0; i < list.length; i++) {
+					subraceBox.addItem(list[i]);
+				}
+				subraceLabel.setText("Ethnicity");
+			}
 		}
 
 		if (src == switchWindow) {
@@ -948,10 +964,7 @@ public class CharacterEditor extends JFrame implements ActionListener {
 		}
 
 		if (src == genRestart) {
-			Random rand = new Random();
-			int n = rand.nextInt(8) + 1;
-			System.out.println(n);
-			raceSet(n);
+			loadChar(null, true, false);
 		}
 
 		if (src == genCont) {
@@ -959,178 +972,140 @@ public class CharacterEditor extends JFrame implements ActionListener {
 		}
 	}
 
-	private void raceSet(int n) {
-		subraceBox.removeAllItems();
-		subraceBox.addItem("");
-		subraceLabel.setText("Subrace");
-		if (n == 1) {
-			String[] list = new String[] { "Brass", "Bronze", "Copper", "Gold",
-					"Silver", "Black", "Blue", "Green", "Red", "White" };
-			for (int i = 0; i < list.length; i++) {
-				subraceBox.addItem(list[i]);
-			}
-			subraceLabel.setText("Ancestry");
-		} else if (n == 2) {
-			subraceBox.addItem("Hill");
-			subraceBox.addItem("Mountain");
-		} else if (n == 3) {
-			subraceBox.addItem("High");
-			subraceBox.addItem("Wood");
-		} else if (n == 4) {
-			subraceBox.addItem("Deep");
-			subraceBox.addItem("Rock");
-		} else if (n == 6) {
-			subraceBox.addItem("Lightfoot");
-			subraceBox.addItem("Stout");
-		} else if (n == 8) {
-			String[] list = new String[] { "Calishite", "Chondathan",
-					"Damaran", "Illuskan", "Mulan", "Rashemi", "Shou",
-					"Tethyrian", "Turami" };
-			for (int i = 0; i < list.length; i++) {
-				subraceBox.addItem(list[i]);
-			}
-			subraceLabel.setText("Ethnicity");
-		}
-		subraceBox.updateUI();
-	}
-
 	private void loadChar(String path, boolean randomize, boolean persist) {
-		try (FileInputStream file = new FileInputStream(path);
-				ObjectInputStream in = new ObjectInputStream(file);) {
+		DndChar temp = new DndChar();
+		String inputRace;
+		String[] subraces;
+		int n = 0; // General purpose int used throughout this function
+		Random rand = new Random();
 
-			DndChar temp = (DndChar) in.readObject();
-
+		if (!randomize) {
+			try {
+				FileInputStream file = new FileInputStream(path);
+				ObjectInputStream in = new ObjectInputStream(file);
+				temp = (DndChar) in.readObject();
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 			// character name
 			charNameText.setText(temp.getName());
+		} else {
+			n = rand.nextInt(0, 8);
+			temp.raceGen(n);
+			n = rand.nextInt(0, 12);
+			temp.classGen(n);
+			temp.setLevel(1);
+			n = rand.nextInt(0, 9);
+			temp.setAlignment(ALIGNMENTS[n]);
+			temp.setExp(0);
 
-			// character race
-			String inputRace = temp.getRace().getName();
-			int n = 0;
-
-			for(int i = 1; i < RACE_NAMES.length - 1; i++){
-				if(RACE_NAMES[i].equals(inputRace)){
-					n = i;
+			int[] newStats = new int[] { 0, 0, 0, 0, 0, 0 };
+			for (int i = 0; i < texts.length; i++) {
+				int[] rolls = new int[] { 0, 0, 0, 0 };
+				for (int j = 0; j < 4; j++) {
+					rolls[j] = rand.nextInt(1, 6);
 				}
+				newStats[i] = Arrays.stream(rolls).sum() - Arrays.stream(rolls).min().getAsInt();
+			}
+			temp.setStats(newStats);
+
+			String newSkills = "";
+			for (int i = 0; i < 4; i++) {
+				newSkills += " " + SKILLS[rand.nextInt(0, SKILLS.length - 1)];
 			}
 
-			raceBox.setSelectedIndex(n);
-
-			// checks for subraces and sets up the comboBox if applicable
-			String[] subraces;
-			subraceLabel.setText("Subrace");
-			switch (n) {
-				default:
-				case 0:
-				case 5:
-				case 7:
-				case 9:
-					subraces = new String[] { "N/A" };
-					break;
-				case 1:
-					subraces = new String[] { "", "Brass",
-							"Bronze", "Copper", "Gold",
-							"Silver", "Black", "Blue",
-							"Green", "Red", "White" };
-					subraceLabel.setText("Ancestry");
-					break;
-				case 2:
-					subraces = new String[] { "", "Hill",
-							"Mountain" };
-					break;
-				case 3:
-					subraces = new String[] { "", "High", "Wood" };
-					break;
-				case 4:
-					subraces = new String[] { "", "Deep", "Rock" };
-					break;
-				case 6:
-					subraces = new String[] { "", "Lightfoot",
-							"Stout" };
-					break;
-				case 8:
-					subraces = new String[] { "", "Calishite", "Chondathan",
-							"Damaran", "Illuskan", "Mulan", "Rashemi", "Shou",
-							"Tethyrian", "Turami" };
-					subraceLabel.setText("Ethnicity");
-					break;
-			}
-
-			System.out.println(temp.getRace().getSubrace());
-
-			for(int i = 1; i < subraces.length; i++){
-				if(subraces[i].equals(temp.getRace().getSubrace())){
-					n = i;
-				}
-			}
-
-			subraceBox = new JComboBox<>(subraces);
-			subraceBox.setSelectedIndex(n); // This should work but I haven't successfully tested it yet
-
-			// character class
-			String inputClass = temp.getCharClass().getName();
-			for (int i = 1; i < CLASS_NAMES.length - 1; i++) {
-				if (CLASS_NAMES[i].equals(inputClass)) {
-					n = i;
-				}
-			}
-			classBox.setSelectedIndex(n);
-
-			// char level
-			lvlBox.setSelectedIndex(temp.getLevel() - 1);
-
-			// char alignment
-			String alignment = temp.getAlignment();
-
-			for(int i = 0; i < ALIGNMENTS.length; i++){
-				if(ALIGNMENTS[i].equals(alignment)){
-					this.alignRadios[i].doClick();
-				}
-			}
-
-			// char experience
-			xpText.setText("" + temp.getExp());
-
-			// skill radios
-			// deselect all skills and select right ones
-
-			for(int i = 0; i < skillRadios.length; i++){
-				if(skillRadios[i].isSelected()){
-					skillRadios[i].doClick();
-				}
-
-				if(temp.getSkills().contains(skillRadios[i].getText())){
-					skillRadios[i].doClick();
-				}
-			}
-
-			// all text areas
-			traitsTextArea.setText(temp.getTraits());
-			idealsTextArea.setText(temp.getIdeals());
-			bondsTextArea.setText(temp.getBonds());
-			flawsTextArea.setText(temp.getFlaws());
-			featuresTextArea.setText(temp.getFeatures());
-			equipTextArea.setText(temp.getEquip());
-			profTextArea.setText(temp.getProfs());
-
-			// set stats
-			for(int i = 0; i < texts.length; i++){
-				texts[i].setText("" + temp.getStats()[i]);
-			}
-
-			// set ac
-			acText.setText("" + temp.getArmor());
-
-			// set max HP
-			hpText.setText("" + temp.getMaxHp());
-
-			playerNameText.setText(temp.getPlayer());
-
-			bgText.setText(temp.getBackground());
-		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, "Not a valid "
-					+ ".char file");
-
+			temp.setSkills(newSkills);
 		}
+
+		// Get race
+		inputRace = temp.getRace().getName();
+		for (int i = 1; i < RACE_NAMES.length - 1; i++) {
+			if (RACE_NAMES[i].equals(inputRace)) {
+				n = i;
+			}
+		}
+
+		// Set race in GUI
+		raceBox.setSelectedIndex(n);
+
+		// checks for subraces and sets up the comboBox if applicable
+		subraces = temp.getRace().getSubraces();
+		subraceBox.removeAllItems();
+		subraceBox.addItem("");
+		if (subraces == null) {
+			n = -1;
+		} else {
+			for (int i = 0; i < subraces.length; i++) {
+				subraceBox.addItem(subraces[i]);
+				if (subraces[i].equals(temp.getRace().getSubrace())) {
+					n = i;
+				}
+			}
+		}
+		subraceBox.setSelectedIndex(n + 1);
+
+		// Get character class
+		String inputClass = temp.getCharClass().getName();
+		for (int i = 1; i < CLASS_NAMES.length - 1; i++) {
+			if (CLASS_NAMES[i].equals(inputClass)) {
+				n = i;
+			}
+		}
+
+		// Set character class in GUI
+		classBox.setSelectedIndex(n);
+
+		// char level
+		lvlBox.setSelectedIndex(temp.getLevel() - 1);
+
+		// char alignment
+		String alignment = temp.getAlignment();
+
+		for (int i = 0; i < ALIGNMENTS.length; i++) {
+			if (ALIGNMENTS[i].equals(alignment)) {
+				this.alignRadios[i].doClick();
+			}
+		}
+
+		// char experience
+		xpText.setText("" + temp.getExp());
+
+		// skill radios
+		// deselect all skills and select right ones
+
+		for (int i = 0; i < skillRadios.length; i++) {
+			if (skillRadios[i].isSelected()) {
+				skillRadios[i].doClick();
+			}
+
+			if (temp.getSkills().contains(skillRadios[i].getText())) {
+				skillRadios[i].doClick();
+			}
+		}
+
+		// all text areas
+		traitsTextArea.setText(temp.getTraits());
+		idealsTextArea.setText(temp.getIdeals());
+		bondsTextArea.setText(temp.getBonds());
+		flawsTextArea.setText(temp.getFlaws());
+		featuresTextArea.setText(temp.getFeatures());
+		equipTextArea.setText(temp.getEquip());
+		profTextArea.setText(temp.getProfs());
+
+		// set stats
+		for (int i = 0; i < texts.length; i++) {
+			texts[i].setText("" + temp.getStats()[i]);
+		}
+
+		// set ac
+		acText.setText("" + temp.getArmor());
+
+		// set max HP
+		hpText.setText("" + temp.getMaxHp());
+
+		playerNameText.setText(temp.getPlayer());
+
+		bgText.setText(temp.getBackground());
 	}
 
 	/////////////////////////////////////////////////////////////////////////////

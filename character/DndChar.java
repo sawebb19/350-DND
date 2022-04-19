@@ -2,8 +2,9 @@ package dndcompanion.character;
 
 import java.io.Serializable; // Allows you to save and load the char
 
-import dndcompanion.character.chrclasses.CharacterClass;
-import dndcompanion.character.chrraces.Race;
+import dndcompanion.character.chrclasses.*;
+import dndcompanion.character.chrraces.*;
+import java.util.Random;
 
 /**
  * Class for the storing of character data from GUI.
@@ -261,6 +262,53 @@ public class DndChar implements Serializable {
     public void setPlayer(String player) {
     	this.player = player;
     }
+
+    public void raceGen(int n){
+        Random rand = new Random();
+        switch(n){
+            default:
+            case 0: this.race = new Dragonborn(); 
+                    this.race.setSubrace(this.race.getSubraces()[rand.nextInt(0,9)]);
+                    break;
+            case 1: this.race = new Dwarf(); 
+                    this.race.setSubrace(this.race.getSubraces()[rand.nextInt(0,1)]);
+                    break;
+            case 2: this.race = new Elf(); 
+                    this.race.setSubrace(this.race.getSubraces()[rand.nextInt(0,1)]);
+                    break;
+            case 3: this.race = new Gnome(); 
+                    this.race.setSubrace(this.race.getSubraces()[rand.nextInt(0,1)]);
+                    break;
+            case 4: this.race = new HalfElf(); break;
+            case 5: this.race = new Halfling(); 
+                    this.race.setSubrace(this.race.getSubraces()[rand.nextInt(0,1)]);
+                    break;
+            case 6: this.race = new HalfOrc(); break;
+            case 7: this.race = new Human(); 
+                    this.race.setSubrace(this.race.getSubraces()[rand.nextInt(0,8)]);
+                    break;
+            case 8: this.race = new Tiefling(); break;
+        }
+    }
+
+    public void classGen(int n){
+        switch(n){
+            default:
+            case 0: this.charClass = new Barbarian(); break;
+            case 1: this.charClass = new Bard(); break;
+            case 2: this.charClass = new Cleric(); break;
+            case 3: this.charClass = new Druid(); break;
+            case 4: this.charClass = new Fighter(); break;
+            case 5: this.charClass = new Monk(); break;
+            case 6: this.charClass = new Paladin(); break;
+            case 7: this.charClass = new Ranger(); break;
+            case 8: this.charClass = new Rogue(); break;
+            case 9: this.charClass = new Sorcerer(); break;
+            case 10: this.charClass = new Warlock(); break;
+            case 11: this.charClass = new Wizard(); break;
+        }
+    }
+}
     
     //    public String toString(){
     //        return
@@ -278,4 +326,3 @@ public class DndChar implements Serializable {
 //    public static void main(String[] args) {
 //    	
 //    }
-}
