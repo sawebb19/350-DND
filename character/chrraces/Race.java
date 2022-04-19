@@ -138,11 +138,6 @@ public abstract class Race implements Serializable {
         this.mods = mods;
     }
 
-    /**
-     * abstract method for getting the type of subrace.
-
-     * @return String 
-     */
     public String getSubrace(){
         return this.kind;
     }

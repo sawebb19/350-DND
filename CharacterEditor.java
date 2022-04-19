@@ -1101,6 +1101,7 @@ public class CharacterEditor extends JFrame implements ActionListener {
 		acText.setText("" + temp.getArmor());
 
 		// set max HP
+		temp.setMaxHp(temp.getCharClass().getHit() + temp.getStats()[2]);
 		hpText.setText("" + temp.getMaxHp());
 
 		playerNameText.setText(temp.getPlayer());
