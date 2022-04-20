@@ -1,7 +1,6 @@
 package dndcompanion.character.chrclasses;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -97,7 +96,7 @@ CharacterClass implements Serializable {
      * @param 
      */
     public void addFeature(String feature, int level) {
-        features[level-1] = feature;
+        features[level-1] += feature;
     }
     
     /**

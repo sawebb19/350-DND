@@ -795,40 +795,40 @@ public class CharacterEditor extends JFrame implements ActionListener {
 			temp.setSkills(skills);
 
 			CharacterClass charClass = null;
-			if (classBox.getSelectedIndex() == 0) {
+			if (classBox.getSelectedIndex() == 1) {
 				charClass = new Barbarian();
 			}
-			if (classBox.getSelectedIndex() == 1) {
+			if (classBox.getSelectedIndex() == 2) {
 				charClass = new Bard();
 			}
-			if (classBox.getSelectedIndex() == 2) {
+			if (classBox.getSelectedIndex() == 3) {
 				charClass = new Cleric();
 			}
-			if (classBox.getSelectedIndex() == 3) {
+			if (classBox.getSelectedIndex() == 4) {
 				charClass = new Druid();
 			}
-			if (classBox.getSelectedIndex() == 4) {
+			if (classBox.getSelectedIndex() == 5) {
 				charClass = new Fighter();
 			}
-			if (classBox.getSelectedIndex() == 5) {
+			if (classBox.getSelectedIndex() == 6) {
 				charClass = new Monk();
 			}
-			if (classBox.getSelectedIndex() == 6) {
+			if (classBox.getSelectedIndex() == 7) {
 				charClass = new Paladin();
 			}
-			if (classBox.getSelectedIndex() == 7) {
+			if (classBox.getSelectedIndex() == 8) {
 				charClass = new Ranger();
 			}
-			if (classBox.getSelectedIndex() == 8) {
+			if (classBox.getSelectedIndex() == 9) {
 				charClass = new Rogue();
 			}
-			if (classBox.getSelectedIndex() == 9) {
+			if (classBox.getSelectedIndex() == 10) {
 				charClass = new Sorcerer();
 			}
-			if (classBox.getSelectedIndex() == 10) {
+			if (classBox.getSelectedIndex() == 11) {
 				charClass = new Warlock();
 			}
-			if (classBox.getSelectedIndex() == 11) {
+			if (classBox.getSelectedIndex() == 12) {
 				charClass = new Wizard();
 			}
 			temp.setCharClass(charClass);
@@ -960,10 +960,13 @@ public class CharacterEditor extends JFrame implements ActionListener {
 	}
 
 	private void raceSet(int n) {
+	    subraceBox.updateUI();
 		subraceBox.removeAllItems();
 		subraceBox.addItem("");
 		subraceLabel.setText("Subrace");
+System.out.println(n);
 		if (n == 1) {
+System.out.println("Dragonborn");
 			String[] list = new String[] { "Brass", "Bronze", "Copper", "Gold",
 					"Silver", "Black", "Blue", "Green", "Red", "White" };
 			for (int i = 0; i < list.length; i++) {
@@ -971,18 +974,23 @@ public class CharacterEditor extends JFrame implements ActionListener {
 			}
 			subraceLabel.setText("Ancestry");
 		} else if (n == 2) {
+System.out.println("Dwarf");
 			subraceBox.addItem("Hill");
 			subraceBox.addItem("Mountain");
 		} else if (n == 3) {
+System.out.println("Elf");
 			subraceBox.addItem("High");
 			subraceBox.addItem("Wood");
 		} else if (n == 4) {
+System.out.println("Gnome");
 			subraceBox.addItem("Deep");
 			subraceBox.addItem("Rock");
 		} else if (n == 6) {
+System.out.println("Halfing");
 			subraceBox.addItem("Lightfoot");
 			subraceBox.addItem("Stout");
 		} else if (n == 8) {
+System.out.println("human");
 			String[] list = new String[] { "Calishite", "Chondathan",
 					"Damaran", "Illuskan", "Mulan", "Rashemi", "Shou",
 					"Tethyrian", "Turami" };
@@ -992,6 +1000,7 @@ public class CharacterEditor extends JFrame implements ActionListener {
 			subraceLabel.setText("Ethnicity");
 		}
 		subraceBox.updateUI();
+System.out.println("-END-");
 	}
 
 	private void loadChar(String path, boolean randomize, boolean persist) {

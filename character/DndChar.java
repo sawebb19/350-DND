@@ -8,7 +8,8 @@ import dndcompanion.character.chrraces.Race;
 /**
  * Class for the storing of character data from GUI.
 
- * @author Sam Webb and Nick Ford
+ * @author Sam Webb
+ * @author Nick Ford
  *
  */
 @SuppressWarnings("serial")
