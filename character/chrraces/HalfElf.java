@@ -21,10 +21,4 @@ public class HalfElf extends Race {
         this.langs = new String[]{"Common", "Elvish"}; // +1 of choice
 
     }
-
-	@Override
-	public String getSubrace() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

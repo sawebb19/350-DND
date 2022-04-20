@@ -8,7 +8,7 @@ package dndcompanion.character.chrraces;
  *
  */
 @SuppressWarnings("serial")
-public class Dwarf extends Subrace {
+public class Dwarf extends Race {
 
 	/**
 	 * Default Constructor for the class.

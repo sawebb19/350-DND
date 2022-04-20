@@ -15,6 +15,7 @@ public abstract class Race implements Serializable {
 
     protected String name;
     protected String[] subraces;
+    protected String kind;
     protected String[] langs;
     protected String size;
     protected int speed;
@@ -137,12 +138,13 @@ public abstract class Race implements Serializable {
         this.mods = mods;
     }
 
-    /**
-     * abstract method for getting the type of subrace.
+    public String getSubrace(){
+        return this.kind;
+    }
 
-     * @return String 
-     */
-    public abstract String getSubrace();
+    public void setSubrace(String kind){
+        this.kind = kind;
+    }
     
     
     /** 
@@ -158,5 +160,4 @@ public abstract class Race implements Serializable {
         + "langs=" + Arrays.toString(this.langs) + "\n\t" 
         + "mods=" + Arrays.toString(this.mods) + "\n}\n";
     }
-
 }

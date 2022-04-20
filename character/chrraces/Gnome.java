@@ -8,7 +8,7 @@ package dndcompanion.character.chrraces;
  *
  */
 @SuppressWarnings("serial")
-public class Gnome extends Subrace {
+public class Gnome extends Race {
 
 	/**
 	 * Default Constructor for the class.

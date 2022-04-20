@@ -8,7 +8,7 @@ package dndcompanion.character.chrraces;
  *
  */
 @SuppressWarnings("serial")
-public class Halfling extends Subrace {
+public class Halfling extends Race {
     
 	/**
 	 * Default Constructor.

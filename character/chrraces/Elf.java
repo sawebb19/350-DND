@@ -8,7 +8,7 @@ package dndcompanion.character.chrraces;
  *
  */
 @SuppressWarnings("serial")
-public class Elf extends Subrace {
+public class Elf extends Race {
 
 	/**
 	 * Default Constructor for the class.
