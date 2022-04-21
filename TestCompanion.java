@@ -233,7 +233,7 @@ public class TestCompanion {
 	 */
 	@RepeatedTest(20)
 	public void testDieMethods() {
-		Die cube = new Die(6);
+		RollingGUI cube = new RollingGUI(6);
 		int rollNum = cube.roll();
 		assertTrue(rollNum < 7 && rollNum > 0);
 	}

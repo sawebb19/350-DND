@@ -49,11 +49,11 @@ public class CharacterSheet extends JFrame implements ActionListener {
 
     private JMenu fileMenu;
     private JMenuItem openChar;
-    //    private JMenuItem saveChar;
-    //    private JMenuItem newChar;
     private JMenuItem close;
     private JMenu windowMenu;
     private JMenuItem switchWindow;
+    private JMenu rollMenu;
+    private JMenuItem openRoll;
 
     private JLabel charNameLabel;
     private JLabel charRace;
@@ -251,24 +251,27 @@ public class CharacterSheet extends JFrame implements ActionListener {
         fileMenu = new JMenu("File");
         openChar = new JMenuItem("Open Character");
         close = new JMenuItem("Close");
-        windowMenu = new JMenu("Window");
-        switchWindow = new JMenuItem("Switch View");
-        
-        
-        windowMenu.add(switchWindow);
-
         fileMenu.add(openChar);
         fileMenu.addSeparator();
         fileMenu.add(close);
-
         openChar.addActionListener(this);
         close.addActionListener(this);
-        switchWindow.addActionListener(this);
-
         menus.add(fileMenu);
+        
+        windowMenu = new JMenu("Window");
+        switchWindow = new JMenuItem("Switch View");
+        windowMenu.add(switchWindow);
+        switchWindow.addActionListener(this);
         menus.add(windowMenu);
+        
+        rollMenu = new JMenu("Roll");
+        openRoll = new JMenuItem("E-Dice");
+        rollMenu.add(openRoll);
+        openRoll.addActionListener(this);
+        menus.add(rollMenu);
+        
         setJMenuBar(menus);
-
+        
         // Items inside CharacterSheet
 
         charNameLabel = new JLabel("Character Name");
@@ -1272,6 +1275,7 @@ public class CharacterSheet extends JFrame implements ActionListener {
         getContentPane().add(passiveLabel);
 
         pack();
+        setSize(1500,1500);
 //        setExtendedState(JFrame.MAXIMIZED_BOTH);
         setVisible(true);        
     }
@@ -1738,6 +1742,9 @@ public class CharacterSheet extends JFrame implements ActionListener {
         if (src == switchWindow) {
         	new CharacterEditor();
         	this.dispose();
+        }
+        if (src == openRoll) {
+          new RollingGUI();
         }
         
     }
