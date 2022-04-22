@@ -1,7 +1,6 @@
 package dndcompanion.character.chrraces;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 /**
  * Abstract class for Races.
@@ -144,20 +143,5 @@ public abstract class Race implements Serializable {
 
   public void setSubrace(String kind) {
     this.kind = kind;
-  }
-
-
-  /** 
-   * method to override the default toString method.
-
-   * @return String represents the class.
-   */
-  public String toString() {
-    return
-        "race=" + this.name + "{\n\t"
-        + "size=" + this.size + "\n\t" 
-        + "speed=" + this.speed + "\n\t" 
-        + "langs=" + Arrays.toString(this.langs) + "\n\t" 
-        + "mods=" + Arrays.toString(this.mods) + "\n}\n";
   }
 }

@@ -2,6 +2,8 @@ package dndcompanion;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 import dndcompanion.character.DndChar;
@@ -38,19 +40,74 @@ import dndcompanion.character.chrraces.Tiefling;
 public class TestCompanion {
 	@Test
 	public void testClassObjectCreation() {
-		CharacterClass object = null;	
+		CharacterClass object = null;
+		String[] subclass;
 		object = new Barbarian();
+		subclass = object.getSubclasses();
+		for(int i = 0; i < subclass.length; i++) {
+		  object = new Barbarian(subclass[i]);
+		}
 		object = new Bard();
+		subclass = object.getSubclasses();
+        for(int i = 0; i < subclass.length; i++) {
+          object = new Bard(subclass[i]);
+        }
 		object = new Cleric();
+		subclass = object.getSubclasses();
+        for(int i = 0; i < subclass.length; i++) {
+          object = new Cleric(subclass[i]);
+        }
 		object = new Druid();
+		subclass = object.getSubclasses();
+        for(int i = 0; i < subclass.length; i++) {
+          object = new Druid(subclass[i]);
+        }
 		object = new Fighter();
+		subclass = object.getSubclasses();
+        for(int i = 0; i < subclass.length; i++) {
+          object = new Fighter(subclass[i]);
+        }
 		object = new Monk();
+		subclass = object.getSubclasses();
+        for(int i = 0; i < subclass.length; i++) {
+          object = new Monk(subclass[i]);
+        }
 		object = new Paladin();
+		subclass = object.getSubclasses();
+        for(int i = 0; i < subclass.length; i++) {
+          object = new Paladin(subclass[i]);
+        }
 		object = new Ranger();
+		subclass = object.getSubclasses();
+        for(int i = 0; i < subclass.length; i++) {
+          object = new Ranger(subclass[i]);
+        }
 		object = new Rogue();
+		subclass = object.getSubclasses();
+        for(int i = 0; i < subclass.length; i++) {
+          object = new Rogue(subclass[i]);
+        }
 		object = new Sorcerer();
+		subclass = object.getSubclasses();
+        for(int i = 0; i < subclass.length; i++) {
+          object = new Sorcerer(subclass[i]);
+        }
 		object = new Warlock();
+		subclass = object.getSubclasses();
+        for(int i = 0; i < subclass.length; i++) {
+          object = new Warlock(subclass[i]);
+        }
+		
 		object = new Wizard();
+		subclass = object.getSubclasses();
+        for(int i = 0; i < subclass.length; i++) {
+          object = new Wizard(subclass[i]);
+        }
+        assertTrue(object.getSubclass().equals("Transmutation"));
+        object.addFeature("I am better.\r\n\r\n", 15);
+        assertTrue(object.getFeatures()[14].contains("I am better.\r\n\r\n"));
+		
+        
 		object.getName();
 	}
 	
@@ -189,40 +246,52 @@ public class TestCompanion {
 		assertEquals(object.getStats(), newStats);
 		
 		assertEquals(object.getSkills(), null);
-		assertEquals(object.getSkills(), null);
+		object.setSkills("B");
+		assertEquals(object.getSkills(), "B");
 		
 		assertEquals(object.getBackground(), null);
-		assertEquals(object.getBackground(), null);
+		object.setBackground("C");
+		assertEquals(object.getBackground(), "C");
 		
 		assertEquals(object.getTraits(), null);
-		assertEquals(object.getTraits(), null);
+		object.setTraits("D");
+		assertEquals(object.getTraits(), "D");
 		
 		assertEquals(object.getIdeals(), null);
-		assertEquals(object.getIdeals(), null);
+		object.setIdeals("E");
+		assertEquals(object.getIdeals(), "E");
 		
 		assertEquals(object.getBonds(), null);
-		assertEquals(object.getBonds(), null);
+		object.setBonds("F");
+		assertEquals(object.getBonds(), "F");
 		
 		assertEquals(object.getFlaws(), null);
-		assertEquals(object.getFlaws(), null);
+		object.setFlaws("G");
+		assertEquals(object.getFlaws(), "G");
 		
 		assertEquals(object.getArmor(), 0);
-		assertEquals(object.getArmor(), 0);
+		object.setArmor(1);
+		assertEquals(object.getArmor(), 1);
 		
 		assertEquals(object.getMaxHp(), 0);
-		assertEquals(object.getMaxHp(), 0);
+		object.setMaxHp(2);
+		assertEquals(object.getMaxHp(), 2);
 		
 		assertEquals(object.getFeatures(), null);
-		assertEquals(object.getFeatures(), null);
+		object.setFeatures("H");
+		assertEquals(object.getFeatures(), "H");
 		
 		assertEquals(object.getProfs(), null);
-		assertEquals(object.getProfs(), null);
+		object.setProfs("I");
+		assertEquals(object.getProfs(), "I");
 		
 		assertEquals(object.getEquip(), null);
-		assertEquals(object.getEquip(), null);
+		object.setEquip("J");
+		assertEquals(object.getEquip(), "J");
 		
 		assertEquals(object.getPlayer(), null);
-		assertEquals(object.getPlayer(), null);
+		object.setPlayer("K");
+		assertEquals(object.getPlayer(), "K");
 		
 		
 		object = new DndChar("Biff", "CE", new Human(), new Fighter(), 10, 64000,
@@ -251,7 +320,58 @@ public class TestCompanion {
 		assertEquals(object.getProfs(), "simple weapons");
 		assertEquals(object.getEquip(), "just a knife");
 		assertEquals(object.getPlayer(), "no one");
-
+		
+		//race gen
+		object.raceGen(0);
+		assertTrue(object.getRace() instanceof Dragonborn);
+		object.raceGen(1);
+        assertTrue(object.getRace() instanceof Dwarf);
+        object.raceGen(2);
+        assertTrue(object.getRace() instanceof Elf);
+        object.raceGen(3);
+        assertTrue(object.getRace() instanceof Gnome);
+        object.raceGen(4);
+        assertTrue(object.getRace() instanceof HalfElf);
+        object.raceGen(5);
+        assertTrue(object.getRace() instanceof Halfling);
+        object.raceGen(6);
+        assertTrue(object.getRace() instanceof HalfOrc);
+        object.raceGen(7);
+        assertTrue(object.getRace() instanceof Human);
+        object.raceGen(8);
+        assertTrue(object.getRace() instanceof Tiefling);
+        
+        //class gen
+        object.classGen(0);
+        assertTrue(object.getCharClass() instanceof Barbarian);
+        object.classGen(1);
+        assertTrue(object.getCharClass() instanceof Bard);
+        object.classGen(2);
+        assertTrue(object.getCharClass() instanceof Cleric);
+        object.classGen(3);
+        assertTrue(object.getCharClass() instanceof Druid);
+        object.classGen(4);
+        assertTrue(object.getCharClass() instanceof Fighter);
+        object.classGen(5);
+        assertTrue(object.getCharClass() instanceof Monk);
+        object.classGen(6);
+        assertTrue(object.getCharClass() instanceof Paladin);
+        object.classGen(7);
+        assertTrue(object.getCharClass() instanceof Ranger);
+        object.classGen(8);
+        assertTrue(object.getCharClass() instanceof Rogue);
+        object.classGen(9);
+        assertTrue(object.getCharClass() instanceof Sorcerer);
+        object.classGen(10);
+        assertTrue(object.getCharClass() instanceof Warlock);
+        object.classGen(11);
+        assertTrue(object.getCharClass() instanceof Wizard);
 
 	}
+	
+	@Test
+    public void testClassWithSubclass() {
+	  
+	}
+	
 }

@@ -695,7 +695,7 @@ public class CharacterSheet implements ActionListener {
     skillLabel5.setBounds(219, 472, 85, 20);
     frame.getContentPane().add(skillLabel5);
 
-    skillLabel4 = new JLabel("Atheletics");
+    skillLabel4 = new JLabel("Athletics");
     skillLabel4.setBounds(219, 443, 85, 20);
     frame.getContentPane().add(skillLabel4);
 
