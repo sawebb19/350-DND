@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"dndcompanion"},{"l":"dndcompanion.character"},{"l":"dndcompanion.character.chrclasses"},{"l":"dndcompanion.character.chrraces"}];updateSearchResults();
