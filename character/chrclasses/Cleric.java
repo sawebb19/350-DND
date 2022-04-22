@@ -17,6 +17,8 @@ public class Cleric extends CharacterClass {
     this.hit = 8;
     this.saves[4] = 1; // Wisdom
     this.saves[5] = 1; // Charisma
+    this.subclasses = new String[] {"", "Knowledge", "Life", "Light", "Nature", "Tempest",
+        "Trickery", "War"};
     this.features = new String[] {
         //Level 1
         "Spellcasting:\r\n"
@@ -93,7 +95,7 @@ public class Cleric extends CharacterClass {
   }
 
   /**
-   * Constructor for Cleric Class with Subclass
+   * Constructor for Cleric Class with Subclass.
 
    * @param subclass input subclass for the player's Cleric Class.
    */

@@ -17,6 +17,7 @@ public class Bard extends CharacterClass {
     this.hit = 8;
     this.saves[1] = 1; // Dexterity
     this.saves[5] = 1; // Charisma
+    this.subclasses = new String[] {"", "Lore", "Valor"};
     this.features = new String[] {
         //Level 1
         "Spellcasting:\r\n"
@@ -124,7 +125,7 @@ public class Bard extends CharacterClass {
   }
 
   /**
-   * Constructor for Bard Class with Subclass
+   * Constructor for Bard Class with Subclass.
 
    * @param subclass input subclass for the player's Bard Class.
    */
@@ -155,7 +156,7 @@ public class Bard extends CharacterClass {
           + "to your ability check. You can choose to do so after you roll the die for the a"
           + "bility check, but before the DM tells you whether you succeed or fail.\r\n\r\n",
           14);
-    }else if (subclass.equals("Valor")) {
+    } else if (subclass.equals("Valor")) {
       addFeature("Bonus Proficiencies\r\n"
           + "When you join the College of Valor at 3rd level, you gain proficiency with medi"
           + "um armor, shields, and martial weapons.\r\n\r\n"

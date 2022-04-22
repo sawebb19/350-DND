@@ -8,17 +8,17 @@ package dndcompanion.character.chrraces;
  */
 @SuppressWarnings("serial")
 public class HalfElf extends Race {
-    
-	/**
-	 * Default Constructor for the class.
-	 */
-    public HalfElf() {
-        this.name = "Half-Elf";
-        this.mods[5] = 2; // + 2 Charisma && +1 of Choice
-        this.subraces = null;
-        this.size = "Medium";
-        this.speed = 30;
-        this.langs = new String[]{"Common", "Elvish"}; // +1 of choice
 
-    }
+  /**
+   * Default Constructor for the class.
+   */
+  public HalfElf() {
+    this.name = "Half-Elf";
+    this.mods[5] = 2; // + 2 Charisma && +1 of Choice
+    this.subraces = null;
+    this.size = "Medium";
+    this.speed = 30;
+    this.langs = new String[]{"Common", "Elvish"}; // +1 of choice
+
+  }
 }

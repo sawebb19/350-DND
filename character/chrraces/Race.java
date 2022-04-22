@@ -10,154 +10,154 @@ import java.util.Arrays;
  *
  */
 public abstract class Race implements Serializable {
-    
-    private static final long serialVersionUID = 1L;
 
-    protected String name;
-    protected String[] subraces;
-    protected String kind;
-    protected String[] langs;
-    protected String size;
-    protected int speed;
-    protected int[] mods = {0, 0, 0, 0, 0, 0};
+  private static final long serialVersionUID = 1L;
 
-    protected Race() {
-    }
+  protected String name;
+  protected String[] subraces;
+  protected String kind;
+  protected String[] langs;
+  protected String size;
+  protected int speed;
+  protected int[] mods = {0, 0, 0, 0, 0, 0};
 
-//    public Race(String name,
-//                String[] subraces,
-//                String[] langs,
-//                String size,
-//                int speed,
-//                int[] mods) {
-//                 
-//        this.name = name;
-//        this.subraces = subraces;
-//        this.langs = langs;
-//        this.size = size;
-//        this.speed = speed;
-//        this.mods = mods;
-//    }
+  protected Race() {
+  }
 
-    
-    /** 
-     * getter for race name.
+  //    public Race(String name,
+  //                String[] subraces,
+  //                String[] langs,
+  //                String size,
+  //                int speed,
+  //                int[] mods) {
+  //                 
+  //        this.name = name;
+  //        this.subraces = subraces;
+  //        this.langs = langs;
+  //        this.size = size;
+  //        this.speed = speed;
+  //        this.mods = mods;
+  //    }
 
-     * @return String
-     */
-    public String getName() {
-        return this.name;
-    }
 
-    
-    /** 
-     * getter for subrace array.
+  /** 
+   * getter for race name.
 
-     * @return String[]
-     */
-    public String[] getSubraces() {
-        return this.subraces;
-    }
+   * @return String
+   */
+  public String getName() {
+    return this.name;
+  }
 
-    
-    /** 
-     * getter for creature size.
 
-     * @return String
-     */
-    public String getSize() {
-        return this.size;
-    }
+  /** 
+   * getter for subrace array.
 
-    
-    /** 
-     * getter for walking speed.
+   * @return String[]
+   */
+  public String[] getSubraces() {
+    return this.subraces;
+  }
 
-     * @return int
-     */
-    public int getSpeed() {
-        return this.speed;
-    }
 
-    
-    /** 
-     * getter for base stat mods.
+  /** 
+   * getter for creature size.
 
-     * @return int[]
-     */
-    public int[] getMods() {
-        return this.mods;
-    }
-    
-    /** 
-     * setter for race name.
+   * @return String
+   */
+  public String getSize() {
+    return this.size;
+  }
 
-     * @param name name of the race.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    
-    /** 
-     * setter for subrace array.
+  /** 
+   * getter for walking speed.
 
-     * @param subraces array of subrace names.
-     */
-    public void setSubraces(String[] subraces) {
-        this.subraces = subraces;
-    }
+   * @return int
+   */
+  public int getSpeed() {
+    return this.speed;
+  }
 
-    
-    /** 
-     * setter for creature size.
 
-     * @param size size of the race.
-     */
-    public void setSize(String size) {
-        this.size = size;
-    }
+  /** 
+   * getter for base stat mods.
 
-    
-    /** 
-     * setter for walking speed.
+   * @return int[]
+   */
+  public int[] getMods() {
+    return this.mods;
+  }
 
-     * @param speed walking speed for race.
-     */
-    public void setSpeed(int speed) {
-        this.speed = speed;
-    }
+  /** 
+   * setter for race name.
 
-    
-    /** 
-     * setter for base stat mods.
+   * @param name name of the race.
+   */
+  public void setName(String name) {
+    this.name = name;
+  }
 
-     * @param mods base stat mods for race.
-     */
-    public void setMods(int[] mods) {
-        this.mods = mods;
-    }
 
-    public String getSubrace(){
-        return this.kind;
-    }
+  /** 
+   * setter for subrace array.
 
-    public void setSubrace(String kind){
-        this.kind = kind;
-    }
-    
-    
-    /** 
-     * method to override the default toString method.
+   * @param subraces array of subrace names.
+   */
+  public void setSubraces(String[] subraces) {
+    this.subraces = subraces;
+  }
 
-     * @return String represents the class.
-     */
-    public String toString() {
-        return
-        "race=" + this.name + "{\n\t" 		
+
+  /** 
+   * setter for creature size.
+
+   * @param size size of the race.
+   */
+  public void setSize(String size) {
+    this.size = size;
+  }
+
+
+  /** 
+   * setter for walking speed.
+
+   * @param speed walking speed for race.
+   */
+  public void setSpeed(int speed) {
+    this.speed = speed;
+  }
+
+
+  /** 
+   * setter for base stat mods.
+
+   * @param mods base stat mods for race.
+   */
+  public void setMods(int[] mods) {
+    this.mods = mods;
+  }
+
+  public String getSubrace() {
+    return this.kind;
+  }
+
+  public void setSubrace(String kind) {
+    this.kind = kind;
+  }
+
+
+  /** 
+   * method to override the default toString method.
+
+   * @return String represents the class.
+   */
+  public String toString() {
+    return
+        "race=" + this.name + "{\n\t"
         + "size=" + this.size + "\n\t" 
         + "speed=" + this.speed + "\n\t" 
         + "langs=" + Arrays.toString(this.langs) + "\n\t" 
         + "mods=" + Arrays.toString(this.mods) + "\n}\n";
-    }
+  }
 }

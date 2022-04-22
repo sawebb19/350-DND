@@ -17,6 +17,7 @@ public class Rogue extends CharacterClass {
     this.hit = 8;
     this.saves[1] = 1; // Dexterity
     this.saves[3] = 1; // Intelligence
+    this.subclasses = new String[] {"", "Assassin", "Thief", "Arcane Trickster"};
     this.features = new String[] {
         //Level 1
         "Expertise:\r\n"
@@ -117,7 +118,7 @@ public class Rogue extends CharacterClass {
   }
 
   /**
-   * Constructor for Rogue Class with Subclass
+   * Constructor for Rogue Class with Subclass.
 
    * @param subclass input subclass for the player's Rogue Class.
    */
@@ -158,7 +159,7 @@ public class Rogue extends CharacterClass {
           + "Constitution saving throw (DC 8 + your Dexterity modifier + your "
           + "proficiency bonus). On a failed save, double the damage of your attack "
           + "against the creature.\r\n\r\n", 17);
-    }else if (subclass.equals("Thief")) {
+    } else if (subclass.equals("Thief")) {
       addFeature("Fast Hands:\r\n"
           + "Starting at 3rd level, you can use the bonus action granted by your "
           + "Cunning Action to make a Dexterity (Sleight of Hand) check, use your "
@@ -185,7 +186,7 @@ public class Rogue extends CharacterClass {
           + "of any combat. You take your first turn at your normal initiative and "
           + "your second turn at your initiative minus 10. You can't use this "
           + "feature when you are surprised.\r\n\r\n", 17);
-    }else if(subclass.equals("Arcane Trickster")) {
+    } else if (subclass.equals("Arcane Trickster")) {
       addFeature("Spellcasting:\r\n"
           + "When you reach 3rd level, you augment your martial prowess with the "
           + "ability to cast spells. Your spellcasting ability for these spells is "

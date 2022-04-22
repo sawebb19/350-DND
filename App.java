@@ -8,14 +8,14 @@ package dndcompanion;
  */
 public final class App {
 
-	/** 
-	  * Method used to start the application.
+  /** 
+   * Method used to start the application.
 
-	  * @param args main method argument
-	  */
-	public static void main(String[] args) {
-		new CharacterSheet();
+   * @param args main method argument
+   */
+  public static void main(String[] args) {
+    new CharacterSheet();
 
-	}
+  }
 
 }

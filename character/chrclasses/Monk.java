@@ -17,6 +17,7 @@ public class Monk extends CharacterClass {
     this.hit = 8;
     this.saves[0] = 1; // Strength
     this.saves[1] = 1; // Dexterity
+    this.subclasses = new String[] {"", "Four Elements", "Open Hand", "Shadow"};
     this.features = new String[] {
         //Level 1
         "Unarmored Defense:\r\n"
@@ -157,7 +158,7 @@ public class Monk extends CharacterClass {
   }
 
   /**
-   * Constructor for Monk Class with Subclass
+   * Constructor for Monk Class with Subclass.
 
    * @param subclass input subclass for the player's Monk Class.
    */

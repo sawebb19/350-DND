@@ -17,6 +17,7 @@ public class Fighter extends CharacterClass {
     this.hit = 10;
     this.saves[0] = 1; // Strength
     this.saves[2] = 1; // Constitution
+    this.subclasses = new String[] {"", "Battle Master", "Champion", "Eldritch Knight"};
     this.features = new String[] {
         //Level 1
         "Fighting Style:\r\n"
@@ -84,7 +85,7 @@ public class Fighter extends CharacterClass {
   }
 
   /**
-   * Constructor for Fighter Class with Subclass
+   * Constructor for Fighter Class with Subclass.
 
    * @param subclass input subclass for the player's Fighter Class.
    */
@@ -122,7 +123,7 @@ public class Fighter extends CharacterClass {
           + "Starting at 15th level, when you roll initiative and have no superiorit"
           + "y dice remaining, you regain 1 superiority die.\r\n\r\n", 15);
       addFeature("", 18);
-    }else if (subclass.equals("Champion")) {
+    } else if (subclass.equals("Champion")) {
       addFeature("Improved Critical:\r\n"
           + "Beginning when you choose this archetype at 3rd level, your weapon atta"
           + "cks score a critical hit on a roll of 19 or 20.\r\n\r\n", 3);
@@ -143,7 +144,7 @@ public class Fighter extends CharacterClass {
           + "start of each of your turns, you regain hit points equal to 5 + your Co"
           + "nstitution modifier if you have no more than half of your hit points le"
           + "ft. You don't gain this benefit if you have 0 hit points.\r\n\r\n", 18);
-    }else if (subclass.equals("Eldritch Knight")) {
+    } else if (subclass.equals("Eldritch Knight")) {
       addFeature("Spellcasting\r\n"
           + "When you reach 3rd level, you augment your martial prowess with the abi"
           + "lity to cast spells. Intelligence is your spellcasting ability for your"

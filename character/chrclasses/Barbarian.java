@@ -17,6 +17,7 @@ public class Barbarian extends CharacterClass {
     this.hit = 12;
     this.saves[0] = 1; // Strength
     this.saves[2] = 1; // Constitution
+    this.subclasses = new String[] {"", "Berserker", "Totem Warrior"};
     this.features = new String[] {//Level 1
         "Rage:\r\n" 
         + "On your turn, you can enter a rage as a bonus action that lasts for 1 minut"

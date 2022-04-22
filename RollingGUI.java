@@ -1,41 +1,40 @@
 package dndcompanion;
 
-import java.util.Random;
-import java.util.Scanner;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
-import javax.swing.JList;
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
-
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import java.awt.Component;
+import java.util.Random;
+import java.util.Scanner;
 import javax.swing.Box;
-import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+
+
+
 /**
  * GUI Class for rolling dice in app.
 
  * @author Nick Ford
  *
  */
-public class RollingGUI implements ActionListener {
+public class RollingGui implements ActionListener {
   JFrame frame = new JFrame();
   JPanel panel;
   JLabel rollLabel;
@@ -45,135 +44,133 @@ public class RollingGUI implements ActionListener {
   JDialog rollDiag;
   private JTextField resultText;
   private JLabel resultLabel;
-  private Component horizontalStrut;
-  private Component horizontalStrut_1;
-  private Component horizontalStrut_2;
-  private Component verticalStrut;
-  private Component verticalStrut_1;
-  private Component verticalStrut_2;
   private JTextField customText;
-  private JLabel AddRollLabel;
+  private JLabel addRollLabel;
   private Component rigidArea;
-  private Component rigidArea_1;
-  private Component rigidArea_3;
-  private Component rigidArea_4;
-  private Component rigidArea_5;
+  private Component rigidArea1;
+  private Component rigidArea2;
+  private Component rigidArea3;
+  private Component rigidArea4;
 
-
-  //Constructor for the Rolling GUI 
-  public RollingGUI() {
+  /**
+   * Constructor for the dice rolling GUI. 
+   */
+  public RollingGui() {
     frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
     panel = new JPanel();
     frame.getContentPane().add(panel, BorderLayout.CENTER);
-    GridBagLayout gbl_panel = new GridBagLayout();
-    gbl_panel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 20, 0, 0, 0};
-    gbl_panel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    gbl_panel.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
-    gbl_panel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, Double.MIN_VALUE};
-    panel.setLayout(gbl_panel);
+    GridBagLayout gblPanel = new GridBagLayout();
+    gblPanel.columnWidths = new int[]{0, 0, 0, 0, 0, 0, 20, 0, 0, 0};
+    gblPanel.rowHeights = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    gblPanel.columnWeights = new double[]{1.0, 0.0, 0.0, 1.0, 1.0, 1.0, 0.0, 0.0, 0.0, 
+        Double.MIN_VALUE};
+    gblPanel.rowWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 1.0, 
+        Double.MIN_VALUE};
+    panel.setLayout(gblPanel);
 
-    rigidArea_3 = Box.createRigidArea(new Dimension(20, 20));
-    GridBagConstraints gbc_rigidArea_3 = new GridBagConstraints();
-    gbc_rigidArea_3.insets = new Insets(0, 0, 5, 5);
-    gbc_rigidArea_3.gridx = 3;
-    gbc_rigidArea_3.gridy = 1;
-    panel.add(rigidArea_3, gbc_rigidArea_3);
+    rigidArea2 = Box.createRigidArea(new Dimension(20, 20));
+    GridBagConstraints gbcRigidArea2 = new GridBagConstraints();
+    gbcRigidArea2.insets = new Insets(0, 0, 5, 5);
+    gbcRigidArea2.gridx = 3;
+    gbcRigidArea2.gridy = 1;
+    panel.add(rigidArea2, gbcRigidArea2);
 
-    AddRollLabel = new JLabel("Custom Roll");
-    GridBagConstraints gbc_AddRollLabel = new GridBagConstraints();
-    gbc_AddRollLabel.insets = new Insets(0, 0, 5, 5);
-    gbc_AddRollLabel.gridx = 4;
-    gbc_AddRollLabel.gridy = 2;
-    panel.add(AddRollLabel, gbc_AddRollLabel);
+    addRollLabel = new JLabel("Custom Roll");
+    GridBagConstraints gbcAddRollLabel = new GridBagConstraints();
+    gbcAddRollLabel.insets = new Insets(0, 0, 5, 5);
+    gbcAddRollLabel.gridx = 4;
+    gbcAddRollLabel.gridy = 2;
+    panel.add(addRollLabel, gbcAddRollLabel);
 
     newRollButton = new JButton("Add");
-    GridBagConstraints gbc_newRollButton = new GridBagConstraints();
-    gbc_newRollButton.fill = GridBagConstraints.HORIZONTAL;
-    gbc_newRollButton.insets = new Insets(0, 0, 5, 5);
-    gbc_newRollButton.gridx = 2;
-    gbc_newRollButton.gridy = 3;
-    panel.add(newRollButton, gbc_newRollButton);
+    GridBagConstraints gbcNewRollButton = new GridBagConstraints();
+    gbcNewRollButton.fill = GridBagConstraints.HORIZONTAL;
+    gbcNewRollButton.insets = new Insets(0, 0, 5, 5);
+    gbcNewRollButton.gridx = 2;
+    gbcNewRollButton.gridy = 3;
+    panel.add(newRollButton, gbcNewRollButton);
     newRollButton.addActionListener(this);
 
     customText = new JTextField();
-    GridBagConstraints gbc_customText = new GridBagConstraints();
-    gbc_customText.gridwidth = 4;
-    gbc_customText.insets = new Insets(0, 0, 5, 5);
-    gbc_customText.fill = GridBagConstraints.HORIZONTAL;
-    gbc_customText.gridx = 3;
-    gbc_customText.gridy = 3;
-    panel.add(customText, gbc_customText);
+    GridBagConstraints gbcCustomText = new GridBagConstraints();
+    gbcCustomText.gridwidth = 4;
+    gbcCustomText.insets = new Insets(0, 0, 5, 5);
+    gbcCustomText.fill = GridBagConstraints.HORIZONTAL;
+    gbcCustomText.gridx = 3;
+    gbcCustomText.gridy = 3;
+    panel.add(customText, gbcCustomText);
     customText.setColumns(10);
 
-    rigidArea_5 = Box.createRigidArea(new Dimension(20, 20));
-    GridBagConstraints gbc_rigidArea_5 = new GridBagConstraints();
-    gbc_rigidArea_5.insets = new Insets(0, 0, 5, 5);
-    gbc_rigidArea_5.gridx = 4;
-    gbc_rigidArea_5.gridy = 4;
-    panel.add(rigidArea_5, gbc_rigidArea_5);
+    rigidArea4 = Box.createRigidArea(new Dimension(20, 20));
+    GridBagConstraints gbcRigidArea4 = new GridBagConstraints();
+    gbcRigidArea4.insets = new Insets(0, 0, 5, 5);
+    gbcRigidArea4.gridx = 4;
+    gbcRigidArea4.gridy = 4;
+    panel.add(rigidArea4, gbcRigidArea4);
 
     rigidArea = Box.createRigidArea(new Dimension(20, 20));
-    GridBagConstraints gbc_rigidArea = new GridBagConstraints();
-    gbc_rigidArea.insets = new Insets(0, 0, 5, 5);
-    gbc_rigidArea.gridx = 1;
-    gbc_rigidArea.gridy = 5;
-    panel.add(rigidArea, gbc_rigidArea);
+    GridBagConstraints gbcRigidArea = new GridBagConstraints();
+    gbcRigidArea.insets = new Insets(0, 0, 5, 5);
+    gbcRigidArea.gridx = 1;
+    gbcRigidArea.gridy = 5;
+    panel.add(rigidArea, gbcRigidArea);
 
     rollLabel = new JLabel("Saved Rolls");
-    GridBagConstraints gbc_rollLabel = new GridBagConstraints();
-    gbc_rollLabel.insets = new Insets(0, 0, 5, 5);
-    gbc_rollLabel.gridx = 2;
-    gbc_rollLabel.gridy = 5;
-    panel.add(rollLabel, gbc_rollLabel);
+    GridBagConstraints gbcRollLabel = new GridBagConstraints();
+    gbcRollLabel.insets = new Insets(0, 0, 5, 5);
+    gbcRollLabel.gridx = 2;
+    gbcRollLabel.gridy = 5;
+    panel.add(rollLabel, gbcRollLabel);
 
+    rigidArea3 = Box.createRigidArea(new Dimension(20, 20));
+    GridBagConstraints gbcRigidArea3 = new GridBagConstraints();
+    gbcRigidArea3.insets = new Insets(0, 0, 5, 5);
+    gbcRigidArea3.gridx = 7;
+    gbcRigidArea3.gridy = 5;
+    panel.add(rigidArea3, gbcRigidArea3);
+    
     comboBox = new JComboBox<String>();
     loadRolls(comboBox);
-    rigidArea_4 = Box.createRigidArea(new Dimension(20, 20));
-    GridBagConstraints gbc_rigidArea_4 = new GridBagConstraints();
-    gbc_rigidArea_4.insets = new Insets(0, 0, 5, 5);
-    gbc_rigidArea_4.gridx = 7;
-    gbc_rigidArea_4.gridy = 5;
-    panel.add(rigidArea_4, gbc_rigidArea_4);
-    GridBagConstraints gbc_comboBox = new GridBagConstraints();
-    gbc_comboBox.insets = new Insets(0, 0, 5, 5);
-    gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
-    gbc_comboBox.gridx = 2;
-    gbc_comboBox.gridy = 6;
-    panel.add(comboBox, gbc_comboBox);
+    GridBagConstraints gbcComboBox = new GridBagConstraints();
+    gbcComboBox.insets = new Insets(0, 0, 5, 5);
+    gbcComboBox.fill = GridBagConstraints.HORIZONTAL;
+    gbcComboBox.gridx = 2;
+    gbcComboBox.gridy = 6;
+    panel.add(comboBox, gbcComboBox);
 
     resultLabel = new JLabel("Roll Result");
-    GridBagConstraints gbc_resultLabel = new GridBagConstraints();
-    gbc_resultLabel.anchor = GridBagConstraints.SOUTH;
-    gbc_resultLabel.insets = new Insets(0, 0, 5, 5);
-    gbc_resultLabel.gridx = 4;
-    gbc_resultLabel.gridy = 6;
-    panel.add(resultLabel, gbc_resultLabel);
+    GridBagConstraints gbcResultLabel = new GridBagConstraints();
+    gbcResultLabel.anchor = GridBagConstraints.SOUTH;
+    gbcResultLabel.insets = new Insets(0, 0, 5, 5);
+    gbcResultLabel.gridx = 4;
+    gbcResultLabel.gridy = 6;
+    panel.add(resultLabel, gbcResultLabel);
 
     rollButton = new JButton("Roll");
-    GridBagConstraints gbc_rollButton = new GridBagConstraints();
-    gbc_rollButton.fill = GridBagConstraints.BOTH;
-    gbc_rollButton.insets = new Insets(0, 0, 5, 5);
-    gbc_rollButton.gridx = 2;
-    gbc_rollButton.gridy = 7;
-    panel.add(rollButton, gbc_rollButton);
+    GridBagConstraints gbcRollButton = new GridBagConstraints();
+    gbcRollButton.fill = GridBagConstraints.BOTH;
+    gbcRollButton.insets = new Insets(0, 0, 5, 5);
+    gbcRollButton.gridx = 2;
+    gbcRollButton.gridy = 7;
+    panel.add(rollButton, gbcRollButton);
 
     resultText = new JTextField();
-    GridBagConstraints gbc_resultText = new GridBagConstraints();
-    gbc_resultText.gridwidth = 4;
-    gbc_resultText.insets = new Insets(0, 0, 5, 5);
-    gbc_resultText.fill = GridBagConstraints.HORIZONTAL;
-    gbc_resultText.gridx = 3;
-    gbc_resultText.gridy = 7;
-    panel.add(resultText, gbc_resultText);
+    GridBagConstraints gbcResultText = new GridBagConstraints();
+    gbcResultText.gridwidth = 4;
+    gbcResultText.insets = new Insets(0, 0, 5, 5);
+    gbcResultText.fill = GridBagConstraints.HORIZONTAL;
+    gbcResultText.gridx = 3;
+    gbcResultText.gridy = 7;
+    panel.add(resultText, gbcResultText);
     resultText.setColumns(10);
 
-    rigidArea_1 = Box.createRigidArea(new Dimension(20, 20));
-    GridBagConstraints gbc_rigidArea_1 = new GridBagConstraints();
-    gbc_rigidArea_1.insets = new Insets(0, 0, 5, 5);
-    gbc_rigidArea_1.gridx = 4;
-    gbc_rigidArea_1.gridy = 8;
-    panel.add(rigidArea_1, gbc_rigidArea_1);
+    rigidArea1 = Box.createRigidArea(new Dimension(20, 20));
+    GridBagConstraints gbcRigidArea1 = new GridBagConstraints();
+    gbcRigidArea1.insets = new Insets(0, 0, 5, 5);
+    gbcRigidArea1.gridx = 4;
+    gbcRigidArea1.gridy = 8;
+    panel.add(rigidArea1, gbcRigidArea1);
     rollButton.addActionListener(this);
 
     frame.pack();
@@ -188,21 +185,22 @@ public class RollingGUI implements ActionListener {
 
   /**
    * Method to take care of actions initiated by the GUI.
-   * 
-   * @param e An event performed by one of the Listened-to JFrame items
+
+   * @param e An event performed by one of the Listened-to JFrame items.
    */
   public void actionPerformed(ActionEvent e) {
     Object src = e.getSource();
     if (src == rollButton) {
-      String rollStr = (String)comboBox.getSelectedItem();
+      String rollStr = (String) comboBox.getSelectedItem();
       int numDice = Integer.parseInt(rollStr.substring(0, rollStr.indexOf("d")));
       int sizeDice;
       int rollMod;
-      if(rollStr.contains("+")) {
-        sizeDice = Integer.parseInt(rollStr.substring(rollStr.indexOf("d")+1, rollStr.indexOf("+")));
-        rollMod = Integer.parseInt(rollStr.substring(rollStr.indexOf("+")+1));
+      if (rollStr.contains("+")) {
+        sizeDice = Integer.parseInt(rollStr.substring(rollStr.indexOf("d") + 1, 
+            rollStr.indexOf("+")));
+        rollMod = Integer.parseInt(rollStr.substring(rollStr.indexOf("+") + 1));
       } else {
-        sizeDice = Integer.parseInt(rollStr.substring(rollStr.indexOf("d")+1));
+        sizeDice = Integer.parseInt(rollStr.substring(rollStr.indexOf("d") + 1));
         rollMod = 0;
       }
 
@@ -227,7 +225,8 @@ public class RollingGUI implements ActionListener {
       if (!newRoll.equals("")) {
         System.out.println(newRoll);
         //format check
-        try (FileWriter f = new FileWriter(System.getProperty("user.dir") + "\\src\\dndcompanion\\rolls.txt", true)) {
+        try (FileWriter f = new FileWriter(System.getProperty("user.dir")
+            + "\\src\\dndcompanion\\rolls.txt", true)) {
           PrintWriter pw = new PrintWriter(new BufferedWriter(f));
           pw.print("\n" + newRoll); 
           pw.close();
@@ -245,16 +244,16 @@ public class RollingGUI implements ActionListener {
   private void loadRolls(JComboBox<String> box) {
     box.removeAllItems();
     Scanner sc = null;
-    try{
+    try {
       File file = new File(System.getProperty("user.dir") + "\\src\\dndcompanion\\rolls.txt");
       sc = new Scanner(file);
       while (sc.hasNextLine()) {
         box.addItem(sc.nextLine());
       }
-    }catch(Exception e) {
+    } catch (Exception e) {
       //lol nothing cause it won't throw
     }
-    if(sc != null) {
+    if (sc != null) {
       sc.close();
     }
   }

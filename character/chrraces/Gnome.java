@@ -10,27 +10,32 @@ package dndcompanion.character.chrraces;
 @SuppressWarnings("serial")
 public class Gnome extends Race {
 
-	/**
-	 * Default Constructor for the class.
-	 */
-	public Gnome() {
-        this.name = "Gnome";
-        this.subraces = new String[]{"Deep", "Rock"};
-        this.mods[3] = 2; // +2 Intelligence
-        this.size = "Small";
-        this.speed = 25;
-        this.langs = new String[]{"Common", "Gnomish"};
+  /**
+   * Default Constructor for the class.
+   */
+  public Gnome() {
+    this.name = "Gnome";
+    this.subraces = new String[]{"Deep", "Rock"};
+    this.mods[3] = 2; // +2 Intelligence
+    this.size = "Small";
+    this.speed = 25;
+    this.langs = new String[]{"Common", "Gnomish"};
+  }
+
+  /**
+   * Constructor for race with a subrace.
+
+   * @param subrace the subrace to be used in race creation.
+   */
+  public Gnome(String subrace) {
+    this();
+    if (subrace.equals("Deep")) {
+      this.mods[1] = 1; // +1 Dexterity
+      this.langs = new String[]{"Common", "Gnomish", "Undercommon"};
+      this.kind = "Deep";
+    } else if (subrace.equals("Rock")) {
+      this.mods[2] = 1; // +1 Constitution
+      this.kind = "Rock";
     }
-    
-    public Gnome(String subrace) {
-    	this();
-    	if (subrace.equals("Deep")) {
-    		this.mods[1] = 1; // +1 Dexterity
-            this.langs = new String[]{"Common", "Gnomish", "Undercommon"};
-            this.kind = "Deep";
-    	}else if (subrace.equals("Rock")) {
-    		this.mods[2] = 1; // +1 Constitution
-            this.kind = "Rock";
-    	}
-    }
+  }
 }
