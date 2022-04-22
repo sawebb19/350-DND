@@ -2,8 +2,6 @@ package dndcompanion;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import dndcompanion.character.DndChar;
@@ -29,7 +27,6 @@ import dndcompanion.character.chrraces.HalfOrc;
 import dndcompanion.character.chrraces.Halfling;
 import dndcompanion.character.chrraces.Human;
 import dndcompanion.character.chrraces.Race;
-import dndcompanion.character.chrraces.Subrace;
 import dndcompanion.character.chrraces.Tiefling;
 
 /**
@@ -78,6 +75,7 @@ public class TestCompanion {
 	public void testRaceObjectCreation() {
 		Race object;	
 		object = new Dragonborn();
+		object = new Dragonborn("Silver");
 		object = new Dwarf();
 		object = new Dwarf("Hill");
 		object = new Dwarf("Mountain");
@@ -93,8 +91,11 @@ public class TestCompanion {
 		object = new Halfling("Lightfoot");
 		object = new Halfling("Stout");
 		object = new Human();
+		object = new Human("Kaltari");
+		object.setSubrace("Other");
 		object = new Tiefling();
 		object.getName();
+		
 	}
 	
 	@Test
@@ -151,54 +152,80 @@ public class TestCompanion {
 		for (int i = 0; i < strList.length; i++) {
 			assertEquals(object.getSubraces()[i], strList[i]);
 		}
-		String testStr = "race=" + "UrMom" + "{\n\t" 		
-		        + "size=" + "Big" + "\n\t" 
-		        + "speed=" + 5 + "\n\t" 
-		        + "langs=" + "[Cmoon, Elvish]" + "\n\t" 
-		        + "mods=" + "[0, 0, 0, 0, 0, 2]" + "\n}\n";
-		assertEquals(object.toString(), testStr);
-	}
-	
-	@Test
-	public void testSubraceMethods() {
-		Subrace object = new Elf("Wood");
-		assertEquals(object.getSubrace(), "Wood");
-		String testStr = "Elf" + "{\n\t" 
-		        + "subrace=" + "Wood" + "\n\t" 
-		        + "size=" + "Medium" + "\n\t" 
-		        + "speed=" + 35 + "\n\t" 
-		        + "langs=" + "[Common, Elvish]" + "\n\t" 
-		        + "mods=" + "[0, 2, 0, 0, 1, 0]" + "\n}\n";
-		assertEquals(object.toString(), testStr);
 	}
 	
 	@Test
 	public void testDndCharMethods() {
 		DndChar object = new DndChar();
 		assertEquals(object.getName(), null);
-		String dummy1 = null;
-		String dummy2 = null;
-		String testStr = dummy1 + dummy2;
-		assertEquals(object.getAlignment(), testStr);
+		object.setName("A");
+		assertEquals(object.getName(), "A");
+		
+		assertEquals(object.getAlignment(), null);
+		object.setAlignment("NN");
+		assertEquals(object.getAlignment(), "NN");
+		
 		assertEquals(object.getRace(), null);
+		Race race = new Elf();
+		object.setRace(race);
+        assertEquals(object.getRace(), race);
+		
 		assertEquals(object.getCharClass(), null);
+		CharacterClass charClass = new Fighter();
+        object.setCharClass(charClass);
+        assertEquals(object.getCharClass(), charClass);
+		
 		assertEquals(object.getLevel(), 0);
+		object.setLevel(5);
+		assertEquals(object.getLevel(), 5);
+		
 		assertEquals(object.getExp(), 0);
+		object.setExp(50);
+        assertEquals(object.getExp(), 50);
+		
 		assertEquals(object.getStats(), null);
+		int[] newStats = new int[] {1, 1, 1, 1, 1, 1};
+		object.setStats(newStats);
+		assertEquals(object.getStats(), newStats);
+		
 		assertEquals(object.getSkills(), null);
+		assertEquals(object.getSkills(), null);
+		
 		assertEquals(object.getBackground(), null);
+		assertEquals(object.getBackground(), null);
+		
 		assertEquals(object.getTraits(), null);
+		assertEquals(object.getTraits(), null);
+		
 		assertEquals(object.getIdeals(), null);
+		assertEquals(object.getIdeals(), null);
+		
 		assertEquals(object.getBonds(), null);
+		assertEquals(object.getBonds(), null);
+		
 		assertEquals(object.getFlaws(), null);
+		assertEquals(object.getFlaws(), null);
+		
 		assertEquals(object.getArmor(), 0);
+		assertEquals(object.getArmor(), 0);
+		
 		assertEquals(object.getMaxHp(), 0);
+		assertEquals(object.getMaxHp(), 0);
+		
 		assertEquals(object.getFeatures(), null);
+		assertEquals(object.getFeatures(), null);
+		
 		assertEquals(object.getProfs(), null);
+		assertEquals(object.getProfs(), null);
+		
 		assertEquals(object.getEquip(), null);
+		assertEquals(object.getEquip(), null);
+		
+		assertEquals(object.getPlayer(), null);
 		assertEquals(object.getPlayer(), null);
 		
-		object = new DndChar("Biff", "C", "E", new Human(), new Fighter(), 10, 64000,
+		
+		object = new DndChar("Biff", "CE", new Human(), new Fighter(), 10, 64000,
 				new int[] {20, 8, 20, 2, 5, 10}, "Deception", "Acolyte", 
 				"Bad Traits", "ideally evil", "blood bond", "psychotic flaw", 15,
 				64, "Human features", "simple weapons", "just a knife", "no one");
@@ -226,15 +253,5 @@ public class TestCompanion {
 		assertEquals(object.getPlayer(), "no one");
 
 
-	}
-	
-	/**
-	 * Repeated Test so that many randomly generated rolls can be checked.
-	 */
-	@RepeatedTest(20)
-	public void testDieMethods() {
-		RollingGui cube = new RollingGui(6);
-		int rollNum = cube.roll();
-		assertTrue(rollNum < 7 && rollNum > 0);
 	}
 }

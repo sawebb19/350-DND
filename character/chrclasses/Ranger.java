@@ -16,7 +16,7 @@ public class Ranger extends CharacterClass {
     this.hit = 10;
     this.saves[0] = 1; // Strength
     this.saves[1] = 1; // Dexterity
-    this.subclasses = new String[] {"", "Beast Master", "Hunter"};
+    this.subclasses = new String[] {"Beast Master", "Hunter"};
     this.features = new String[] {
         //Level 1
         "Favored Enemy:\r\n"
@@ -149,6 +149,10 @@ public class Ranger extends CharacterClass {
    * @param subclass input subclass for the player's Ranger Class.
    */
   public Ranger(String subclass) {
+    this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Beast Master")) {
       addFeature("Ranger's Companion:\r\n"
           + "At 3rd level, you gain a beast companion that accompanies you on your adventure"

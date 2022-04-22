@@ -16,7 +16,7 @@ public class Druid extends CharacterClass {
     this.hit = 8;
     this.saves[3] = 1; // Intelligence
     this.saves[4] = 1; // Wisdom
-    this.subclasses = new String[] {"", "Land", "Moon"};
+    this.subclasses = new String[] {"Land", "Moon"};
     this.features = new String[] {
         //Level 1
         "Druidic:\r\n"
@@ -103,6 +103,9 @@ public class Druid extends CharacterClass {
    */
   public Druid(String subclass) {
     this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Land")) {
       addFeature("Bonus Cantrip:\r\n"
           + "When you choose this circle at 2nd level, you learn one additional druid cantri"
@@ -121,8 +124,8 @@ public class Druid extends CharacterClass {
       addFeature("Circle Spells:\r\n"
           + "Your mystical connection to the land infuses you with the ability to cast certa"
           + "in spells. At 3rd, 5th, 7th, and 9th level you gain access to circle spells con"
-          + "nected to the land where you became a druid. Choose that land – arctic, coast, "
-          + "desert, forest, grassland, mountain, swamp, or Underdark – and consult the asso"
+          + "nected to the land where you became a druid. Choose that land - arctic, coast, "
+          + "desert, forest, grassland, mountain, swamp, or Underdark - and consult the asso"
           + "ciated list of spells. Once you gain access to a circle spell, you always have "
           + "it prepared, and it doesn't count against the number of spells you can prepare "
           + "each day. If you gain access to a spell that doesn't appear on the druid spell "

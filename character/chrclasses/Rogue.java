@@ -17,7 +17,7 @@ public class Rogue extends CharacterClass {
     this.hit = 8;
     this.saves[1] = 1; // Dexterity
     this.saves[3] = 1; // Intelligence
-    this.subclasses = new String[] {"", "Assassin", "Thief", "Arcane Trickster"};
+    this.subclasses = new String[] {"Assassin", "Thief", "Arcane Trickster"};
     this.features = new String[] {
         //Level 1
         "Expertise:\r\n"
@@ -123,7 +123,10 @@ public class Rogue extends CharacterClass {
    * @param subclass input subclass for the player's Rogue Class.
    */
   public Rogue(String subclass) {
-
+    this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Assassin")) {
       addFeature("Bonus Proficiencies:\r\n"
           + "When you choose this archetype at 3rd level, you gain proficiency with "

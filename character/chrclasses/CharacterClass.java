@@ -1,6 +1,7 @@
 package dndcompanion.character.chrclasses;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 /**
  * Interface for all dnd class classes.
@@ -19,6 +20,7 @@ public abstract class CharacterClass implements Serializable {
   protected String[] features = {"", "", "", "", "", "", "", "", "", "", 
       "", "", "", "", "", "", "", "", "", ""};
   protected String[] subclasses;
+  protected String subclass;
 
   protected CharacterClass() {
   }
@@ -67,7 +69,15 @@ public abstract class CharacterClass implements Serializable {
   public String[] getSubclasses() {
     return subclasses;
   }
+  
+  /**
+   * getter for subclass of this instance of the Class (DND).
 
+   * @return String subclass of the Class instance.
+   */
+  public String getSubclass() {
+    return subclass;
+  }
 
   /** 
    * setter for Name of the Class (DND).
@@ -118,15 +128,15 @@ public abstract class CharacterClass implements Serializable {
   }
 
 
-  //    /** 
-  //     * Overriden toString() method for CharacterClass.
-  //
-  //     * @return String String to represent the object of CharacterClass.
-  //     */
-  //    @Override
-  //    public String toString() {
-  //        return
-  //        "class=" + this.name + "{\n\t" + "hit=" + this.hit + "\n\t"
-  //        + "saves=" + Arrays.toString(this.saves) + "\n}\n";
-  //    }
+  /** 
+   * Overriden toString() method for CharacterClass.
+
+   * @return String String to represent the object of CharacterClass.
+   */
+  @Override
+  public String toString() {
+    return
+        "class=" + this.name + "{\n\t" + "hit=" + this.hit + "\n\t"
+        + "saves=" + Arrays.toString(this.saves) + "\n}\n";
+  }
 }

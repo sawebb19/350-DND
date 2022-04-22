@@ -17,7 +17,7 @@ public class Barbarian extends CharacterClass {
     this.hit = 12;
     this.saves[0] = 1; // Strength
     this.saves[2] = 1; // Constitution
-    this.subclasses = new String[] {"", "Berserker", "Totem Warrior"};
+    this.subclasses = new String[] {"Berserker", "Totem Warrior"};
     this.features = new String[] {//Level 1
         "Rage:\r\n" 
         + "On your turn, you can enter a rage as a bonus action that lasts for 1 minut"
@@ -126,6 +126,9 @@ public class Barbarian extends CharacterClass {
    */
   public Barbarian(String subclass) {
     this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Berserker")) {
       addFeature("Frenzy:\r\n"
           + "Starting when you choose this path at 3rd level, you can go into a "
@@ -161,8 +164,8 @@ public class Barbarian extends CharacterClass {
           + "but only as rituals.\r\n\r\n"
           + "Totem Spirit:\r\n"
           + "At 3rd level, when you adopt this path, you choose a totem spirit and "
-          + "gain its feature. You must make or acquire a physical totem object – an "
-          + "amulet or similar adornment – that incorporates fur or feathers, claws, "
+          + "gain its feature. You must make or acquire a physical totem object - an "
+          + "amulet or similar adornment - that incorporates fur or feathers, claws, "
           + "teeth, or bones of the totem animal. At your option, you also gain "
           + "minor physical attributes that are reminiscent of your totem spirit. "
           + "For example, if you have a bear totem spirit, you might be unusually "

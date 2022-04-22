@@ -17,7 +17,7 @@ public class Sorcerer extends CharacterClass {
     this.hit = 6;
     this.saves[2] = 1; // Constitution
     this.saves[5] = 1; // Charisma
-    this.subclasses = new String[] {"", "Draconic Bloodline", "Wild Magic"};
+    this.subclasses = new String[] {"Draconic Bloodline", "Wild Magic"};
     this.features = new String[] {
         //Level 1
         "Spellcasting:\r\n"
@@ -90,6 +90,9 @@ public class Sorcerer extends CharacterClass {
    */
   public Sorcerer(String subclass) {
     this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Draconic Bloodline")) {
       addFeature("Dragon Ancestor:\r\n"
           + "At 1st level, you choose one type of dragon as your ancestor. The damage type a"

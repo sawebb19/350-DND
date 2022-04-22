@@ -17,7 +17,7 @@ public class Wizard extends CharacterClass {
     this.hit = 6;
     this.saves[3] = 1; // Intelligence
     this.saves[4] = 1; // Wisdom
-    this.subclasses = new String[] {"", "Abjuration", "Conjuration", "Divination", 
+    this.subclasses = new String[] {"Abjuration", "Conjuration", "Divination", 
         "Enchantment", "Evocation", "Illusion", "Necromancy", "Transmutation"};
     this.features = new String[] {
         //Level 1
@@ -102,6 +102,9 @@ public class Wizard extends CharacterClass {
    */
   public Wizard(String subclass) {
     this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Abjuration")) {
       addFeature("Abjuration Savant:\r\n"
           + "Beginning when you select this school at 2nd level, the gold and time you must "

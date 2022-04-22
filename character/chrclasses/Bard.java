@@ -17,7 +17,7 @@ public class Bard extends CharacterClass {
     this.hit = 8;
     this.saves[1] = 1; // Dexterity
     this.saves[5] = 1; // Charisma
-    this.subclasses = new String[] {"", "Lore", "Valor"};
+    this.subclasses = new String[] {"Lore", "Valor"};
     this.features = new String[] {
         //Level 1
         "Spellcasting:\r\n"
@@ -131,6 +131,9 @@ public class Bard extends CharacterClass {
    */
   public Bard(String subclass) {
     this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Lore")) {
       addFeature("Bonus Proficiencies\r\n"
           + "When you join the College of Lore at 3rd level, you gain proficiency with three"

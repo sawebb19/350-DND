@@ -17,7 +17,7 @@ public class Warlock extends CharacterClass {
     this.hit = 8;
     this.saves[4] = 1; // Wisdom
     this.saves[5] = 1; // Charisma
-    this.subclasses = new String[] {"", "Archfey", "Fiend", "Great Old One"};
+    this.subclasses = new String[] {"Archfey", "Fiend", "Great Old One"};
     this.features = new String[] {
         //Level 1
         "Pact Magic:\r\n"
@@ -102,6 +102,9 @@ public class Warlock extends CharacterClass {
    */
   public Warlock(String subclass) {
     this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Archfey")) {
       addFeature("Expanded Spell List:\r\n"
           + "The Archfey lets you choose from an expanded list of spells when you learn a wa"

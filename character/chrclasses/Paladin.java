@@ -17,7 +17,7 @@ public class Paladin extends CharacterClass {
     this.hit = 10;
     this.saves[4] = 1; // Wisdom
     this.saves[5] = 1; // Charisma
-    this.subclasses = new String[] {"", "Ancients", "Devotion", "Vengeance"};
+    this.subclasses = new String[] {"Ancients", "Devotion", "Vengeance"};
     this.features = new String[] {
         //Level 1
         "Divine Sense:\r\n"
@@ -140,6 +140,9 @@ public class Paladin extends CharacterClass {
    */
   public Paladin(String subclass) {
     this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Ancients")) {
       addFeature("Channel Divinity:\r\n"
           + "When you take this oath at 3rd level, you gain the following two Channel Divinity"

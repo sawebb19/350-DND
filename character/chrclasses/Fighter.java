@@ -17,7 +17,7 @@ public class Fighter extends CharacterClass {
     this.hit = 10;
     this.saves[0] = 1; // Strength
     this.saves[2] = 1; // Constitution
-    this.subclasses = new String[] {"", "Battle Master", "Champion", "Eldritch Knight"};
+    this.subclasses = new String[] {"Battle Master", "Champion", "Eldritch Knight"};
     this.features = new String[] {
         //Level 1
         "Fighting Style:\r\n"
@@ -91,6 +91,9 @@ public class Fighter extends CharacterClass {
    */
   public Fighter(String subclass) {
     this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Battle Master")) {
       addFeature("Combat Superiority:\r\n"
           + "When you choose this archetype at 3rd level, you learn maneuvers that "

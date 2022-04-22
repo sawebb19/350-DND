@@ -17,7 +17,7 @@ public class Cleric extends CharacterClass {
     this.hit = 8;
     this.saves[4] = 1; // Wisdom
     this.saves[5] = 1; // Charisma
-    this.subclasses = new String[] {"", "Knowledge", "Life", "Light", "Nature", "Tempest",
+    this.subclasses = new String[] {"Knowledge", "Life", "Light", "Nature", "Tempest",
         "Trickery", "War"};
     this.features = new String[] {
         //Level 1
@@ -101,6 +101,9 @@ public class Cleric extends CharacterClass {
    */
   public Cleric(String subclass) {
     this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Knowledge")) {
       addFeature("Blessings of Knowledge:\r\n"
           + "At 1st level, you learn two languages of your choice. You also become proficient "
@@ -285,7 +288,7 @@ public class Cleric extends CharacterClass {
           + "As an action, you become invisible until the end of your next turn. You become vi"
           + "sible if you attack or cast a spell.\r\n\r\n", 6);
       addFeature("Divine Strike\r\n"
-          + "At 8th level, you gain the ability to infuse your weapon strikes with poison – a "
+          + "At 8th level, you gain the ability to infuse your weapon strikes with poison  a "
           + "gift from your deity. Once on each of your turns when you hit a creature with a w"
           + "eapon attack, you can cause the attack to deal an extra 1d8 poison damage to the "
           + "target. When you reach 14th level, the extra damage increases to 2d8.\r\n\r\n", 8);

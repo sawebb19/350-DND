@@ -57,7 +57,6 @@ import javax.swing.SwingConstants;
  */
 @SuppressWarnings("serial")
 public class CharacterEditor extends JFrame implements ActionListener {
-
   private JMenuBar menus;
 
   private JMenu fileMenu;
@@ -115,6 +114,7 @@ public class CharacterEditor extends JFrame implements ActionListener {
   private JComboBox<String> subraceBox;
   private JComboBox<String> classBox;
   private JComboBox<String> lvlBox;
+  private JComboBox<String> subclassBox;
 
   private JTextArea idealsTextArea;
   private JTextArea bondsTextArea;
@@ -248,6 +248,7 @@ public class CharacterEditor extends JFrame implements ActionListener {
     }
     classBox.setBounds(24, 85, 85, 25);
     classBox.setSelectedIndex(0);
+    classBox.addActionListener(this);
     getContentPane().add(classBox);
 
     lvlBox = new JComboBox<String>();
@@ -654,7 +655,7 @@ public class CharacterEditor extends JFrame implements ActionListener {
     placeholderLabel.setBounds(498, 85, 46, 14);
     getContentPane().add(placeholderLabel);
 
-    JComboBox<String> subclassBox = new JComboBox<String>();
+    subclassBox = new JComboBox<String>();
     subclassBox.setBounds(23, 137, 125, 22);
     getContentPane().add(subclassBox);
 
@@ -982,8 +983,114 @@ public class CharacterEditor extends JFrame implements ActionListener {
       }
     }
     if (src == raceBox) {
+      subraceBox.updateUI();
+      subraceBox.removeAllItems();
+      subraceBox.addItem("");
+      subraceLabel.setText("Subrace");
       int n = raceBox.getSelectedIndex();
-      raceSet(n);
+      if (n == 1) {
+        String[] list = new String[] { "Brass", "Bronze", "Copper", "Gold",
+            "Silver", "Black", "Blue", "Green", "Red", "White" };
+        for (int i = 0; i < list.length; i++) {
+          subraceBox.addItem(list[i]);
+        }
+        subraceLabel.setText("Ancestry");
+      } else if (n == 2) {
+        subraceBox.addItem("Hill");
+        subraceBox.addItem("Mountain");
+      } else if (n == 3) {
+        subraceBox.addItem("High");
+        subraceBox.addItem("Wood");
+      } else if (n == 4) {
+        subraceBox.addItem("Deep");
+        subraceBox.addItem("Rock");
+      } else if (n == 6) {
+        subraceBox.addItem("Lightfoot");
+        subraceBox.addItem("Stout");
+      } else if (n == 8) {
+        String[] list = new String[] { "Calishite", "Chondathan",
+            "Damaran", "Illuskan", "Mulan", "Rashemi", "Shou",
+            "Tethyrian", "Turami" };
+        for (int i = 0; i < list.length; i++) {
+          subraceBox.addItem(list[i]);
+        }
+        subraceLabel.setText("Ethnicity");
+      }
+      subraceBox.updateUI();
+    }
+    if (src == classBox) {
+      subclassBox.updateUI();
+      subclassBox.removeAllItems();
+      subclassBox.addItem("");
+      CharacterClass obj;
+      int n = classBox.getSelectedIndex();
+      if (n == 0) {
+        subclassBox.removeAllItems();
+        subclassBox.addItem("--n/a--");
+      }
+      if (n == 1) {
+        obj = new Barbarian();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      } else if (n == 2) {
+        obj = new Bard();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      } else if (n == 3) {
+        obj = new Cleric();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      } else if (n == 4) {
+        obj = new Druid();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      } else if (n == 5) {
+        obj = new Fighter();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      } else if (n == 6) {
+        obj = new Monk();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      } else if (n == 7) {
+        obj = new Paladin();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      } else if (n == 8) {
+        obj = new Ranger();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      } else if (n == 9) {
+        obj = new Rogue();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      } else if (n == 10) {
+        obj = new Sorcerer();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      } else if (n == 11) {
+        obj = new Warlock();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      } else if (n == 12) {
+        obj = new Wizard();
+        for (int i = 0; i < obj.getSubclasses().length; i++) {
+          subclassBox.addItem(obj.getSubclasses()[i]);
+        }
+      }
+
+      subclassBox.updateUI();
     }
 
     if (src == switchWindow) {
@@ -998,51 +1105,19 @@ public class CharacterEditor extends JFrame implements ActionListener {
     }
 
     if (src == genCont) {
-      System.out.println("Completing");
+      loadChar(null, true, true);
     }
   }
 
-  private void raceSet(int n) {
-    subraceBox.updateUI();
-    subraceBox.removeAllItems();
-    subraceBox.addItem("");
-    subraceLabel.setText("Subrace");
-    if (n == 1) {
-      String[] list = new String[] { "Brass", "Bronze", "Copper", "Gold",
-          "Silver", "Black", "Blue", "Green", "Red", "White" };
-      for (int i = 0; i < list.length; i++) {
-        subraceBox.addItem(list[i]);
-      }
-      subraceLabel.setText("Ancestry");
-    } else if (n == 2) {
-      subraceBox.addItem("Hill");
-      subraceBox.addItem("Mountain");
-    } else if (n == 3) {
-      subraceBox.addItem("High");
-      subraceBox.addItem("Wood");
-    } else if (n == 4) {
-      subraceBox.addItem("Deep");
-      subraceBox.addItem("Rock");
-    } else if (n == 6) {
-      subraceBox.addItem("Lightfoot");
-      subraceBox.addItem("Stout");
-    } else if (n == 8) {
-      String[] list = new String[] { "Calishite", "Chondathan",
-          "Damaran", "Illuskan", "Mulan", "Rashemi", "Shou",
-          "Tethyrian", "Turami" };
-      for (int i = 0; i < list.length; i++) {
-        subraceBox.addItem(list[i]);
-      }
-      subraceLabel.setText("Ethnicity");
-    }
-    subraceBox.updateUI();
-  }
 
   private void loadChar(String path, boolean randomize, boolean persist) {
     DndChar temp = new DndChar();
     String inputRace;
+    
+    
     int n = 0; // General purpose int used throughout this function
     Random rand = new Random();
+
     if (!randomize) {
       try {
         FileInputStream file = new FileInputStream(path);
@@ -1060,26 +1135,32 @@ public class CharacterEditor extends JFrame implements ActionListener {
       n = rand.nextInt(12);
       temp.classGen(n);
       temp.setLevel(1);
-      n = rand.nextInt(9);
-      temp.setAlignment(ALIGNMENTS[n]);
+      if (!persist) {
+        n = rand.nextInt(9);
+        temp.setAlignment(ALIGNMENTS[n]);
+      }
       temp.setExp(0);
 
-      int[] newStats = new int[] { 0, 0, 0, 0, 0, 0 };
-      for (int i = 0; i < texts.length; i++) {
-        int[] rolls = new int[] { 0, 0, 0, 0 };
-        for (int j = 0; j < 4; j++) {
-          rolls[j] = rand.nextInt(6) + 1;
+      if (!persist) {
+        int[] newStats = new int[] { 0, 0, 0, 0, 0, 0 };
+        for (int i = 0; i < texts.length; i++) {
+          int[] rolls = new int[] { 0, 0, 0, 0 };
+          for (int j = 0; j < 4; j++) {
+            rolls[j] = rand.nextInt(6) + 1;
+          }
+          newStats[i] = Arrays.stream(rolls).sum() - Arrays.stream(rolls).min().getAsInt();
         }
-        newStats[i] = Arrays.stream(rolls).sum() - Arrays.stream(rolls).min().getAsInt();
-      }
-      temp.setStats(newStats);
-
-      String newSkills = "";
-      for (int i = 0; i < 4; i++) {
-        newSkills += " " + SKILLS[rand.nextInt(SKILLS.length)];
+        temp.setStats(newStats);
       }
 
-      temp.setSkills(newSkills);
+      if (!persist) {
+        String newSkills = "";
+        for (int i = 0; i < 4; i++) {
+          newSkills += " " + SKILLS[rand.nextInt(SKILLS.length)];
+        }
+
+        temp.setSkills(newSkills);
+      }
     }
 
     // Get race
@@ -1091,13 +1172,17 @@ public class CharacterEditor extends JFrame implements ActionListener {
     }
 
     // Set race in GUI
-    raceBox.setSelectedIndex(n);
+    if (!randomize || (randomize && !persist) || (persist && raceBox.getSelectedIndex() == 0)) {
+      raceBox.setSelectedIndex(n);
+    }
 
     String[] subraces;
     // checks for subraces and sets up the comboBox if applicable
     subraces = temp.getRace().getSubraces();
-    subraceBox.removeAllItems();
-    subraceBox.addItem("");
+    if (!persist) {
+      subraceBox.removeAllItems();
+      subraceBox.addItem("");
+    }
     if (subraces == null) {
       n = -1;
     } else {
@@ -1108,7 +1193,11 @@ public class CharacterEditor extends JFrame implements ActionListener {
         }
       }
     }
-    subraceBox.setSelectedIndex(n + 1);
+
+    if (!randomize || (randomize && !persist) || (persist && subraceBox.getSelectedIndex() == 0
+        && subraceBox.getItemCount() > 1)) {
+      subraceBox.setSelectedIndex(n + 1);
+    }
 
     // Get character class
     String inputClass = temp.getCharClass().getName();
@@ -1119,10 +1208,40 @@ public class CharacterEditor extends JFrame implements ActionListener {
     }
 
     // Set character class in GUI
-    classBox.setSelectedIndex(n);
+    if (!randomize || (randomize && !persist) || (persist && classBox.getSelectedIndex() == 0)) {
+      classBox.setSelectedIndex(n);
+    }
+
+    String[] subclasses;
+    // checks for subclasses and sets up the comboBox if applicable
+    subclasses = temp.getCharClass().getSubclasses();
+    if (!persist) {
+      subclassBox.removeAllItems();
+      subclassBox.addItem("");
+    }
+    if (subclasses == null) {
+      n = -1;
+    } else {
+      n = 0;
+      for (int i = 0; i < subclasses.length; i++) {
+        subclassBox.addItem(subclasses[i]);
+        if (subclasses[i].equals(temp.getCharClass().getSubclass())) {
+          n = i;
+        }
+      }
+    }
+
+    if (!randomize || (randomize && !persist) || (persist && subclassBox.getSelectedIndex() == 0
+        && subclassBox.getItemCount() > 1)) {
+      subclassBox.setSelectedIndex(n + 1);
+    }
+
+
 
     // char level
-    lvlBox.setSelectedIndex(temp.getLevel() - 1);
+    if (!randomize || (randomize && !persist) || (persist && lvlBox.getSelectedIndex() == 0)) {
+      lvlBox.setSelectedIndex(temp.getLevel() - 1);
+    }
 
     // char alignment
     String alignment = temp.getAlignment();
@@ -1134,18 +1253,22 @@ public class CharacterEditor extends JFrame implements ActionListener {
     }
 
     // char experience
-    xpText.setText("" + temp.getExp());
+    if (!randomize || (randomize && !persist) || (persist && xpText.getText() != "")) {
+      xpText.setText("" + temp.getExp());
+    }
 
     // skill radios
     // deselect all skills and select right ones
 
-    for (int i = 0; i < skillRadios.length; i++) {
-      if (skillRadios[i].isSelected()) {
-        skillRadios[i].doClick();
-      }
+    if (!persist) {
+      for (int i = 0; i < skillRadios.length; i++) {
+        if (skillRadios[i].isSelected()) {
+          skillRadios[i].doClick();
+        }
 
-      if (temp.getSkills().contains(skillRadios[i].getText())) {
-        skillRadios[i].doClick();
+        if (temp.getSkills().contains(skillRadios[i].getText())) {
+          skillRadios[i].doClick();
+        }
       }
     }
 
@@ -1159,26 +1282,23 @@ public class CharacterEditor extends JFrame implements ActionListener {
     profTextArea.setText(temp.getProfs());
 
     // set stats
-    for (int i = 0; i < texts.length; i++) {
-      texts[i].setText("" + temp.getStats()[i]);
+    if (!persist) {
+      for (int i = 0; i < texts.length; i++) {
+        texts[i].setText("" + temp.getStats()[i]);
+      }
     }
 
     // set ac
     acText.setText("" + temp.getArmor());
 
     // set max HP
-    temp.setMaxHp(temp.getCharClass().getHit() + temp.getStats()[2]);
-    hpText.setText("" + temp.getMaxHp());
+    if (!persist) {
+      temp.setMaxHp(temp.getCharClass().getHit() + temp.getStats()[2]);
+      hpText.setText("" + temp.getMaxHp());
+    }
 
     playerNameText.setText(temp.getPlayer());
 
     bgText.setText(temp.getBackground());
-  }
-
-  /////////////////////////////////////////////////////////////////////////////
-  ///////////// Only here for testing purposes. Remove at Release /////////////
-  /////////////////////////////////////////////////////////////////////////////
-  public static void main(String[] args) {
-    new CharacterEditor();
   }
 }

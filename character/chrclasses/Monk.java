@@ -17,7 +17,7 @@ public class Monk extends CharacterClass {
     this.hit = 8;
     this.saves[0] = 1; // Strength
     this.saves[1] = 1; // Dexterity
-    this.subclasses = new String[] {"", "Four Elements", "Open Hand", "Shadow"};
+    this.subclasses = new String[] {"Four Elements", "Open Hand", "Shadow"};
     this.features = new String[] {
         //Level 1
         "Unarmored Defense:\r\n"
@@ -164,6 +164,9 @@ public class Monk extends CharacterClass {
    */
   public Monk(String subclass) {
     this();
+    if (!subclass.equals("")) {
+      this.subclass = subclass;
+    }
     if (subclass.equals("Four Elements")) {
       addFeature("Disciple of the Elements:\r\n"
           + "When you choose this tradition at 3rd level, you learn magical disciplines that h"
