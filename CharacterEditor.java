@@ -1053,7 +1053,7 @@ public class CharacterEditor extends JFrame implements ActionListener {
 			}
 		}
 
-		if(!randomize || (randomize && !persist) || (persist && subraceBox.getSelectedIndex() == 0)){
+		if(!randomize || (randomize && !persist) || (persist && subraceBox.getSelectedIndex() == 0 && subraceBox.getItemCount() > 1)){
 			subraceBox.setSelectedIndex(n + 1);
 		}
 
